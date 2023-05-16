@@ -1,9 +1,9 @@
-import React from "react";
+import { MainPageBackgroundIc } from "@/assets";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <MainPageBackgroundIc />
     </div>
   );
 };
