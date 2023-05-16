@@ -1,11 +1,14 @@
 import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
 import { styled } from "styled-components";
 import Background from "../assets/image/homeBackground.png";
+import MyInfo from "../@components/Home/MyInfo";
 
 const Home = () => {
   return (
     <>
+      <MyInfo />
       <HomeTreasureIcon />
+
       <HomeKkaBiBankIcon />
 
       <BackgroundImg src={Background} alt="배경화면" />
