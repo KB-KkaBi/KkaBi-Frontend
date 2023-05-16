@@ -1,7 +1,13 @@
 import { styled } from "styled-components";
 import { HomeMyInfoIc } from "../../assets";
 
-const MyInfo = () => {
+interface characterNameProps {
+  characterName: String;
+}
+
+const MyInfo = (props: characterNameProps) => {
+  const { characterName } = props;
+
   return (
     <>
       <HomeMyInfoIc />
