@@ -8,13 +8,16 @@ import {
   MiniProfileLamu,
 } from "../../assets";
 import { STAR_FRIENDS } from "@/core/starFriends";
+import { St } from "./style";
 
 interface characterNameProps {
   characterName: String;
+  nickName: String;
+  totalMoney: number;
 }
 
 const MyInfo = (props: characterNameProps) => {
-  const { characterName } = props;
+  const { characterName, nickName, totalMoney } = props;
 
   function miniProfile() {
     switch (characterName) {
@@ -23,7 +26,7 @@ const MyInfo = (props: characterNameProps) => {
       case STAR_FRIENDS.BB:
         return <MiniProfileBB />;
       case STAR_FRIENDS.KIKI:
-        return <MiniProfileKiKi />;
+        return <St.MiniProfileKiKiImg />;
       case STAR_FRIENDS.KOLLY:
         return <MiniProfileKolly />;
       case STAR_FRIENDS.LAMU:
@@ -35,10 +38,16 @@ const MyInfo = (props: characterNameProps) => {
   }
 
   return (
-    <>
+    <St.MyInfoWrapper>
       {miniProfile()}
-      <HomeMyInfoIc />
-    </>
+      <St.TextWrapper>
+        <p>{nickName}</p>
+        <St.MoneyWrapper>
+          <St.Won>₩</St.Won>
+          <St.Money>{totalMoney}</St.Money>
+        </St.MoneyWrapper>
+      </St.TextWrapper>
+    </St.MyInfoWrapper>
   );
 };
 

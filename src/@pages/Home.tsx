@@ -2,12 +2,11 @@ import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
 import { styled } from "styled-components";
 import Background from "../assets/image/homeBackground.png";
 import MyInfo from "../@components/Home/MyInfo";
-import { STAR_FRIENDS } from "@/core/starFriends";
 
 const Home = () => {
   return (
     <>
-      <MyInfo characterName={STAR_FRIENDS.AGO} />
+      <MyInfo characterName="루나키키" nickName="지수수" totalMoney={11000} />
       <HomeTreasureIcon />
 
       <HomeKkaBiBankIcon />
