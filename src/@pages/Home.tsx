@@ -1,12 +1,12 @@
-import { MainPageKkaBiBankIc, MainPageTreasureIc } from "@/assets";
+import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
 import { styled } from "styled-components";
-import Background from "../assets/image/mainPageBackground.png";
+import Background from "../assets/image/homeBackground.png";
 
 const Home = () => {
   return (
     <>
-      <MainPageTreasureIcon />
-      <MainPageKkaBiBankIcon />
+      <HomeTreasureIcon />
+      <HomeKkaBiBankIcon />
 
       <BackgroundImg src={Background} alt="배경화면" />
     </>
@@ -20,12 +20,12 @@ const BackgroundImg = styled.img`
   z-index: -1;
 `;
 
-const MainPageTreasureIcon = styled(MainPageTreasureIc)`
+const HomeTreasureIcon = styled(HomeTreasureIc)`
   position: absolute;
   margin: 45.6rem 0 0 4rem;
 `;
 
-const MainPageKkaBiBankIcon = styled(MainPageKkaBiBankIc)`
+const HomeKkaBiBankIcon = styled(HomeKkaBiBankIc)`
   position: absolute;
   margin-top: 36.5rem;
   right: 9.6rem;

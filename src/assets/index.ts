@@ -1,2 +1,2 @@
-export { ReactComponent as MainPageTreasureIc } from "./icon/mainPageTreasureIc.svg";
-export { ReactComponent as MainPageKkaBiBankIc } from "./icon/mainPageKkaBiBankIc.svg";
+export { ReactComponent as HomeTreasureIc } from "./icon/homeTreasureIc.svg";
+export { ReactComponent as HomeKkaBiBankIc } from "./icon/homeKkaBiBankIc.svg";
