@@ -1,4 +1,4 @@
-import { MainPageKkaBiBackIc, MainPageTreasureIc } from "@/assets";
+import { MainPageKkaBiBankIc, MainPageTreasureIc } from "@/assets";
 import { styled } from "styled-components";
 import Background from "../assets/image/mainPageBackground.png";
 
@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <MainPageTreasureIc />
-      <MainPageKkaBiBackIc />
+      <MainPageKkaBiBankIc />
 
       <BackgroundImg src={Background} alt="배경화면" />
     </>
