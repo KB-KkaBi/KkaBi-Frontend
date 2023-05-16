@@ -12,42 +12,42 @@ const colors = {
 
 const fonts = {
   title: css`
-    font-family: "KOTRA HOPE";
+    font-family: "KOTRAHOPE";
     font-style: normal;
     font-weight: 400;
     font-size: 8rem;
     line-height: 4.8rem;
   `,
   text: css`
-    font-family: "KOTRA HOPE";
+    font-family: "KOTRAHOPE";
     font-style: normal;
     font-weight: 400;
     font-size: 4.6rem;
     line-height: 5.4rem;
   `,
   button: css`
-    font-family: "KOTRA HOPE";
+    font-family: "KOTRAHOPE";
     font-style: normal;
     font-weight: 400;
     font-size: 4.5rem;
     line-height: 5.2rem;
   `,
   cardTitle: css`
-    font-family: "KOTRA HOPE";
+    font-family: "KOTRAHOPE";
     font-style: normal;
     font-weight: 400;
     font-size: 6rem;
     line-height: 4.8rem;
   `,
   quiz: css`
-    font-family: "KOTRA HOPE";
+    font-family: "KOTRAHOPE";
     font-style: normal;
     font-weight: 400;
     font-size: 6rem;
     line-height: 7rem;
   `,
   log: css`
-    font-family: "KOTRA HOPE";
+    font-family: "KOTRAHOPE";
     font-style: normal;
     font-weight: 400;
     font-size: 3.5rem;
