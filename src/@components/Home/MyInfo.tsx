@@ -1,18 +1,4 @@
 import { styled } from "styled-components";
-import {
-  HomeMyInfoIc,
-  MiniProfileAgo,
-  MiniProfileBB,
-  MiniProfileKiKi,
-  MiniProfileKolly,
-  MiniProfileLamu,
-  Rank1,
-  Rank2,
-  Rank3,
-  Rank4,
-  Rank5,
-  Rank6,
-} from "../../assets";
 import { STAR_FRIENDS } from "@/core/starFriends";
 import { St } from "./style";
 
@@ -28,27 +14,27 @@ const MyInfo = (props: characterNameProps) => {
   function miniProfile() {
     switch (characterName) {
       case STAR_FRIENDS.AGO:
-        return <MiniProfileAgo />;
+        return <St.MiniProfileAgoImg />;
       case STAR_FRIENDS.BB:
-        return <MiniProfileBB />;
+        return <St.MiniProfileBBImg />;
       case STAR_FRIENDS.KIKI:
         return <St.MiniProfileKiKiImg />;
       case STAR_FRIENDS.KOLLY:
-        return <MiniProfileKolly />;
+        return <St.MiniProfileKollyImg />;
       case STAR_FRIENDS.LAMU:
-        return <MiniProfileLamu />;
+        return <St.MiniProfileLamuImg />;
       default:
         return;
     }
   }
 
   function rank() {
-    if (totalMoney >= 40000) return <Rank1 />;
-    else if (totalMoney >= 30000) return <Rank2 />;
-    else if (totalMoney >= 25000) return <Rank3 />;
-    else if (totalMoney >= 20000) return <Rank4 />;
-    else if (totalMoney >= 15000) return <Rank5 />;
-    else if (totalMoney >= 10000) return <Rank6 />;
+    if (totalMoney >= 40000) return <St.Rank1Ic />;
+    else if (totalMoney >= 30000) return <St.Rank2Ic />;
+    else if (totalMoney >= 25000) return <St.Rank3Ic />;
+    else if (totalMoney >= 20000) return <St.Rank4Ic />;
+    else if (totalMoney >= 15000) return <St.Rank5Ic />;
+    else if (totalMoney >= 10000) return <St.Rank6Ic />;
   }
 
   return (

@@ -1,4 +1,16 @@
-import { HomeMyInfoIc, MiniProfileKiKi } from "@/assets";
+import {
+  MiniProfileKiKi,
+  MiniProfileAgo,
+  MiniProfileBB,
+  MiniProfileKolly,
+  MiniProfileLamu,
+  Rank1,
+  Rank2,
+  Rank3,
+  Rank4,
+  Rank5,
+  Rank6,
+} from "@/assets";
 import { styled } from "styled-components";
 import paper from "../../assets/icon/homeMyInfoIc.svg";
 
@@ -32,6 +44,22 @@ export const St = {
     width: 10rem;
     height: 10rem;
   `,
+  MiniProfileAgoImg: styled(MiniProfileAgo)`
+    width: 10rem;
+    height: 10rem;
+  `,
+  MiniProfileBBImg: styled(MiniProfileBB)`
+    width: 10rem;
+    height: 10rem;
+  `,
+  MiniProfileKollyImg: styled(MiniProfileKolly)`
+    width: 10rem;
+    height: 10rem;
+  `,
+  MiniProfileLamuImg: styled(MiniProfileLamu)`
+    width: 10rem;
+    height: 10rem;
+  `,
   TextWrapper: styled.div`
     display: flex;
     flex-direction: column;
@@ -40,5 +68,29 @@ export const St = {
     display: flex;
     justify-content: center;
     align-items: center;
+  `,
+  Rank1Ic: styled(Rank1)`
+    width: 5rem;
+    height: 5rem;
+  `,
+  Rank2Ic: styled(Rank2)`
+    width: 5rem;
+    height: 5rem;
+  `,
+  Rank3Ic: styled(Rank3)`
+    width: 5rem;
+    height: 5rem;
+  `,
+  Rank4Ic: styled(Rank4)`
+    width: 5rem;
+    height: 5rem;
+  `,
+  Rank5Ic: styled(Rank5)`
+    width: 5rem;
+    height: 5rem;
+  `,
+  Rank6Ic: styled(Rank6)`
+    width: 5rem;
+    height: 5rem;
   `,
 };
