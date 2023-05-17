@@ -11,12 +11,16 @@ const Home = () => {
     navigate("/invest");
   }
 
+  function moveToBank() {
+    navigate("/bank");
+  }
+
   return (
     <>
       <MyInfo characterName="루나키키" nickName="지수수" totalMoney={11000} />
       <HomeTreasureIcon onClick={moveToTreasure} />
 
-      <HomeKkaBiBankIcon />
+      <HomeKkaBiBankIcon onClick={moveToBank} />
 
       <BackgroundImg src={Background} alt="배경화면" />
     </>
