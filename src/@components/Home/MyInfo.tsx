@@ -2,14 +2,14 @@ import { styled } from "styled-components";
 import { STAR_FRIENDS } from "@/core/starFriends";
 import { St } from "./style";
 
-interface characterNameProps {
+interface MyInfoProps {
   characterName: string;
   nickName: string;
   totalMoney: number;
   onClick: () => void;
 }
 
-const MyInfo = (props: characterNameProps) => {
+const MyInfo = (props: MyInfoProps) => {
   const { characterName, nickName, totalMoney, onClick } = props;
 
   function miniProfile() {
