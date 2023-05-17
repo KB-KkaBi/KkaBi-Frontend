@@ -41,8 +41,10 @@ const MyInfo = (props: characterNameProps) => {
     <St.MyInfoWrapper>
       {miniProfile()}
       <St.TextWrapper>
-        <p>{nickName}</p>
-        {rank()}
+        <St.UserInfoWrapper>
+          <p>{nickName}</p>
+          {rank()}
+        </St.UserInfoWrapper>
         <St.MoneyWrapper>
           <St.Won>₩</St.Won>
           <St.Money>{totalMoney}</St.Money>

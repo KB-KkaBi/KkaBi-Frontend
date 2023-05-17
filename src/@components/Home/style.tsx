@@ -25,7 +25,7 @@ export const St = {
     height: 17rem;
 
     margin: 4rem;
-    padding: 3rem 5rem 3rem 3rem;
+    padding: 3.2rem;
 
     background-image: url(${paper});
     background-repeat: no-repeat;
@@ -92,5 +92,8 @@ export const St = {
   Rank6Ic: styled(Rank6)`
     width: 5rem;
     height: 5rem;
+  `,
+  UserInfoWrapper: styled.div`
+    display: flex;
   `,
 };
