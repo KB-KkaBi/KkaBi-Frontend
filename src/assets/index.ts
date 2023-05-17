@@ -19,3 +19,10 @@ export { ReactComponent as CharacterBB } from "./icon/characterBB.svg";
 export { ReactComponent as CharacterKiKi } from "./icon/characterKiKi.svg";
 export { ReactComponent as CharacterKolly } from "./icon/characterKolly.svg";
 export { ReactComponent as CharacterLamu } from "./icon/characterLamu.svg";
+
+export { ReactComponent as Rank1 } from "./icon/rank1.svg";
+export { ReactComponent as Rank2 } from "./icon/rank2.svg";
+export { ReactComponent as Rank3 } from "./icon/rank3.svg";
+export { ReactComponent as Rank4 } from "./icon/rank4.svg";
+export { ReactComponent as Rank5 } from "./icon/rank5.svg";
+export { ReactComponent as Rank6 } from "./icon/rank6.svg";
