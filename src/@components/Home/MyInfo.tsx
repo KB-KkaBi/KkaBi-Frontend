@@ -6,10 +6,11 @@ interface characterNameProps {
   characterName: string;
   nickName: string;
   totalMoney: number;
+  onClick: () => void;
 }
 
 const MyInfo = (props: characterNameProps) => {
-  const { characterName, nickName, totalMoney } = props;
+  const { characterName, nickName, totalMoney, onClick } = props;
 
   function miniProfile() {
     switch (characterName) {
@@ -38,7 +39,7 @@ const MyInfo = (props: characterNameProps) => {
   }
 
   return (
-    <St.MyInfoWrapper>
+    <St.MyInfoWrapper onClick={onClick}>
       {miniProfile()}
       <St.TextWrapper>
         <St.UserInfoWrapper>
