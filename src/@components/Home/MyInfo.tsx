@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { STAR_FRIENDS } from "@/core/starFriends";
-import { St } from "./style";
+import * as St from "./style";
 
 interface MyInfoProps {
   characterName: string;
