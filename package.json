@@ -18,7 +18,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.1",
-    "styled-components": "^6.0.0-rc.1"
+    "styled-components": "^6.0.0-rc.1",
+    "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
