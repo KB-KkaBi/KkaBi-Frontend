@@ -36,22 +36,16 @@ export default Home;
 const BackgroundImg = styled.img`
   position: absolute;
   z-index: -1;
-
-  width: 100%;
-  height: 100vh;
 `;
 
 const HomeTreasureIcon = styled(HomeTreasureIc)`
   position: absolute;
 
-  margin: 22% 0 0 3%;
-  /* margin: 45.6rem 0 0 4rem; */
+  margin: 45.6rem 0 0 4rem;
 `;
 
 const HomeKkaBiBankIcon = styled(HomeKkaBiBankIc)`
   position: absolute;
-
-  margin: 14% 0 0 68%;
-  /* margin-top: 36.5rem; */
-  /* right: 9.6rem; */
+  margin-top: 36.5rem;
+  right: 9.6rem;
 `;
