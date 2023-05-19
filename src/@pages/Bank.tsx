@@ -1,10 +1,17 @@
-import React from "react";
+import { Button } from "@/@components";
+import { BankLayout } from "@/@components/common/";
+import { useNavigate } from "react-router";
 
 const Bank = () => {
+  const navigate = useNavigate();
+
   return (
-    <div>
+    <BankLayout>
       <h1>Bank Page</h1>
-    </div>
+      <Button onClick={() => navigate("./deposit")}>예금</Button>
+      <Button onClick={() => navigate("./withdraw")}>출금</Button>
+      <Button onClick={() => navigate("./account-log")}>내역확인</Button>
+    </BankLayout>
   );
 };
 

@@ -1,4 +1,5 @@
-import paperImage from "src/assets/vector-9.png";
+import bankImage from "@/assets/image/bank_main.png";
+import paperImage from "@/assets/image/vector-9.png";
 import styled from "styled-components";
 
 export const CommonBackground = styled.div`
@@ -15,6 +16,16 @@ export const PaperBackground = styled.div`
   background-size: 100% 100%;
   background-position: center;
   background-color: transparent;
+  width: 100%;
+  height: 100%;
+`;
+
+export const BankBackground = styled.div`
+  background-image: url(${bankImage});
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  background-color: ${(props) => props.theme.colors.whiteYellow};
   width: 100%;
   height: 100%;
 `;

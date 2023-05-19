@@ -1,6 +1,5 @@
-import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import * as P from "@/@pages";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 const Router = () => {
   return (
