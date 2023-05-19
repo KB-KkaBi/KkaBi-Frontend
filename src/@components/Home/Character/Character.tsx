@@ -26,7 +26,7 @@ const Character = (props: CharacterProps) => {
     }
   }
 
-  return <>{characterImg()}</>;
+  return <St.CharacterWrapper>{characterImg()}</St.CharacterWrapper>;
 };
 
 export default Character;

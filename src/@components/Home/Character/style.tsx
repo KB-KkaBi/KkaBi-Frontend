@@ -1,7 +1,9 @@
 import { CharacterAgo, CharacterBB, CharacterKiKi, CharacterKolly, CharacterLamu } from "@/assets";
 import { styled } from "styled-components";
 
-export const CharacterWrapper = styled.section``;
+export const CharacterWrapper = styled.article`
+  margin-left: 3rem;
+`;
 
 export const CharacterAgoImg = styled(CharacterAgo)`
   width: 70rem;
