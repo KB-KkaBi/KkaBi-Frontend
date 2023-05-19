@@ -1,10 +1,10 @@
 <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g clip-path="url(#clip0_130_575)">
 <rect width="100" height="100" rx="40" fill="#FCF9EB"/>
-<rect x="-1" y="8" width="100" height="123" fill="url(#pattern0)"/>
+<rect x="-1" y="8" width="100" height="123" fill="url(#miniprofileKiKi)"/>
 </g>
 <defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<pattern id="miniprofileKiKi" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_130_575" transform="matrix(0.00736527 0 0 0.00598802 -0.0671257 0)"/>
 </pattern>
 <clipPath id="clip0_130_575">

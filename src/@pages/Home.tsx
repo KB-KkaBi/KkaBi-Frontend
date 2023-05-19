@@ -1,8 +1,9 @@
 import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
 import { styled } from "styled-components";
 import Background from "../assets/image/homeBackground.png";
-import MyInfo from "../@components/Home/MyInfo";
+import MyInfo from "../@components/Home/MyInfo/MyInfo";
 import { useNavigate } from "react-router-dom";
+import Character from "@/@components/Home/Character/Character";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Home = () => {
       <MyInfo characterName="루나키키" nickName="지수수" totalMoney={11000} onClick={moveToMyPage} />
       <HomeTreasureIcon onClick={moveToTreasure} />
 
+      <Character characterName="루나키키" />
       <HomeKkaBiBankIcon onClick={moveToBank} />
 
       <BackgroundImg src={Background} alt="배경화면" />
