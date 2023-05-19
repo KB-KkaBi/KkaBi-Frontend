@@ -9,7 +9,12 @@ type Props = {
 const LandingLayout = ({ children }: Props) => {
   return (
     <>
-      <S.LandingBackground>{children}</S.LandingBackground>
+      <S.LandingBackground>
+        <S.BackgroundWrapper>
+          {/* <S.LandingLogoIcon /> */}
+          {children}
+        </S.BackgroundWrapper>
+      </S.LandingBackground>
     </>
   );
 };
