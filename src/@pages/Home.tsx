@@ -23,11 +23,11 @@ const Home = () => {
   return (
     <>
       <MyInfo characterName="루나키키" nickName="지수수" totalMoney={11000} onClick={moveToMyPage} />
-      <HomeTreasureIcon onClick={moveToTreasure} />
-
-      <Character characterName="루나키키" />
-      <HomeKkaBiBankIcon onClick={moveToBank} />
-
+      <ImgWrapper>
+        <HomeTreasureIcon onClick={moveToTreasure} />
+        <Character characterName="루나키키" />
+        <HomeKkaBiBankIcon onClick={moveToBank} />
+      </ImgWrapper>
       <BackgroundImg src={Background} alt="배경화면" />
     </>
   );
@@ -41,13 +41,23 @@ const BackgroundImg = styled.img`
 `;
 
 const HomeTreasureIcon = styled(HomeTreasureIc)`
-  position: absolute;
+  /* position: absolute; */
 
-  margin: 45.6rem 0 0 4rem;
+  /* margin: 45.6rem 0 0 4rem; */
 `;
 
 const HomeKkaBiBankIcon = styled(HomeKkaBiBankIc)`
+  /* position: absolute; */
+  /* margin-top: 36.5rem; */
+  /* right: 9.6rem; */
+`;
+
+const ImgWrapper = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+
   position: absolute;
-  margin-top: 36.5rem;
-  right: 9.6rem;
+
+  width: 140rem;
 `;
