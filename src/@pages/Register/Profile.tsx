@@ -100,7 +100,7 @@ const Profile = () => {
           e.preventDefault();
           handleRegisterlicked();
         }}>
-        <CharacterTextWrapper>
+        <CharacterTextContainer>
           <p>나의 깨비를 선택해주세요!</p>
           <CharacterWrapper>
             {character.map((item) => {
@@ -114,7 +114,7 @@ const Profile = () => {
               );
             })}
           </CharacterWrapper>
-        </CharacterTextWrapper>
+        </CharacterTextContainer>
         <NickNameWrapper>
           <p>NickName</p>
           <TextField placeholder="닉네임을 입력해주세요" value={nickName} onChange={handleNickNameInput} />
@@ -145,7 +145,7 @@ export const ProfileRootContainer = styled.form`
   ${({ theme }) => theme.fonts.text}
 `;
 
-export const CharacterTextWrapper = styled.div`
+export const CharacterTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

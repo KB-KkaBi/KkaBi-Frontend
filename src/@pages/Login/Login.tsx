@@ -40,7 +40,7 @@ const Login = () => {
       handleClick={() => {
         navigate(-1);
       }}>
-      <S.LoginFormWrapper
+      <S.LoginFormContainer
         onSubmit={(e) => {
           e.preventDefault();
           handleLoginClicked();
@@ -63,7 +63,7 @@ const Login = () => {
             <Button onClick={handleModalClose}>확인</Button>
           </S.ModalWrapper>
         </Modal>
-      </S.LoginFormWrapper>
+      </S.LoginFormContainer>
     </PaperLayout>
   );
 };
