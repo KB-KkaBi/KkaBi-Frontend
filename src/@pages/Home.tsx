@@ -23,9 +23,7 @@ const Home = () => {
     <>
       <MyInfo characterName="루나키키" nickName="지수수" totalMoney={11000} onClick={moveToMyPage} />
       <HomeTreasureIcon onClick={moveToTreasure} />
-
       <HomeKkaBiBankIcon onClick={moveToBank} />
-
       <BackgroundImg src={Background} alt="배경화면" />
     </>
   );
