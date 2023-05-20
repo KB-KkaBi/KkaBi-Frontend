@@ -1,14 +1,25 @@
 import { TextField, PaperLayout, Button } from "@/@components";
+import {
+  registerEmail,
+  registerNickname,
+  registerPassword,
+  registerPasswordConfirm,
+  registerSelectedCharacter,
+} from "@/recoil/Register";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
 const Register = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+  // Post 보낼 정보들
+  const [email, setEmail] = useRecoilState(registerEmail);
+  const [password, setPassword] = useRecoilState(registerPassword);
+  const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
+  const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
+  const [nickName, setNickName] = useRecoilState(registerNickname);
 
   const handleEmailInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -26,14 +37,16 @@ const Register = () => {
   //   console.log("email : ", email);
   //   console.log("password : ", password);
   //   console.log("passwordConfirm : ", passwordConfirm);
-  // }, [email, password, passwordConfirm]);
+  //   console.log("character : ", selectedCharacter);
+  //   console.log("nickname : ", nickName);
+  // }, [email, password, passwordConfirm, selectedCharacter, nickName]);
 
   return (
     <PaperLayout
       handleClick={() => {
         navigate(-1);
       }}>
-      <InputContainer>
+      <SignUpContainer>
         <EmailInputWrapper>
           <p>EMAIL</p>
           <TextField placeholder="이메일을 입력해주세요" type="email" value={email} onChange={handleEmailInput} />
@@ -58,14 +71,14 @@ const Register = () => {
           }}>
           확인
         </Button>
-      </InputContainer>
+      </SignUpContainer>
     </PaperLayout>
   );
 };
 
 export default Register;
 
-export const InputContainer = styled.div`
+export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
