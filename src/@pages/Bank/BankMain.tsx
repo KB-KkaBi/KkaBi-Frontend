@@ -2,7 +2,7 @@ import { Button } from "@/@components";
 import { BankLayout } from "@/@components/common/";
 import { useNavigate } from "react-router";
 
-const Bank = () => {
+const BankMain = () => {
   const navigate = useNavigate();
 
   return (
@@ -15,4 +15,4 @@ const Bank = () => {
   );
 };
 
-export default Bank;
+export default BankMain;
