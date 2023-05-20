@@ -16,8 +16,8 @@ export const CharacterBBImg = styled(CharacterBB)`
 `;
 
 export const CharacterKiKiImg = styled(CharacterKiKi)`
-  width: 70rem;
-  height: 80rem;
+  width: 60rem;
+  height: 70rem;
 `;
 
 export const CharacterKollyImg = styled(CharacterKolly)`

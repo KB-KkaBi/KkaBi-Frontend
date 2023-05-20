@@ -40,6 +40,9 @@ export default Home;
 const BackgroundImg = styled.img`
   position: absolute;
   z-index: -1;
+
+  width: 100%;
+  height: 100%;
 `;
 
 const ImgContainer = styled.div`
@@ -53,6 +56,7 @@ const ImgWrapper = styled.section`
   align-items: flex-end;
 
   position: absolute;
+  bottom: 15rem;
 
   width: 140rem;
 `;
