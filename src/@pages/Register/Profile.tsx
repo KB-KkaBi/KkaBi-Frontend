@@ -10,17 +10,23 @@ import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
 import { useRecoilState } from "recoil";
+import {
+  registerEmail,
+  registerNickname,
+  registerPassword,
+  registerPasswordConfirm,
+  registerSelectedCharacter,
+} from "@/recoil/Register";
 import { log } from "console";
-import { UserCharacter, UserEmail, UserNickname, UserPassword, UserPasswordConfirm } from "@/recoil/User";
 
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useRecoilState(UserEmail);
-  const [password, setPassword] = useRecoilState(UserPassword);
-  const [passwordConfirm, setPasswordConfirm] = useRecoilState(UserPasswordConfirm);
-  const [selectedCharacter, setSelectedCharacter] = useRecoilState(UserCharacter); // 사용자가 선택한 캐릭터 이름
-  const [nickName, setNickName] = useRecoilState(UserNickname);
+  const [email, setEmail] = useRecoilState(registerEmail);
+  const [password, setPassword] = useRecoilState(registerPassword);
+  const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
+  const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
+  const [nickName, setNickName] = useRecoilState(registerNickname);
 
   const [open, setOpen] = useState(false); //Modal Open
 
