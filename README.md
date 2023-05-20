@@ -1,6 +1,6 @@
 # KkaBi-Frontend
 어린이의 경제관련 지식 습득을 돕는 웹 앱입니다.  
-React, Vite, Recoil, JavaScript, 그리고 CSS를 이용해 구현되었습니다.
+React, Vite, Recoil, TypeScript, 그리고 CSS를 이용해 구현되었습니다.
   
 ## Installation and Setup Instructions
 To Clone Repository:  
