@@ -6,6 +6,7 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<B.MyAccountMain />} />
       <Route path="/deposit" element={<B.Deposit />} />
+      <Route path="/withdraw" element={<B.Withdraw />} />
     </Routes>
   );
 };
