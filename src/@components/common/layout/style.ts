@@ -24,4 +24,5 @@ export const ButtonContainer = styled.div`
   top: 7rem;
   left: 9rem;
   z-index: 1;
+  cursor: pointer;
 `;

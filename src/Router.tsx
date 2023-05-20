@@ -9,7 +9,10 @@ const Router = () => {
         <Route path="*" element={<Navigate to="/landing" replace />} />
         <Route path="/landing" element={<P.Landing />} />
         <Route path="/login" element={<P.Login />} />
-        <Route path="/register" element={<P.Register />} />
+        <Route path="/register">
+          <Route index element={<P.Register />} />
+          <Route path="profile" element={<P.Profile />} />
+        </Route>
         <Route path="/home" element={<P.Home />} />
         <Route path="/mypage" element={<P.MyPage />} />
         <Route path="/bank" element={<P.Bank />} />
