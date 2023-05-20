@@ -14,7 +14,7 @@ type Props = {
 export default function CommonPaperLayout({ handleClick = () => {}, children }: Props) {
   // const themeContext = useContext(ThemeContext);
   return (
-    <S.CommonBackground>
+    <S.CommonBackground color="#5f564c">
       <S.ButtonContainer onClick={() => handleClick()}>
         <IconButton width={15} height={15}>
           <BackArrowIcon width={15} height={15} fillColor="#5f564c" />

@@ -1,6 +1,8 @@
 import { IconButton } from "@/@components/common";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import * as S from "./style";
+import { ThemeContext } from "styled-components";
+import { useContext } from "react";
 
 type Props = {
   handleClick?: Function;
@@ -8,13 +10,13 @@ type Props = {
 };
 
 /**
- * chilren을 종이모양 Background 안에 렌더합니다.
+ * chilren을 은행 페이지 Background 안에 렌더합니다.
  * @returns
  */
 export default function CommonBankLayout({ handleClick = () => {}, children }: Props) {
-  // const themeContext = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
   return (
-    <S.CommonBackground>
+    <S.CommonBackground color={themeContext?.colors.whiteYellow}>
       <S.BankBackground>
         <S.ButtonContainer onClick={() => handleClick()}>
           <IconButton width={15} height={15}>
