@@ -9,6 +9,7 @@ import bibi from "../../assets/icon/characterBb.svg";
 import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
+
 import { useRecoilState } from "recoil";
 import {
   registerEmail,

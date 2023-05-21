@@ -18,7 +18,7 @@ const MyPage = () => {
    * 원래는 이 페이지 부르기 전 get 요청해서 유저정보 값(닉네임, 캐릭터, 금액들) 가져옴
    */
   const UserDummy = {
-    nickname: "지수수",
+    nickname: "승구",
     character: "심콩비비",
     detailMoney: {
       totalDeposit: 1200, //예금
@@ -118,7 +118,12 @@ const MyPage = () => {
         <S.MyPageRootContainer>
           <S.UserNickNameContainer>
             <p className="text">{UserDummy.nickname}</p>
-            {selectRank()}
+            <S.RankListWrapper
+              onClick={() => {
+                navigate("/mypage/ranklist");
+              }}>
+              {selectRank()}
+            </S.RankListWrapper>
           </S.UserNickNameContainer>
           <S.UserInfoContainer>
             <S.UserProfileContainer>{selectCharacter(UserDummy.character)}</S.UserProfileContainer>

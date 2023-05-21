@@ -14,7 +14,10 @@ const Router = () => {
           <Route path="profile" element={<P.Profile />} />
         </Route>
         <Route path="/home" element={<P.Home />} />
-        <Route path="/mypage" element={<P.MyPage />} />
+        <Route path="/mypage">
+          <Route index element={<P.MyPage />} />
+          <Route path="ranklist" element={<P.RankList />} />
+        </Route>
         <Route path="/bank" element={<P.Bank />} />
         <Route path="/invest" element={<P.Invest />} />
       </Routes>

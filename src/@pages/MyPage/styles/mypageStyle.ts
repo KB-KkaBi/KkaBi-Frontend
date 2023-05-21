@@ -24,12 +24,15 @@ export const MyPageRootContainer = styled.div`
 
 export const UserNickNameContainer = styled.div`
   display: flex;
-  margin-top: 13rem;
-
+  margin-top: 10rem;
+  margin-bottom: 3.5rem;
   .text {
     margin-right: 1rem;
     font-size: 8rem;
   }
+`;
+export const RankListWrapper = styled.div`
+  cursor: pointer;
 `;
 
 export const UserInfoContainer = styled.div`
@@ -85,7 +88,7 @@ export const PieChartContainer = styled.div`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  margin-top: 14.5rem;
+  margin-top: 12rem;
 
   .btn {
     width: 35rem;
