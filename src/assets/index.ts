@@ -27,3 +27,8 @@ export { ReactComponent as Rank4 } from "./icon/rank4.svg";
 export { ReactComponent as Rank5 } from "./icon/rank5.svg";
 export { ReactComponent as Rank6 } from "./icon/rank6.svg";
 export { ReactComponent as LandingLogoIc } from "./icon/landingLogoIc.svg";
+
+export { ReactComponent as Account1 } from "./icon/account1.svg";
+export { ReactComponent as Account2 } from "./icon/account2.svg";
+export { ReactComponent as Account3 } from "./icon/account3.svg";
+export { ReactComponent as Account4 } from "./icon/account4.svg";
