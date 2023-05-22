@@ -8,7 +8,7 @@ const BankMain = () => {
   const navigate = useNavigate();
 
   const moveToCreateAccount = () => {
-    navigate("/banks/create-new-account");
+    navigate("./create-new-account");
   };
 
   const moveToMyAccount = () => {
