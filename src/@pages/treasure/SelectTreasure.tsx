@@ -22,8 +22,8 @@ const SelectTreasure = () => {
                 </>
               ) : (
                 <>
-                  <Card account={treasureId} />
                   <TreasureCard treasure={treasureId} />
+                  <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
                 </>
               )}
             </>

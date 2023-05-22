@@ -28,7 +28,7 @@ const TreasureCardContent = (props: CardContentProps) => {
 
   return (
     <>
-      <CardContainer>
+      <CardContainer id={id}>
         <Title>{name}</Title>
         <Content>1개 {price}원</Content>
         <Content>수익률 {interest * 100}%</Content>
@@ -40,12 +40,13 @@ const TreasureCardContent = (props: CardContentProps) => {
 
 export default TreasureCardContent;
 
-const CardContainer = styled.article`
+const CardContainer = styled.article<{ id: number }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: ${({ id }) => (id % 2 === 0 ? "flex-start" : "flex-end")};
 
-  width: 23rem;
+  width: 20rem;
   height: 20rem;
 
   margin: 1rem;
