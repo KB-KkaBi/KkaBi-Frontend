@@ -15,6 +15,7 @@ export const TextContainer = styled.div`
   display: block;
   text-align: center;
   width: fit-content;
+  ${({ theme }) => theme.fonts.button}
 `;
 
 export const Guide = styled.p`
