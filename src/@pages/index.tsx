@@ -1,6 +1,6 @@
 export { default as Home } from "./Home";
 export { default as MyPage } from "./MyPage";
-export { default as Invest } from "./Invest";
+export { Invest } from "./treasure";
 export { MyAccount } from "./MyAccount";
 export { default as Login } from "./Login/Login";
 export { default as Landing } from "./Landing";
