@@ -1,19 +1,38 @@
-import { Button, PaperLayout } from "@/@components";
-import Modal from "@/@components/common/textField/CommonTextField";
-import React from "react";
+import { Button, Modal, PaperLayout } from "@/@components";
+import Input from "@/@components/common/textField/CommonTextField";
+import React, { useState } from "react";
 import { styled } from "styled-components";
 
 const CreateNewAccountName = () => {
+  const [open, setOpen] = useState(false);
+  //여기를 지우시고, 계좌를 클릭했을때 어떤 계좌인지를 저장하고 이름을 넘겨와주세요.
+  const accountName = "지수네 통장";
+
+  function handleClose() {
+    setOpen(false);
+  }
+
   return (
-    <PaperLayout>
-      <CreateNewAccountNameWrapper>
-        <Title>계좌 이름</Title>
-        <Modal placeholder="계좌 이름을 입력해주세요"></Modal>
-        <ButtonWrapper>
+    <>
+      <Modal open={open} onClose={handleClose}>
+        <ModalContent>
+          <TextWrapper>
+            <p>{accountName}</p>
+            <p>개설이 완료되었습니다</p>
+          </TextWrapper>
           <Button>확인</Button>
-        </ButtonWrapper>
-      </CreateNewAccountNameWrapper>
-    </PaperLayout>
+        </ModalContent>
+      </Modal>
+      <PaperLayout>
+        <CreateNewAccountNameWrapper>
+          <Title>계좌 이름</Title>
+          <Input placeholder="계좌 이름을 입력해주세요"></Input>
+          <ButtonWrapper>
+            <Button onClick={() => setOpen(true)}>확인</Button>
+          </ButtonWrapper>
+        </CreateNewAccountNameWrapper>
+      </PaperLayout>
+    </>
   );
 };
 
@@ -36,4 +55,25 @@ const CreateNewAccountNameWrapper = styled.section`
 
 const ButtonWrapper = styled.div`
   margin-top: 2rem;
+`;
+
+const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 1rem;
+
+  ${({ theme }) => theme.fonts.button}
+
+  & > p:nth-child(1) {
+    color: ${({ theme }) => theme.colors.main};
+  }
 `;
