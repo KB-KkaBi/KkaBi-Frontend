@@ -12,18 +12,29 @@ export const EditPasswordFormContainer = styled.form`
 export const PasswordInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 8rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 `;
 
 export const NewPasswordInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 9.5rem;
+  margin-bottom: 2rem;
 `;
 
 export const NewPasswordConfirmInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 9.5rem;
+  margin-bottom: 3rem;
+`;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  ${({ theme }) => theme.fonts.text};
+  align-items: center;
+
+  .text {
+    margin-bottom: 3rem;
+  }
 `;
