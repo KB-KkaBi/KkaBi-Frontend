@@ -19,6 +19,7 @@ const AccountLog = () => {
   const accountLogList: AccountLogData[] = [
     { accountLogId: 1, date: "2023-5-14", deposit: 10000, detail: "엄마한테 용돈 받음", balance: 10000 },
     { accountLogId: 2, date: "2023-5-15", deposit: 1000, detail: "설거지", balance: 11000 },
+    { accountLogId: 3, date: "2023-5-20", withdraw: 5000, detail: "군것질", balance: 6000 },
   ];
   const navigate = useNavigate();
 
