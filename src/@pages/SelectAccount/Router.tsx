@@ -6,6 +6,7 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<B.SelectAccountMain />} />
       <Route path="/create-new-account" element={<B.CreateNewAccount />} />
+      <Route path="/create-new-account-name" element={<B.CreateNewAccountName />} />
     </Routes>
   );
 };

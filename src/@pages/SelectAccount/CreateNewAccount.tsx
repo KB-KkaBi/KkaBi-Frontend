@@ -4,9 +4,14 @@ import React from "react";
 import { styled } from "styled-components";
 import { ACCOUNTS_DATA } from "@/core/accountsData";
 import CardContent from "@/@components/common/card/CardContent";
+import { useNavigate } from "react-router-dom";
 
 const CreateNewAccount = () => {
-  function moveToCreateAccountName() {}
+  const navigate = useNavigate();
+
+  function moveToCreateAccountName() {
+    navigate("/create-new-account-name");
+  }
 
   return (
     <CreateNewAccountWrapper>
@@ -32,7 +37,7 @@ const CreateNewAccount = () => {
           </CardWrapper>
         </CardContainer>
         <ButtonWrapper>
-          <Button onclick={moveToCreateAccountName}>확인</Button>
+          <Button onClick={moveToCreateAccountName}>확인</Button>
         </ButtonWrapper>
       </PaperLayout>
     </CreateNewAccountWrapper>
