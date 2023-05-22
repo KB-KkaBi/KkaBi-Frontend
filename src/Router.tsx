@@ -1,6 +1,5 @@
-import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import * as P from "@/@pages";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 const Router = () => {
   return (
@@ -17,8 +16,9 @@ const Router = () => {
         <Route path="/mypage">
           <Route index element={<P.MyPage />} />
           <Route path="ranklist" element={<P.RankList />} />
+          <Route path="editnickname" element={<P.EditNickname />} />
+          <Route path="editpassword" element={<P.EditPassword />} />
         </Route>
-        <Route path="/bank" element={<P.Bank />} />
         <Route path="/invest" element={<P.Invest />} />
       </Routes>
     </BrowserRouter>

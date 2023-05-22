@@ -12,7 +12,7 @@ import {
   Rank6,
 } from "@/assets";
 import { styled } from "styled-components";
-import paper from "../../assets/icon/homeMyInfoIc.svg";
+import paper from "../../../assets/icon/homeMyInfoIc.svg";
 
 export const MyInfoWrapper = styled.section`
   position: absolute;

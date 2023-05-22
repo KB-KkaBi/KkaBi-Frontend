@@ -99,6 +99,14 @@ export const ButtonContainer = styled.div`
     }
   }
 `;
+
+export const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  .btn:first-child {
+    margin-bottom: 2rem;
+  }
+`;
 /**
  * SVG 컴포넌트 만들기
  */

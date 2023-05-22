@@ -19,10 +19,10 @@ const MyPage = () => {
    */
   const UserDummy = {
     nickname: "승구",
-    character: "심콩비비",
+    character: "루나키키",
     detailMoney: {
-      totalDeposit: 1200, //예금
-      totalSavings: 4000, //적금
+      totalDeposit: 100000, //예금
+      totalSavings: 10000, //적금
       totalTreasure: 7600, // 전체 보물 자산 구한 값
     },
 
@@ -34,9 +34,9 @@ const MyPage = () => {
     },
   };
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [profileEditopen, setProfileEditOpen] = React.useState(false);
+  const handleProfileEditModalOpen = () => setProfileEditOpen(true);
+  const handleProfileEditModalClose = () => setProfileEditOpen(false);
   const [totalMoney, setTotalMoney] = useState(getTotalMoney(UserDummy));
 
   /**
@@ -169,13 +169,27 @@ const MyPage = () => {
             </S.PieChartContainer>
           </S.UserInfoContainer>
           <S.ButtonContainer>
-            <Button
-              className="btn"
-              onClick={() => {
-                navigate("/landing");
-              }}>
+            <Button className="btn" onClick={handleProfileEditModalOpen}>
               내 정보 수정
             </Button>
+            <Modal open={profileEditopen} onClose={handleProfileEditModalClose}>
+              <S.ModalWrapper>
+                <Button
+                  className="btn"
+                  onClick={() => {
+                    navigate("/mypage/editnickname");
+                  }}>
+                  닉네임 수정
+                </Button>
+                <Button
+                  className="btn"
+                  onClick={() => {
+                    navigate("/mypage/editpassword");
+                  }}>
+                  비밀번호 수정
+                </Button>
+              </S.ModalWrapper>
+            </Modal>
             <Button
               className="btn"
               onClick={() => {

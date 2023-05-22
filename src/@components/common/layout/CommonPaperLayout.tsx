@@ -1,6 +1,6 @@
 import { IconButton } from "@/@components/common";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
-import { ButtonContainer, CommonBackground, PaperBackground } from "./style";
+import * as S from "./style";
 
 type Props = {
   handleClick?: Function;
@@ -14,13 +14,13 @@ type Props = {
 export default function CommonPaperLayout({ handleClick = () => {}, children }: Props) {
   // const themeContext = useContext(ThemeContext);
   return (
-    <CommonBackground>
-      <ButtonContainer onClick={() => handleClick()}>
+    <S.CommonBackground color="#5f564c">
+      <S.ButtonContainer onClick={() => handleClick()}>
         <IconButton width={15} height={15}>
           <BackArrowIcon width={15} height={15} fillColor="#5f564c" />
         </IconButton>
-      </ButtonContainer>
-      <PaperBackground>{children}</PaperBackground>
-    </CommonBackground>
+      </S.ButtonContainer>
+      <S.PaperBackground>{children}</S.PaperBackground>
+    </S.CommonBackground>
   );
 }
