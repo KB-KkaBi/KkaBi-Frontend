@@ -13,9 +13,6 @@ const SelectMyAccount = () => {
 
   function checkExistAccount() {
     REAL_ACCOUNTS.map(({ accountId }) => {
-      //   const newExistAccountId = [...existAccountId];
-      //   newExistAccountId.push(accountId);
-      //   setExistAccountId((prev) => ({ ...prev, newExistAccountId }));
       if (!newAccountId.includes(accountId)) {
         newAccountId.push(accountId);
       }
