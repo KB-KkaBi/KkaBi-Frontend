@@ -15,9 +15,9 @@ const AccountLog = () => {
   return (
     <div>
       <p>깨비 미래 적금</p>
-      {accountLogList.map((log) => {
+      {/* {accountLogList.map((log) => {
         return <div></div>;
-      })}
+      })} */}
     </div>
   );
 };

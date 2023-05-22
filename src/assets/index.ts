@@ -26,3 +26,4 @@ export { ReactComponent as Rank3 } from "./icon/rank3.svg";
 export { ReactComponent as Rank4 } from "./icon/rank4.svg";
 export { ReactComponent as Rank5 } from "./icon/rank5.svg";
 export { ReactComponent as Rank6 } from "./icon/rank6.svg";
+export { ReactComponent as LandingLogoIc } from "./icon/landingLogoIc.svg";

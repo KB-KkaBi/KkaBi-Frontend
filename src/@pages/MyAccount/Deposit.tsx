@@ -1,8 +1,8 @@
 import { Button } from "@/@components";
-import { Input, Modal, PaperLayout } from "@/@components/common/";
+import { Modal, PaperLayout, TextField } from "@/@components/common/";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as S from "./style";
-import { useState } from "react";
 
 const Deposit = () => {
   const navigate = useNavigate();
@@ -23,14 +23,14 @@ const Deposit = () => {
     <PaperLayout handleClick={() => navigate(-1)}>
       <S.TransactionContent>
         <S.Guide>얼마를 예금할까요?</S.Guide>
-        <Input
+        <TextField
           type="number"
           onChange={handleAmountChange}
           InputProps={{
             endAdornment: <S.Won color={!!amount ? "#000" : "#aaaaaa"}>\</S.Won>,
-          }}></Input>
+          }}></TextField>
         <S.Guide>예금 사유를 작성해주세요</S.Guide>
-        <Input placeholder="ex. 용돈"></Input>
+        <TextField placeholder="ex. 용돈"></TextField>
         <Button onClick={handleOpen}>확인</Button>
       </S.TransactionContent>
       <Modal open={open}>
