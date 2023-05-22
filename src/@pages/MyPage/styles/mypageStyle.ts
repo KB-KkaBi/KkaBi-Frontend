@@ -103,8 +103,30 @@ export const ButtonContainer = styled.div`
 export const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  ${({ theme }) => theme.fonts.text};
+  align-items: center;
+
   .btn:first-child {
     margin-bottom: 2rem;
+  }
+`;
+
+export const LogoutModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.fonts.text};
+  align-items: center;
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  margin-top: 4rem;
+  .cancel-btn {
+    margin-right: 2.1rem;
+    width: 20rem;
+  }
+  .logout-btn {
+    width: 20rem;
   }
 `;
 /**

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Button, IconButton, Modal, PaperLayout } from "@/@components";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ const MyPage = () => {
     nickname: "승구",
     character: "루나키키",
     detailMoney: {
-      totalDeposit: 100000, //예금
+      totalDeposit: 11000, //예금
       totalSavings: 10000, //적금
       totalTreasure: 7600, // 전체 보물 자산 구한 값
     },
@@ -37,6 +37,23 @@ const MyPage = () => {
   const [profileEditopen, setProfileEditOpen] = React.useState(false);
   const handleProfileEditModalOpen = () => setProfileEditOpen(true);
   const handleProfileEditModalClose = () => setProfileEditOpen(false);
+
+  /**
+   * 로그아웃관련
+   */
+  const [logoutModalOpen, setLogoutModalOpen] = React.useState(false);
+  const handleLogoutModalOpen = () => setLogoutModalOpen(true);
+  const handleLogoutModalClose = () => setLogoutModalOpen(false);
+
+  //logout 할때 할 함수
+  const handleLoginClicked = useCallback(() => {
+    /**
+     * 로그아웃 API 요청
+     * 결과로 status = 200이 오면 세션스토리지에 회원정보 지우고 랜딩페이지로 가기
+     * */
+    console.log("로그아웃 버튼눌림");
+  }, []);
+
   const [totalMoney, setTotalMoney] = useState(getTotalMoney(UserDummy));
 
   /**
@@ -91,9 +108,9 @@ const MyPage = () => {
     }
   }
   useEffect(() => {
-    console.log(percentDeposit);
-    console.log(percentSavings);
-    console.log(percentTreasure);
+    // console.log(percentDeposit);
+    // console.log(percentSavings);
+    // console.log(percentTreasure);
 
     //User정보 가지고 오자마자 바로 함수 발동해서 값 넣기
     setTotalMoney(getTotalMoney(UserDummy));
@@ -107,7 +124,7 @@ const MyPage = () => {
       { title: "적금", value: percentSavings, color: "#98caff" },
       { title: "보물", value: percentTreasure, color: "#f8bd57" },
     ]);
-  }, [UserDummy, totalMoney, percentDeposit, percentSavings, percentTreasure]);
+  }, [percentDeposit, percentSavings, percentTreasure]);
 
   return (
     <>
@@ -197,13 +214,23 @@ const MyPage = () => {
               }}>
               퀴즈 오답노트
             </Button>
-            <Button
-              className="btn"
-              onClick={() => {
-                navigate("/landing");
-              }}>
+            <Button className="btn" onClick={handleLogoutModalOpen}>
               로그아웃
             </Button>
+            <Modal open={logoutModalOpen} onClose={handleLogoutModalClose}>
+              <S.LogoutModalWrapper>
+                <p className="text">로그아웃하시겠습니까?</p>
+
+                <S.BtnWrapper>
+                  <Button className="cancel-btn" onClick={handleLogoutModalClose}>
+                    취소
+                  </Button>
+                  <Button className="logout-btn" onClick={handleLoginClicked}>
+                    확인
+                  </Button>
+                </S.BtnWrapper>
+              </S.LogoutModalWrapper>
+            </Modal>
           </S.ButtonContainer>
         </S.MyPageRootContainer>
       </PaperLayout>
