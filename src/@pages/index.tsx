@@ -5,3 +5,4 @@ export { MyAccount } from "./MyAccount";
 export { default as Login } from "./Login";
 export { default as Landing } from "./Landing";
 export { default as Register } from "./Register";
+export { SelectAccount } from "./SelectAccount";
