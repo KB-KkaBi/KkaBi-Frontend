@@ -9,11 +9,25 @@ import bibi from "../../assets/icon/characterBb.svg";
 import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
+import { useRecoilState } from "recoil";
+import {
+  registerEmail,
+  registerNickname,
+  registerPassword,
+  registerPasswordConfirm,
+  registerSelectedCharacter,
+} from "@/recoil/Register";
+import { log } from "console";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [selectedCharacter, setSelectedCharacter] = useState("루나키키"); // 사용자가 선택한 캐릭터 이름
-  const [nickName, setNickName] = useState(""); // 나중에 recoil로
+
+  const [email, setEmail] = useRecoilState(registerEmail);
+  const [password, setPassword] = useRecoilState(registerPassword);
+  const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
+  const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
+  const [nickName, setNickName] = useRecoilState(registerNickname);
+
   const [open, setOpen] = useState(false); //Modal Open
 
   const handleModalOpen = useCallback(() => {
@@ -26,6 +40,7 @@ const Profile = () => {
   const handleSelectCharacter = useCallback((character: string) => {
     setSelectedCharacter(character);
   }, []);
+
   const handleNickNameInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setNickName(e.target.value);
   }, []);
@@ -33,7 +48,8 @@ const Profile = () => {
   //테스트하기
   useEffect(() => {
     console.log("selectedCharacter", selectedCharacter);
-  }, [selectedCharacter]);
+    console.log("nickName~", nickName);
+  }, [selectedCharacter, nickName]);
 
   const character = [
     { key: 1, characterName: "루나키키", src: kiki },
@@ -43,12 +59,47 @@ const Profile = () => {
     { key: 5, characterName: "포스아거", src: ago },
   ];
 
+  const form = new FormData();
+  //할때 할 함수
+  const handleRegisterlicked = useCallback(() => {
+    // 모든 정보를 담은 폼 생성
+
+    form.append("email", email);
+    form.append("pw", password);
+    form.append("character", selectedCharacter);
+    form.append("nickname", nickName);
+
+    console.log("email : ", email);
+    console.log("password : ", password);
+    console.log("passwordConfirm : ", passwordConfirm);
+    console.log("character : ", selectedCharacter);
+    console.log("nickname : ", nickName);
+    /**
+     * 회원가입정보를 전송한다.
+     * 결과로 status = 200이 오면 홈페이지로 가기
+     * 회원가입이 안되면 에러 모달 띄어주고 다시 로그인페이지로 가기
+     * */
+    // FormData의 value
+
+    console.log("회원가입 버튼 눌렀음");
+  }, [selectedCharacter, nickName]);
+
+  useEffect(() => {
+    /* value 확인하기 */
+    for (let value of form.values()) {
+      console.log(value);
+    }
+  }, []);
   return (
     <PaperLayout
       handleClick={() => {
         navigate(-1);
       }}>
-      <ProfileRootContainer>
+      <ProfileRootContainer
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleRegisterlicked();
+        }}>
         <CharacterTextWrapper>
           <p>나의 깨비를 선택해주세요!</p>
           <CharacterWrapper>
@@ -68,7 +119,7 @@ const Profile = () => {
           <p>NickName</p>
           <TextField placeholder="닉네임을 입력해주세요" value={nickName} onChange={handleNickNameInput} />
         </NickNameWrapper>
-        <Button onClick={handleModalOpen}>확인</Button>
+        <Button type="submit">확인</Button>
         <Modal open={open} onClose={handleModalClose}>
           <ModalWrapper>
             <p className="text">회원가입 완료되었습니다</p>
@@ -87,7 +138,7 @@ const Profile = () => {
 
 export default Profile;
 
-export const ProfileRootContainer = styled.div`
+export const ProfileRootContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
