@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 export const CommonStyledInput = styled(TextField)`
   && {
     .MuiInputBase-input {
+      padding: 0 3.54rem;
       ${(props) => props.theme.fonts.button}
       &::placeholder {
         color: #aaaaaa;
