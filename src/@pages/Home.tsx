@@ -1,8 +1,9 @@
 import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
 import { styled } from "styled-components";
 import Background from "../assets/image/homeBackground.png";
-import MyInfo from "../@components/Home/MyInfo";
+import MyInfo from "../@components/Home/MyInfo/MyInfo";
 import { useNavigate } from "react-router-dom";
+import Character from "@/@components/Home/Character/Character";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,10 +23,13 @@ const Home = () => {
   return (
     <>
       <MyInfo characterName="루나키키" nickName="지수수" totalMoney={11000} onClick={moveToMyPage} />
-      <HomeTreasureIcon onClick={moveToTreasure} />
-
-      <HomeKkaBiBankIcon onClick={moveToBank} />
-
+      <ImgContainer>
+        <ImgWrapper>
+          <HomeTreasureIc onClick={moveToTreasure} />
+          <Character characterName="루나키키" />
+          <HomeKkaBiBankIc onClick={moveToBank} />
+        </ImgWrapper>
+      </ImgContainer>
       <BackgroundImg src={Background} alt="배경화면" />
     </>
   );
@@ -36,16 +40,23 @@ export default Home;
 const BackgroundImg = styled.img`
   position: absolute;
   z-index: -1;
+
+  width: 100%;
+  height: 100%;
 `;
 
-const HomeTreasureIcon = styled(HomeTreasureIc)`
-  position: absolute;
-
-  margin: 45.6rem 0 0 4rem;
+const ImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
-const HomeKkaBiBankIcon = styled(HomeKkaBiBankIc)`
+const ImgWrapper = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+
   position: absolute;
-  margin-top: 36.5rem;
-  right: 9.6rem;
+  bottom: 15rem;
+
+  width: 140rem;
 `;
