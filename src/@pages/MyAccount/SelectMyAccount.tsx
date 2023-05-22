@@ -1,12 +1,15 @@
-import { PaperLayout } from "@/@components";
+import { Button, PaperLayout } from "@/@components";
 import Card from "@/@components/common/card/Card";
 import { ACCOUNTS_DATA, REAL_ACCOUNTS } from "@/core/accountsData";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 const SelectMyAccount = () => {
   const [existAccountId, setExistAccountId] = useState<number[]>([]);
   const newAccountId: number[] = [];
+
+  const navigate = useNavigate();
 
   function checkExistAccount() {
     REAL_ACCOUNTS.map(({ accountId }) => {
@@ -18,6 +21,10 @@ const SelectMyAccount = () => {
       }
     });
     setExistAccountId(newAccountId);
+  }
+
+  function moveToBank() {
+    navigate("./my-account");
   }
 
   useEffect(() => {
@@ -37,6 +44,9 @@ const SelectMyAccount = () => {
             ))}
           </CardContainer>
         </CardBox>
+        <ButtonWrapper>
+          <Button onClick={moveToBank}>확인</Button>
+        </ButtonWrapper>
       </PaperLayout>
     </SelectMyAccountWrapper>
   );
@@ -80,4 +90,9 @@ const SelectMyAccountWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const ButtonWrapper = styled.section`
+  display: flex;
+  justify-content: center;
 `;

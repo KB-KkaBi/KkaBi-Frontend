@@ -64,8 +64,6 @@ const CardWrapper = styled.section`
   justify-content: center;
   align-items: center;
 
-  margin-top: 1rem;
-
   width: 100rem;
 `;
 
