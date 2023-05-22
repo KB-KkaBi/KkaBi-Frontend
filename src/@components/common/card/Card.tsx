@@ -1,5 +1,6 @@
 import { Account1, Account2, Account3, Account4 } from "@/assets";
 import { styled } from "styled-components";
+import * as S from "./style";
 
 interface CardProps {
   account: number;
@@ -11,13 +12,13 @@ const Card = (props: CardProps) => {
   function checkAccount() {
     switch (account) {
       case 1:
-        return <Account1 />;
+        return <S.Account1Ic />;
       case 2:
-        return <Account2 />;
+        return <S.Account2Ic />;
       case 3:
-        return <Account3 />;
+        return <S.Account3Ic />;
       case 4:
-        return <Account4 />;
+        return <S.Account4Ic />;
       default:
         return;
     }
@@ -29,8 +30,14 @@ const Card = (props: CardProps) => {
 export default Card;
 
 const CardWrapper = styled.article`
-  width: 25rem;
-  height: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20rem;
+  height: 20rem;
+
+  margin: 1rem;
 
   border-radius: 4rem;
 `;
