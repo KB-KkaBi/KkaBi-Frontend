@@ -22,10 +22,12 @@ const BankMain = () => {
           <p>KB 국민 은행에 오신 것을 환영합니다.</p>
           <p>무엇을 도와드릴까요?</p>
         </QuestionWrapper>
-        <ButtonWrapper>
-          <Button onClick={moveToCreateAccount}>계좌 개설</Button>
-          <Button onClick={moveToMyAccount}>나의 계좌</Button>
-        </ButtonWrapper>
+        <ButtonContainer>
+          <ButtonWrapper>
+            <Button onClick={moveToCreateAccount}>계좌 개설</Button>
+            <Button onClick={moveToMyAccount}>나의 계좌</Button>
+          </ButtonWrapper>
+        </ButtonContainer>
       </BankLayout>
     </>
   );
@@ -47,7 +49,12 @@ const ButtonWrapper = styled.section`
   display: flex;
   justify-content: space-evenly;
 
-  margin: 40rem 0 6rem 30rem;
+  margin: 40rem 0 6rem 0;
 
   width: 84rem;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
