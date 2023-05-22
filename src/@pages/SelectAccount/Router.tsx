@@ -5,6 +5,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<B.SelectAccountMain />} />
+      <Route path="/create-new-account" element={<B.CreateNewAccount />} />
     </Routes>
   );
 };

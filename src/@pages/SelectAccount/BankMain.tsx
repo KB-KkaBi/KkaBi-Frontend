@@ -2,8 +2,19 @@ import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import BankBackground from "@/assets/image/bankBankground.png";
 import { styled } from "styled-components";
 import { BankLayout, Button } from "@/@components/common/";
+import { useNavigate } from "react-router-dom";
 
 const BankMain = () => {
+  const navigate = useNavigate();
+
+  const moveToCreateAccount = () => {
+    navigate("/create-new-account");
+  };
+
+  const moveToMyAccount = () => {
+    navigate("/bank");
+  };
+
   return (
     <>
       <BankLayout>
@@ -12,8 +23,8 @@ const BankMain = () => {
           <p>무엇을 도와드릴까요?</p>
         </QuestionWrapper>
         <ButtonWrapper>
-          <Button>계좌 개설</Button>
-          <Button>나의 계좌</Button>
+          <Button onClick={moveToCreateAccount}>계좌 개설</Button>
+          <Button onClick={moveToMyAccount}>나의 계좌</Button>
         </ButtonWrapper>
       </BankLayout>
     </>
