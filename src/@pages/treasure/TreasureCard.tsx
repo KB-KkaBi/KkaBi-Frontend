@@ -4,10 +4,11 @@ import * as S from "./style";
 
 interface CardProps {
   treasure: number;
+  onClick: () => void;
 }
 
 const TreasureCard = (props: CardProps) => {
-  const { treasure } = props;
+  const { treasure, onClick } = props;
 
   function checkTreasure() {
     switch (treasure) {
@@ -24,7 +25,7 @@ const TreasureCard = (props: CardProps) => {
     }
   }
 
-  return <TreasureWrapper>{checkTreasure()}</TreasureWrapper>;
+  return <TreasureWrapper onClick={onClick}>{checkTreasure()}</TreasureWrapper>;
 };
 
 export default TreasureCard;
