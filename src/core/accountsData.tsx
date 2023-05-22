@@ -1,5 +1,5 @@
 interface AccountTypes {
-  accountId: number;
+  accountId: number | any;
   title?: string;
   content?: string;
 }
