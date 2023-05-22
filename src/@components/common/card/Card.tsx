@@ -40,4 +40,6 @@ const CardWrapper = styled.article`
   margin: 1rem;
 
   border-radius: 4rem;
+
+  cursor: pointer;
 `;
