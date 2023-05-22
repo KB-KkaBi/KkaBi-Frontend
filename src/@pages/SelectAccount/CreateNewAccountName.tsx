@@ -1,15 +1,22 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import Input from "@/@components/common/textField/CommonTextField";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 const CreateNewAccountName = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
   //여기를 지우시고, 계좌를 클릭했을때 어떤 계좌인지를 저장하고 이름을 넘겨와주세요.
   const accountName = "지수네 통장";
 
   function handleClose() {
     setOpen(false);
+  }
+
+  function moveToBank() {
+    navigate("/banks");
   }
 
   return (
@@ -20,7 +27,7 @@ const CreateNewAccountName = () => {
             <p>{accountName}</p>
             <p>개설이 완료되었습니다</p>
           </TextWrapper>
-          <Button>확인</Button>
+          <Button onClick={moveToBank}>확인</Button>
         </ModalContent>
       </Modal>
       <PaperLayout>
