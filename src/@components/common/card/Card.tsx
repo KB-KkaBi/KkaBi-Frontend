@@ -39,7 +39,12 @@ const CardWrapper = styled.article`
 
   margin: 1rem;
 
-  border-radius: 4rem;
+  border-radius: 3rem;
 
   cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.main};
+    box-shadow: 0rem 0rem 2rem ${({ theme }) => theme.colors.main};
+  }
 `;

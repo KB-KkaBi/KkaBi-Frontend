@@ -25,10 +25,9 @@ const CardContainer = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 
   width: 23rem;
-  height: 23rem;
+  height: 20rem;
 
   margin: 1rem;
 `;

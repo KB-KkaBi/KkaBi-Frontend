@@ -64,12 +64,16 @@ const CardWrapper = styled.section`
   justify-content: center;
   align-items: center;
 
+  margin-top: 1rem;
+
   width: 100rem;
 `;
 
 const Title = styled.h1`
   display: flex;
   justify-content: center;
+
+  padding-top: 3rem;
 
   ${({ theme }) => theme.fonts.button}
 `;
