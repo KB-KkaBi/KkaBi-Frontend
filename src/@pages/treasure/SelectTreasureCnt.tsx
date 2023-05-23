@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import * as S from "./style";
 import { Button, PaperLayout } from "@/@components";
@@ -8,6 +8,7 @@ import Input from "@/@components/common/textField/CommonTextField";
 const SelectTreasureCnt = () => {
   const { state } = useLocation();
   const { treasureId, treasureName, interestRate, price } = state;
+  const [cnt, setCnt] = useState(0);
 
   function checkTreasure() {
     switch (treasureId) {
@@ -24,6 +25,10 @@ const SelectTreasureCnt = () => {
     }
   }
 
+  function checkTotalCnt(e: React.ChangeEvent<HTMLInputElement>) {
+    setCnt(Number(e.target.value));
+  }
+
   return (
     <PaperLayout>
       <S.SelectTreasureCntWrapper>
@@ -38,7 +43,7 @@ const SelectTreasureCnt = () => {
         </S.FlexBox>
         <>
           <S.Title>투자할 보물의 개수를 입력해주세요</S.Title>
-          <Input placeholder="100개 단위로 입력해주세요"></Input>
+          <Input placeholder="100개 단위로 입력해주세요" onChange={checkTotalCnt}></Input>
           <S.FlexBox>
             <Button>확인</Button>
           </S.FlexBox>
