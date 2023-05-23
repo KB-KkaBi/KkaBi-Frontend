@@ -39,44 +39,30 @@ const SelectMyAccount = () => {
                 {accountId % 2 !== 0 ? (
                   <>
                     {existAccountId.includes(accountId) ? (
-                      <AccountTitle isEven={false}>
+                      <AccountTitle $isEven={false}>
                         {REAL_ACCOUNTS.filter((acc) => acc?.accountId === accountId)[0]?.name}
                       </AccountTitle>
                     ) : (
-                      <AccountTitle isEven={false}></AccountTitle>
+                      <AccountTitle $isEven={false}></AccountTitle>
                     )}
-                    <CardWrapper isExist={existAccountId.includes(accountId)}>
+                    <CardWrapper $isExist={existAccountId.includes(accountId)}>
                       <Card key={accountId} account={accountId} />
                     </CardWrapper>
                   </>
                 ) : (
                   <>
-                    <CardWrapper isExist={existAccountId.includes(accountId)}>
+                    <CardWrapper $isExist={existAccountId.includes(accountId)}>
                       <Card key={accountId} account={accountId} />
                     </CardWrapper>
                     {existAccountId.includes(accountId) ? (
-                      <AccountTitle isEven={true}>
+                      <AccountTitle $isEven={true}>
                         {REAL_ACCOUNTS.filter((acc) => acc?.accountId === accountId)[0]?.name}
                       </AccountTitle>
                     ) : (
-                      <AccountTitle isEven={false}></AccountTitle>
+                      <AccountTitle $isEven={false}></AccountTitle>
                     )}
                   </>
                 )}
-
-                {/* {existAccountId.includes(accountId) && accountId % 2 !== 0 && (
-                  <AccountTitle isEven={false}>
-                    {REAL_ACCOUNTS.filter((acc) => acc?.accountId === accountId)[0]?.name}
-                  </AccountTitle>
-                )}
-                <CardWrapper isExist={existAccountId.includes(accountId)}>
-                  <Card key={accountId} account={accountId} />
-                </CardWrapper>
-                {existAccountId.includes(accountId) && accountId % 2 === 0 && (
-                  <AccountTitle isEven={true}>
-                    {REAL_ACCOUNTS.filter((acc) => acc?.accountId === accountId)[0]?.name}
-                  </AccountTitle>
-                )} */}
               </>
             ))}
           </CardContainer>
@@ -106,13 +92,13 @@ const CardContainer = styled.section`
   margin-top: 2rem;
 `;
 
-const CardWrapper = styled.article<{ isExist: boolean }>`
+const CardWrapper = styled.article<{ $isExist: boolean }>`
   display: flex;
   justify-content: center;
 
-  filter: grayscale(${({ isExist }) => !isExist && 90}%);
-  -webkit-filter: grayscale(${({ isExist }) => !isExist && 90}%);
-  opacity: ${({ isExist }) => !isExist && 0.4};
+  filter: grayscale(${({ $isExist }) => !$isExist && 90}%);
+  -webkit-filter: grayscale(${({ $isExist }) => !$isExist && 90}%);
+  opacity: ${({ $isExist }) => !$isExist && 0.4};
 `;
 
 const Title = styled.h1`
@@ -135,9 +121,9 @@ const ButtonWrapper = styled.section`
   justify-content: center;
 `;
 
-const AccountTitle = styled.p<{ isEven: boolean }>`
+const AccountTitle = styled.p<{ $isEven: boolean }>`
   display: flex;
-  justify-content: ${({ isEven }) => (isEven ? "flex-start" : "flex-end")};
+  justify-content: ${({ $isEven }) => ($isEven ? "flex-start" : "flex-end")};
   width: 20rem;
   height: 20rem;
 

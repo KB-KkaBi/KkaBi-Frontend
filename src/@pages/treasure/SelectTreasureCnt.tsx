@@ -82,7 +82,7 @@ const SelectTreasureCnt = () => {
         <S.SelectTreasureCntWrapper>
           <S.SelectedTitle>{treasureName}</S.SelectedTitle>
           <S.FlexBox>
-            <S.TreasureWrapper isClicked={true}>{checkTreasure()}</S.TreasureWrapper>
+            <S.TreasureWrapper $isClicked={true}>{checkTreasure()}</S.TreasureWrapper>
             <S.TreasureContentWrapper>
               <p>1개 {price}원</p>
               <p>수익율 {interestRate * 100}%</p>

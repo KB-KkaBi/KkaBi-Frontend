@@ -42,11 +42,18 @@ const SelectTreasure = () => {
                 {treasureId % 2 !== 0 ? (
                   <>
                     {checkIsHoverOfClick(treasureId) ? (
-                      <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
+                      <TreasureCardContent
+                        key={treasureId}
+                        id={treasureId}
+                        name={treasureName}
+                        interest={interestRate}
+                        price={price}
+                      />
                     ) : (
                       <S.BlankCard></S.BlankCard>
                     )}
                     <TreasureCard
+                      key={treasureId}
                       treasure={treasureId}
                       onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
                       isClicked={checkIsHoverOfClick(treasureId)}
@@ -57,6 +64,7 @@ const SelectTreasure = () => {
                 ) : (
                   <>
                     <TreasureCard
+                      key={treasureId}
                       treasure={treasureId}
                       onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
                       isClicked={checkIsHoverOfClick(treasureId)}
@@ -64,7 +72,13 @@ const SelectTreasure = () => {
                       onMouseOut={() => setHoverId(-1)}
                     />
                     {checkIsHoverOfClick(treasureId) ? (
-                      <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
+                      <TreasureCardContent
+                        key={treasureId}
+                        id={treasureId}
+                        name={treasureName}
+                        interest={interestRate}
+                        price={price}
+                      />
                     ) : (
                       <S.BlankCard></S.BlankCard>
                     )}
