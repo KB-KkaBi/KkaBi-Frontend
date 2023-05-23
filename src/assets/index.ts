@@ -32,3 +32,8 @@ export { ReactComponent as Treasure1 } from "./icon/miniTreasure1.svg";
 export { ReactComponent as Treasure2 } from "./icon/miniTreasure2.svg";
 export { ReactComponent as Treasure3 } from "./icon/miniTreasure3.svg";
 export { ReactComponent as Treasure4 } from "./icon/miniTreasure4.svg";
+
+export { ReactComponent as Account1 } from "./icon/account1.svg";
+export { ReactComponent as Account2 } from "./icon/account2.svg";
+export { ReactComponent as Account3 } from "./icon/account3.svg";
+export { ReactComponent as Account4 } from "./icon/account4.svg";

@@ -20,6 +20,8 @@ const Router = () => {
           <Route path="editpassword" element={<P.EditPassword />} />
           <Route path="quiznote" element={<P.QuizNote />} />
         </Route>
+        <Route path="/bank/*" element={<P.MyAccount />} />
+        <Route path="/banks/*" element={<P.SelectAccount />} />
         <Route path="/invest" element={<P.Invest />} />
       </Routes>
     </BrowserRouter>
