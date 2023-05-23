@@ -1,11 +1,6 @@
 import { TextField, PaperLayout, Button } from "@/@components";
-import {
-  registerEmail,
-  registerNickname,
-  registerPassword,
-  registerPasswordConfirm,
-  registerSelectedCharacter,
-} from "@/recoil/Register";
+import { registerEmail, registerPassword, registerPasswordConfirm, registerSelectedCharacter } from "@/recoil/Register";
+import { userNickname } from "@/recoil/User";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -19,7 +14,7 @@ const Register = () => {
   const [password, setPassword] = useRecoilState(registerPassword);
   const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
   const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
-  const [nickName, setNickName] = useRecoilState(registerNickname);
+  const [nickName, setNickName] = useRecoilState(userNickname);
 
   const handleEmailInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);

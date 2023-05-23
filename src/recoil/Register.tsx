@@ -20,7 +20,7 @@ export const registerSelectedCharacter = atom({
   default: "루나키키",
 });
 
-export const registerNickname = atom({
-  key: "registerNickname",
-  default: "",
-});
+// export const registerNickname = atom({
+//   key: "registerNickname",
+//   default: "",
+// });
