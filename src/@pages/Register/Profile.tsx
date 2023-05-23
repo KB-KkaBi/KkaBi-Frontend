@@ -9,15 +9,11 @@ import bibi from "../../assets/icon/characterBb.svg";
 import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
+
 import { useRecoilState } from "recoil";
-import {
-  registerEmail,
-  registerNickname,
-  registerPassword,
-  registerPasswordConfirm,
-  registerSelectedCharacter,
-} from "@/recoil/Register";
+import { registerEmail, registerPassword, registerPasswordConfirm, registerSelectedCharacter } from "@/recoil/Register";
 import { log } from "console";
+import { userNickname } from "@/recoil/User";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -26,7 +22,7 @@ const Profile = () => {
   const [password, setPassword] = useRecoilState(registerPassword);
   const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
   const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
-  const [nickName, setNickName] = useRecoilState(registerNickname);
+  const [nickName, setNickName] = useRecoilState(userNickname);
 
   const [open, setOpen] = useState(false); //Modal Open
 
@@ -100,7 +96,7 @@ const Profile = () => {
           e.preventDefault();
           handleRegisterlicked();
         }}>
-        <CharacterTextWrapper>
+        <CharacterTextContainer>
           <p>나의 깨비를 선택해주세요!</p>
           <CharacterWrapper>
             {character.map((item) => {
@@ -114,7 +110,7 @@ const Profile = () => {
               );
             })}
           </CharacterWrapper>
-        </CharacterTextWrapper>
+        </CharacterTextContainer>
         <NickNameWrapper>
           <p>NickName</p>
           <TextField placeholder="닉네임을 입력해주세요" value={nickName} onChange={handleNickNameInput} />
@@ -145,7 +141,7 @@ export const ProfileRootContainer = styled.form`
   ${({ theme }) => theme.fonts.text}
 `;
 
-export const CharacterTextWrapper = styled.div`
+export const CharacterTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
