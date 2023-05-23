@@ -17,7 +17,7 @@ const SelectTreasure = () => {
   const navigate = useNavigate();
 
   function moveToSelectCnt() {
-    // navigate('/', {state:}})
+    navigate("./cnt", { state: selectTreasure });
   }
 
   //클릭한 보물 저장

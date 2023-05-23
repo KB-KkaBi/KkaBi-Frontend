@@ -5,6 +5,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<B.SelectTreasure />} />
+      <Route path="/cnt" element={<B.SelectTreasureCnt />} />
     </Routes>
   );
 };

@@ -1,3 +1,4 @@
+import { level } from "@/core/treasureLevel";
 import React from "react";
 import { styled } from "styled-components";
 
@@ -11,28 +12,13 @@ interface CardContentProps {
 const TreasureCardContent = (props: CardContentProps) => {
   const { id, name, interest, price } = props;
 
-  function level() {
-    switch (id) {
-      case 1:
-        return "하";
-      case 2:
-        return "중";
-      case 3:
-        return "상";
-      case 4:
-        return "최상";
-      default:
-        return;
-    }
-  }
-
   return (
     <>
       <CardContainer id={id}>
         <Title>{name}</Title>
         <Content>1개 {price}원</Content>
         <Content>수익률 {interest * 100}%</Content>
-        <Content>난이도 {level()}</Content>
+        <Content>난이도 {level(id)}</Content>
       </CardContainer>
     </>
   );
