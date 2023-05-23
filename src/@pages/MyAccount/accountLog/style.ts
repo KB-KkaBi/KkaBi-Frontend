@@ -36,14 +36,14 @@ export const TransactionDate = styled.p`
   left: 6.25%;
 `;
 
-export const WithdrawAmount = styled.p`
+export const WithdrawAmount = styled.div`
   position: absolute;
   left: 22.1%;
   display: flex;
   align-items: center;
 `;
 
-export const DepositAmount = styled.p`
+export const DepositAmount = styled.div`
   position: absolute;
   left: 36%;
   display: flex;
