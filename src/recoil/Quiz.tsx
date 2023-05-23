@@ -1,11 +1,11 @@
 import { atom } from "recoil";
 
-export const selectedButtonIndex = atom({
+export const selectedButtonIndex = atom<number[]>({
   key: "selectedButtonIndex",
-  default: new Set(),
+  default: [],
 });
 
-export const selectedButtonArray = atom({
+export const selectedButtonArray = atom<string[]>({
   key: "assembledString",
-  default: new Array<string>(),
+  default: [],
 });

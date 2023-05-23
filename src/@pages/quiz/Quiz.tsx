@@ -1,8 +1,8 @@
-import { PaperLayout } from "@/@components";
-import { selectedButtonArray } from "@/recoil/Quiz";
+import { Button, PaperLayout } from "@/@components";
+import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
-import { useMemo } from "react";
-import { useRecoilState } from "recoil";
+import { useCallback, useMemo } from "react";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import MemoizedAnswerSelector from "./AnswerSelector";
 import * as S from "./style";
 
@@ -49,7 +49,12 @@ const selectedIndex = 2;
 const Quiz = () => {
   const [selectedArray, setSelectedArray] = useRecoilState(selectedButtonArray);
   const buttonArray = useMemo(() => shuffle(quizInfo[selectedIndex].array.split(", ")), []);
-
+  const resetButtonArray = useResetRecoilState(selectedButtonArray);
+  const resetIndexArray = useResetRecoilState(selectedButtonIndex);
+  const handleReset = useCallback(() => {
+    resetButtonArray();
+    resetIndexArray();
+  }, []);
   return (
     <PaperLayout>
       <S.MyAnswer>나의 답: {hangul.assemble(selectedArray)}</S.MyAnswer>
@@ -57,6 +62,7 @@ const Quiz = () => {
         <S.QuizContent>{quizInfo[selectedIndex].problem}</S.QuizContent>
         <MemoizedAnswerSelector array={buttonArray} />
       </S.QuizContainer>
+      <Button onClick={handleReset}>초기화</Button>
     </PaperLayout>
   );
 };
