@@ -1,15 +1,19 @@
+import { Button } from "@mui/material";
 import { styled } from "styled-components";
 
-export const QuizContent = styled.div`
-  width: 53rem;
-  height: 53rem;
-  display: flex;
+export const QuizContainer = styled.div`
   position: relative;
+  display: flex;
   top: 50%;
   bottom: 50%;
-  left: 10rem;
+  width: 100%;
+  justify-content: center;
   transform: translate(0%, -50%);
-  margin: 0;
+`;
+
+export const QuizContent = styled.p`
+  width: 53rem;
+  height: 53rem;
   align-items: center;
   padding: 8rem 6rem;
   background-color: ${({ theme }) => theme.colors.whiteYellow};
@@ -18,7 +22,14 @@ export const QuizContent = styled.div`
   ${({ theme }) => theme.fonts.button}
 `;
 
-export const AnswerSelector = styled.div`
+export const MyAnswer = styled.p`
+  top: 10%;
+  position: relative;
+  text-align: center;
+  ${({ theme }) => theme.fonts.button}
+`;
+
+export const AnswerSelectorContainer = styled.div`
   width: 54rem;
   height: 54rem;
   display: grid;
@@ -26,16 +37,16 @@ export const AnswerSelector = styled.div`
   grid-template-rows: repeat(5, 10rem);
   gap: 1rem;
   position: relative;
-  top: 50%;
-  bottom: 50%;
   margin-left: 4rem;
-  transform: translate(0%, -50%);
-  p {
+`;
+
+export const StyledButton = styled(Button)<{ $isVowel: boolean }>`
+  && {
+    width: 10rem;
+    height: 10rem;
     border-radius: 3rem;
-    align: justify;
-    background-color: gray;
-    text-align: center;
+    color: black;
+    background-color: ${({ $isVowel, theme }) => ($isVowel ? theme.colors.blue : theme.colors.green)};
     ${({ theme }) => theme.fonts.quiz}
-    line-height: 10rem;
   }
 `;
