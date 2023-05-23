@@ -92,3 +92,20 @@ export const SelectTreasureCntWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 1rem;
+
+  ${({ theme }) => theme.fonts.button}
+`;
+
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

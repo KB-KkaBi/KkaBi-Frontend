@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./style";
-import { Button, PaperLayout } from "@/@components";
+import { Button, Modal, PaperLayout } from "@/@components";
 import { level } from "@/core/treasureLevel";
 import Input from "@/@components/common/textField/CommonTextField";
 
@@ -9,6 +9,8 @@ const SelectTreasureCnt = () => {
   const { state } = useLocation();
   const { treasureId, treasureName, interestRate, price } = state;
   const [cnt, setCnt] = useState(0);
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   function checkTreasure() {
     switch (treasureId) {
@@ -29,27 +31,48 @@ const SelectTreasureCnt = () => {
     setCnt(Number(e.target.value));
   }
 
+  function handleClose() {
+    setOpen(false);
+  }
+
+  function moveToNextStep() {
+    if (cnt % 100 !== 0) {
+      setOpen(true);
+    }
+  }
+
   return (
-    <PaperLayout>
-      <S.SelectTreasureCntWrapper>
-        <S.SelectedTitle>{treasureName}</S.SelectedTitle>
-        <S.FlexBox>
-          <S.TreasureWrapper isClicked={true}>{checkTreasure()}</S.TreasureWrapper>
-          <S.TreasureContentWrapper>
-            <p>1개 {price}원</p>
-            <p>수익율 {interestRate * 100}%</p>
-            <p>난이도 {level(treasureId)} </p>
-          </S.TreasureContentWrapper>
-        </S.FlexBox>
-        <>
-          <S.Title>투자할 보물의 개수를 입력해주세요</S.Title>
-          <Input placeholder="100개 단위로 입력해주세요" onChange={checkTotalCnt}></Input>
+    <>
+      <Modal open={open} onClose={handleClose}>
+        <S.ModalContent>
+          <S.TextWrapper>
+            <p>100개 단위로</p>
+            <p>입력해주세요</p>
+          </S.TextWrapper>
+          <Button onClick={handleClose}>확인</Button>
+        </S.ModalContent>
+      </Modal>
+      <PaperLayout>
+        <S.SelectTreasureCntWrapper>
+          <S.SelectedTitle>{treasureName}</S.SelectedTitle>
           <S.FlexBox>
-            <Button>확인</Button>
+            <S.TreasureWrapper isClicked={true}>{checkTreasure()}</S.TreasureWrapper>
+            <S.TreasureContentWrapper>
+              <p>1개 {price}원</p>
+              <p>수익율 {interestRate * 100}%</p>
+              <p>난이도 {level(treasureId)} </p>
+            </S.TreasureContentWrapper>
           </S.FlexBox>
-        </>
-      </S.SelectTreasureCntWrapper>
-    </PaperLayout>
+          <>
+            <S.Title>투자할 보물의 개수를 입력해주세요</S.Title>
+            <Input placeholder="100개 단위로 입력해주세요" onChange={checkTotalCnt}></Input>
+            <S.FlexBox>
+              <Button onClick={moveToNextStep}>확인</Button>
+            </S.FlexBox>
+          </>
+        </S.SelectTreasureCntWrapper>
+      </PaperLayout>
+    </>
   );
 };
 
