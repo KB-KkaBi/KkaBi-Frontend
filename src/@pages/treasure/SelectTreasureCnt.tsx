@@ -36,9 +36,9 @@ const SelectTreasureCnt = () => {
   }
 
   function moveToNextStep() {
-    if (cnt % 100 !== 0) {
-      setOpen(true);
-    }
+    // if (cnt % 100 !== 0) {
+    setOpen(true);
+    // }
   }
 
   return (
@@ -46,12 +46,27 @@ const SelectTreasureCnt = () => {
       <Modal open={open} onClose={handleClose}>
         <S.ModalContent>
           <S.TextWrapper>
+            <p>
+              {treasureName}
+              <p>{cnt}</p>개를
+            </p>
+            <p>투자하시겠습니까?</p>
+          </S.TextWrapper>
+          <S.ButtonWrapper>
+            <Button onClick={handleClose}>취소</Button>
+            <Button onClick={handleClose}>확인</Button>
+          </S.ButtonWrapper>
+        </S.ModalContent>
+      </Modal>
+      {/* <Modal open={open} onClose={handleClose}>
+        <S.ModalContent>
+          <S.TextWrapper>
             <p>100개 단위로</p>
             <p>입력해주세요</p>
           </S.TextWrapper>
           <Button onClick={handleClose}>확인</Button>
         </S.ModalContent>
-      </Modal>
+      </Modal> */}
       <PaperLayout>
         <S.SelectTreasureCntWrapper>
           <S.SelectedTitle>{treasureName}</S.SelectedTitle>

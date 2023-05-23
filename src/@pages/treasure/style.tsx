@@ -99,13 +99,33 @@ export const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 
   ${({ theme }) => theme.fonts.button}
+
+  & > p:nth-child(1) {
+    display: flex;
+
+    & > p {
+      margin: 0 1rem;
+      color: ${({ theme }) => theme.colors.main};
+    }
+  }
 `;
 
 export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const ButtonWrapper = styled.section`
+  display: flex;
+  justify-content: space-between;
+
+  width: 42rem;
+
+  & > button {
+    margin: 0 1rem;
+  }
 `;
