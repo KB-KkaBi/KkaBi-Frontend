@@ -23,13 +23,13 @@ const CreateNewAccount = () => {
               <>
                 {accountId % 2 !== 0 ? (
                   <>
-                    <CardContent title={title} content={content} />
+                    <CardContent title={title} $content={content} />
                     <Card account={accountId} />
                   </>
                 ) : (
                   <>
                     <Card account={accountId} />
-                    <CardContent title={title} content={content} />
+                    <CardContent title={title} $content={content} />
                   </>
                 )}
               </>
