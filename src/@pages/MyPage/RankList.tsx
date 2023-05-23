@@ -1,13 +1,12 @@
 import { PaperLayout } from "@/@components";
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "./styles/ranklistStyle";
 import rank1 from "../../assets/icon/rank1.svg";
 import rank2 from "../../assets/icon/rank2.svg";
 import rank3 from "../../assets/icon/rank3.svg";
 import rank4 from "../../assets/icon/rank4.svg";
 import rank5 from "../../assets/icon/rank5.svg";
 import rank6 from "../../assets/icon/rank6.svg";
+import * as S from "./styles/ranklistStyle";
 
 const RankList = () => {
   const navigate = useNavigate();

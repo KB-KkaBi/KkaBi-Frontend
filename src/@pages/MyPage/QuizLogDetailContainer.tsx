@@ -1,4 +1,3 @@
-import React from "react";
 import { QuizLogData } from "./QuizNote";
 import * as S from "./styles/quiznoteStyle";
 

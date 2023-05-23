@@ -1,10 +1,9 @@
 import { Button, PaperLayout, TextField } from "@/@components";
-import React, { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as S from "./styles/editnicknameStyle";
-import { debug } from "console";
-import { useRecoilState } from "recoil";
 import { userNickname } from "@/recoil/User";
+import React, { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import * as S from "./styles/editnicknameStyle";
 
 const EditNickname = () => {
   const navigate = useNavigate();

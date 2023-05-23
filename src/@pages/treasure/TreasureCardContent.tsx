@@ -1,5 +1,4 @@
 import { level } from "@/core/treasureLevel";
-import React from "react";
 import { styled } from "styled-components";
 
 interface CardContentProps {

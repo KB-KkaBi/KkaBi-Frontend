@@ -1,8 +1,7 @@
-import { Button, PaperLayout, TextField } from "@/@components";
+import { Button, Modal, PaperLayout, TextField } from "@/@components";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Modal } from "@/@components";
 
 import ago from "../../assets/icon/characterAgo.svg";
 import bibi from "../../assets/icon/characterBb.svg";
@@ -10,17 +9,16 @@ import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
 
-import { useRecoilState } from "recoil";
 import { registerEmail, registerPassword, registerPasswordConfirm, registerSelectedCharacter } from "@/recoil/Register";
-import { log } from "console";
 import { userNickname } from "@/recoil/User";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useRecoilState(registerEmail);
-  const [password, setPassword] = useRecoilState(registerPassword);
-  const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
+  const email = useRecoilValue(registerEmail);
+  const password = useRecoilValue(registerPassword);
+  const passwordConfirm = useRecoilValue(registerPasswordConfirm);
   const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
   const [nickName, setNickName] = useRecoilState(userNickname);
 
@@ -78,6 +76,7 @@ const Profile = () => {
     // FormData의 value
 
     console.log("회원가입 버튼 눌렀음");
+    handleModalOpen();
   }, [selectedCharacter, nickName]);
 
   useEffect(() => {

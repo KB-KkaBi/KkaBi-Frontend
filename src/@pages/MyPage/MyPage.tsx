@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Button, IconButton, Modal, PaperLayout } from "@/@components";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import * as S from "./styles/mypageStyle";
-import { calculatePercentage, getTotalMoney } from "./libs/factory";
+import { Button, Modal, PaperLayout } from "@/@components";
 import { STAR_FRIENDS } from "@/core/starFriends";
+import React, { useCallback, useEffect, useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
+import { useNavigate } from "react-router-dom";
+import { calculatePercentage, getTotalMoney } from "./libs/factory";
+import * as S from "./styles/mypageStyle";
 
 import Treasure1 from "@/assets/icon/miniTreasure1.svg";
 import Treasure2 from "@/assets/icon/miniTreasure2.svg";

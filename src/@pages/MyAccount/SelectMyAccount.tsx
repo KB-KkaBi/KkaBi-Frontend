@@ -1,7 +1,7 @@
 import { Button, PaperLayout } from "@/@components";
 import Card from "@/@components/common/card/Card";
 import { ACCOUNTS_DATA, REAL_ACCOUNTS } from "@/core/accountsData";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
