@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginFormContainer = styled.form`
+export const EditPasswordFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -9,24 +9,30 @@ export const LoginFormContainer = styled.form`
   ${({ theme }) => theme.fonts.text}
 `;
 
-export const EmailInputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 8rem;
-  margin-bottom: 4rem;
-`;
-
 export const PasswordInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 9.5rem;
+  margin-bottom: 2rem;
+`;
+
+export const NewPasswordInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+`;
+
+export const NewPasswordConfirmInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
 `;
 
 export const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  ${({ theme }) => theme.fonts.text}
-  text-align: center;
+
+  ${({ theme }) => theme.fonts.text};
+  align-items: center;
 
   .text {
     margin-bottom: 3rem;
