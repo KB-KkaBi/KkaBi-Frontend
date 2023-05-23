@@ -38,7 +38,7 @@ const SelectTreasureCnt = () => {
         </S.FlexBox>
         <>
           <S.Title>투자할 보물의 개수를 입력해주세요</S.Title>
-          <Input placeholder="계좌 이름을 입력해주세요"></Input>
+          <Input placeholder="100개 단위로 입력해주세요"></Input>
           <S.FlexBox>
             <Button>확인</Button>
           </S.FlexBox>
