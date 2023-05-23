@@ -22,6 +22,8 @@ export const DiamondIcon = styled(Diamond)`
 `;
 
 export const SelectedTitle = styled.h1`
+  margin-bottom: 1rem;
+
   ${({ theme }) => theme.fonts.title}
 `;
 
@@ -63,4 +65,30 @@ export const TreasureContentWrapper = styled.article`
   border-radius: 4rem;
   background-color: ${({ theme }) => theme.colors.whiteYellow};
   ${({ theme }) => theme.fonts.log};
+`;
+
+export const FlexBox = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 1rem;
+`;
+
+export const Title = styled.h1`
+  width: 60rem;
+
+  margin-top: 1rem;
+
+  ${({ theme }) => theme.fonts.text};
+`;
+
+export const SelectTreasureCntWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
 `;
