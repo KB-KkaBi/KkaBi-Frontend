@@ -1,6 +1,8 @@
 import accountLogImage from "@/assets/image/account_log.png";
 import bankImage from "@/assets/image/bank_main.png";
 import paperImage from "@/assets/image/vector-9.png";
+import quizNoteImage from "@/assets/image/quizNote_background.png";
+
 import styled from "styled-components";
 
 export const CommonBackground = styled.div<{ color: string }>`
@@ -28,6 +30,17 @@ export const BankBackground = styled.div`
   background-size: 100% 100%;
   background-position: center;
   background-color: ${(props) => props.theme.colors.whiteYellow};
+  width: 100%;
+  height: 100%;
+  margin: 0;
+`;
+
+export const QuizNoteBackground = styled.div`
+  background-image: url(${quizNoteImage});
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  background-color: transparent;
   width: 100%;
   height: 100%;
   margin: 0;
