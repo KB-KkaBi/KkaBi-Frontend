@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const SelectTreasure = () => {
-  const [selectTreauser, setSelectTreasure] = useState({
+  const [selectTreasure, setSelectTreasure] = useState({
     treasureId: 0,
     treasureName: "",
     interestRate: 0,
@@ -20,7 +20,14 @@ const SelectTreasure = () => {
     // navigate('/', {state:}})
   }
 
-  function clickTreasureCare(treasureId: number) {}
+  //클릭한 보물 저장
+  function clickTreasureCare(treasureId: number, treasureName: string, interestRate: number, price: number) {
+    setSelectTreasure({ treasureId: treasureId, treasureName: treasureName, interestRate: interestRate, price: price });
+  }
+
+  function checkIsClicked(id: number) {
+    return id === selectTreasure.treasureId;
+  }
 
   return (
     <>
@@ -33,11 +40,19 @@ const SelectTreasure = () => {
                 {treasureId % 2 !== 0 ? (
                   <>
                     <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
-                    <TreasureCard treasure={treasureId} onClick={() => clickTreasureCare(treasureId)} />
+                    <TreasureCard
+                      treasure={treasureId}
+                      onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
+                      isClicked={checkIsClicked(treasureId)}
+                    />
                   </>
                 ) : (
                   <>
-                    <TreasureCard treasure={treasureId} onClick={() => clickTreasureCare(treasureId)} />
+                    <TreasureCard
+                      treasure={treasureId}
+                      onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
+                      isClicked={checkIsClicked(treasureId)}
+                    />
                     <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
                   </>
                 )}

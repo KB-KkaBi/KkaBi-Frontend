@@ -5,10 +5,11 @@ import * as S from "./style";
 interface CardProps {
   treasure: number;
   onClick: () => void;
+  isClicked: boolean;
 }
 
 const TreasureCard = (props: CardProps) => {
-  const { treasure, onClick } = props;
+  const { treasure, onClick, isClicked } = props;
 
   function checkTreasure() {
     switch (treasure) {
@@ -25,12 +26,16 @@ const TreasureCard = (props: CardProps) => {
     }
   }
 
-  return <TreasureWrapper onClick={onClick}>{checkTreasure()}</TreasureWrapper>;
+  return (
+    <TreasureWrapper onClick={onClick} isClicked={isClicked}>
+      {checkTreasure()}
+    </TreasureWrapper>
+  );
 };
 
 export default TreasureCard;
 
-const TreasureWrapper = styled.article`
+const TreasureWrapper = styled.article<{ isClicked: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +48,10 @@ const TreasureWrapper = styled.article`
   border-radius: 3rem;
 
   cursor: pointer;
+
+  border: ${({ isClicked }) => isClicked && 1}px solid ${({ theme }) => theme.colors.main};
+  box-shadow: 0rem 0rem ${({ isClicked }) => isClicked && 2}rem
+    ${({ theme, isClicked }) => isClicked && theme.colors.main};
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.main};
