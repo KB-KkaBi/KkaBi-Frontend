@@ -1,14 +1,17 @@
 import { Button } from "@mui/material";
 import { styled } from "styled-components";
 
-export const QuizContainer = styled.div`
-  position: relative;
+export const QuizWrapper = styled.div`
   display: flex;
-  top: 50%;
-  bottom: 50%;
-  width: 100%;
-  justify-content: center;
-  transform: translate(0%, -50%);
+  flex-direction: column;
+  padding: 5rem 0;
+  height: 100%;
+  justify-content: space-between;
+`;
+
+export const QuizMainContainer = styled.div`
+  width: fit-content;
+  margin: 0 auto;
 `;
 
 export const QuizContent = styled.p`
@@ -19,12 +22,18 @@ export const QuizContent = styled.p`
   background-color: ${({ theme }) => theme.colors.whiteYellow};
   border-radius: 4rem;
   float: left;
+  margin-right: 4rem;
   ${({ theme }) => theme.fonts.button}
 `;
 
+export const ButtonContanier = styled.div`
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  column-gap: 2rem;
+`;
+
 export const MyAnswer = styled.p`
-  top: 10%;
-  position: relative;
   text-align: center;
   ${({ theme }) => theme.fonts.button}
 `;
@@ -36,8 +45,6 @@ export const AnswerSelectorContainer = styled.div`
   grid-template-columns: repeat(5, 10rem);
   grid-template-rows: repeat(5, 10rem);
   gap: 1rem;
-  position: relative;
-  margin-left: 4rem;
 `;
 
 export const StyledButton = styled(Button)<{ $isVowel: boolean }>`

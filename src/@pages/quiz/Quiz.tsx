@@ -2,7 +2,7 @@ import { Button, PaperLayout } from "@/@components";
 import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
 import { useCallback, useMemo } from "react";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import MemoizedAnswerSelector from "./AnswerSelector";
 import * as S from "./style";
 
@@ -47,22 +47,39 @@ const quizInfo: QuizInfo[] = [
 const selectedIndex = 2;
 
 const Quiz = () => {
-  const [selectedArray, setSelectedArray] = useRecoilState(selectedButtonArray);
+  const selectedArray = useRecoilValue(selectedButtonArray);
   const buttonArray = useMemo(() => shuffle(quizInfo[selectedIndex].array.split(", ")), []);
+
   const resetButtonArray = useResetRecoilState(selectedButtonArray);
   const resetIndexArray = useResetRecoilState(selectedButtonIndex);
+
   const handleReset = useCallback(() => {
     resetButtonArray();
     resetIndexArray();
   }, []);
+
+  const handleSubmit = () => {
+    console.debug("제출: ", hangul.assemble(selectedArray));
+    handleReset();
+  };
+
   return (
     <PaperLayout>
-      <S.MyAnswer>나의 답: {hangul.assemble(selectedArray)}</S.MyAnswer>
-      <S.QuizContainer>
-        <S.QuizContent>{quizInfo[selectedIndex].problem}</S.QuizContent>
-        <MemoizedAnswerSelector array={buttonArray} />
-      </S.QuizContainer>
-      <Button onClick={handleReset}>초기화</Button>
+      <S.QuizWrapper>
+        <S.MyAnswer>나의 답: {hangul.assemble(selectedArray)}</S.MyAnswer>
+        <S.QuizMainContainer>
+          <S.QuizContent>{quizInfo[selectedIndex].problem}</S.QuizContent>
+          <MemoizedAnswerSelector array={buttonArray} />
+        </S.QuizMainContainer>
+        <S.ButtonContanier>
+          <Button onClick={handleReset} disabled={!selectedArray.length}>
+            초기화
+          </Button>
+          <Button onClick={handleSubmit} disabled={!selectedArray.length}>
+            확인
+          </Button>
+        </S.ButtonContanier>
+      </S.QuizWrapper>
     </PaperLayout>
   );
 };
