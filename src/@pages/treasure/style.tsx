@@ -99,7 +99,7 @@ export const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 
   ${({ theme }) => theme.fonts.button}
 

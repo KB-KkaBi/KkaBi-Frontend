@@ -10,6 +10,7 @@ const SelectTreasureCnt = () => {
   const { treasureId, treasureName, interestRate, price } = state;
   const [cnt, setCnt] = useState(0);
   const [open, setOpen] = useState(false);
+  const [isHundred, setIsHundred] = useState(false);
   const navigate = useNavigate();
 
   function checkTreasure() {
@@ -36,37 +37,47 @@ const SelectTreasureCnt = () => {
   }
 
   function moveToNextStep() {
-    // if (cnt % 100 !== 0) {
     setOpen(true);
-    // }
+    if (cnt % 100 !== 0) {
+      setIsHundred(true);
+    } else {
+      setIsHundred(false);
+    }
+  }
+
+  function moveToQuiz() {
+    navigate("./quiz");
   }
 
   return (
     <>
-      <Modal open={open} onClose={handleClose}>
-        <S.ModalContent>
-          <S.TextWrapper>
-            <p>
-              {treasureName}
-              <p>{cnt}</p>개를
-            </p>
-            <p>투자하시겠습니까?</p>
-          </S.TextWrapper>
-          <S.ButtonWrapper>
-            <Button onClick={handleClose}>취소</Button>
+      {isHundred ? (
+        <Modal open={open} onClose={handleClose}>
+          <S.ModalContent>
+            <S.TextWrapper>
+              <p>100개 단위로</p>
+              <p>입력해주세요</p>
+            </S.TextWrapper>
             <Button onClick={handleClose}>확인</Button>
-          </S.ButtonWrapper>
-        </S.ModalContent>
-      </Modal>
-      {/* <Modal open={open} onClose={handleClose}>
-        <S.ModalContent>
-          <S.TextWrapper>
-            <p>100개 단위로</p>
-            <p>입력해주세요</p>
-          </S.TextWrapper>
-          <Button onClick={handleClose}>확인</Button>
-        </S.ModalContent>
-      </Modal> */}
+          </S.ModalContent>
+        </Modal>
+      ) : (
+        <Modal open={open} onClose={handleClose}>
+          <S.ModalContent>
+            <S.TextWrapper>
+              <p>
+                {treasureName}
+                <p>{cnt}</p>개를
+              </p>
+              <p>투자하시겠습니까?</p>
+            </S.TextWrapper>
+            <S.ButtonWrapper>
+              <Button onClick={handleClose}>취소</Button>
+              <Button onClick={moveToQuiz}>확인</Button>
+            </S.ButtonWrapper>
+          </S.ModalContent>
+        </Modal>
+      )}
       <PaperLayout>
         <S.SelectTreasureCntWrapper>
           <S.SelectedTitle>{treasureName}</S.SelectedTitle>
