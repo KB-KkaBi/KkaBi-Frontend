@@ -1,8 +1,9 @@
-import { Button, PaperLayout } from "@/@components";
+import { Button, Modal, PaperLayout } from "@/@components";
 import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
-import { useCallback, useMemo } from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
 import { useRecoilValue, useResetRecoilState } from "recoil";
+import { ThemeContext } from "styled-components";
 import MemoizedAnswerSelector from "./AnswerSelector";
 import * as S from "./style";
 
@@ -49,6 +50,10 @@ const selectedIndex = 2;
 const Quiz = () => {
   const selectedArray = useRecoilValue(selectedButtonArray);
   const buttonArray = useMemo(() => shuffle(quizInfo[selectedIndex].array.split(", ")), []);
+  const [open, setOpen] = useState<boolean>(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const { colors } = useContext(ThemeContext);
 
   const resetButtonArray = useResetRecoilState(selectedButtonArray);
   const resetIndexArray = useResetRecoilState(selectedButtonIndex);
@@ -60,6 +65,7 @@ const Quiz = () => {
 
   const handleSubmit = () => {
     console.debug("제출: ", hangul.assemble(selectedArray));
+    handleOpen();
     handleReset();
   };
 
@@ -80,6 +86,17 @@ const Quiz = () => {
           </Button>
         </S.ButtonContanier>
       </S.QuizWrapper>
+      <Modal open={open}>
+        <S.ModalContent>
+          <div>정답입니다</div>
+          <p>
+            투자한 <S.TreasureCount $color={colors.darkYellow}>{500}</S.TreasureCount>개의 반지가
+            <br />
+            <S.TreasureCount $color={"#FC1616"}>{525}</S.TreasureCount>개가 되었습니다
+          </p>
+          <Button onClick={handleClose}>확인</Button>
+        </S.ModalContent>
+      </Modal>
     </PaperLayout>
   );
 };

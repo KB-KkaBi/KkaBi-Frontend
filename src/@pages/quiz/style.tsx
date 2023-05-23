@@ -57,3 +57,20 @@ export const StyledButton = styled(Button)<{ $isVowel: boolean }>`
     ${({ theme }) => theme.fonts.quiz}
   }
 `;
+
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.fonts.button}
+  justify-content: center;
+  align-items: center;
+  button {
+    margin-top: 2rem;
+  }
+`;
+
+export const TreasureCount = styled.p<{ $color: string }>`
+  ${({ theme }) => theme.fonts.button}
+  color: ${({ $color }) => $color};
+  display: inline;
+`;
