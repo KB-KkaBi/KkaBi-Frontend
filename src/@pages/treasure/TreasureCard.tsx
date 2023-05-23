@@ -6,10 +6,12 @@ interface CardProps {
   treasure: number;
   onClick: () => void;
   isClicked: boolean;
+  onMouseEnter: () => void;
+  onMouseOut: () => void;
 }
 
 const TreasureCard = (props: CardProps) => {
-  const { treasure, onClick, isClicked } = props;
+  const { treasure, onClick, isClicked, onMouseEnter, onMouseOut } = props;
 
   function checkTreasure() {
     switch (treasure) {
@@ -27,7 +29,7 @@ const TreasureCard = (props: CardProps) => {
   }
 
   return (
-    <S.TreasureWrapper onClick={onClick} isClicked={isClicked}>
+    <S.TreasureWrapper onClick={onClick} isClicked={isClicked} onMouseEnter={onMouseEnter} onMouseOut={onMouseOut}>
       {checkTreasure()}
     </S.TreasureWrapper>
   );

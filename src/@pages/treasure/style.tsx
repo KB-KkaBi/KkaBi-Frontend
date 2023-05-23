@@ -129,3 +129,10 @@ export const ButtonWrapper = styled.section`
     margin: 0 1rem;
   }
 `;
+
+export const BlankCard = styled.div`
+  width: 20rem;
+  height: 20rem;
+
+  margin: 1rem;
+`;

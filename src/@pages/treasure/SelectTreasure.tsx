@@ -1,10 +1,11 @@
 import { Button, PaperLayout } from "@/@components";
-import TreasureCardContent from "@/@components/common/card/TreasureCardContent";
+import TreasureCardContent from "@/@pages/treasure/TreasureCardContent";
 import { TREASURES_DATA } from "@/core/treasuresData";
 import { styled } from "styled-components";
 import TreasureCard from "./TreasureCard";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import * as S from "./style";
 
 const SelectTreasure = () => {
   const [selectTreasure, setSelectTreasure] = useState({
@@ -13,6 +14,7 @@ const SelectTreasure = () => {
     interestRate: 0,
     price: 0,
   });
+  const [hoverId, setHoverId] = useState(-1);
 
   const navigate = useNavigate();
 
@@ -25,8 +27,8 @@ const SelectTreasure = () => {
     setSelectTreasure({ treasureId: treasureId, treasureName: treasureName, interestRate: interestRate, price: price });
   }
 
-  function checkIsClicked(id: number) {
-    return id === selectTreasure.treasureId;
+  function checkIsHoverOfClick(id: number) {
+    return id === selectTreasure.treasureId || id === hoverId;
   }
 
   return (
@@ -39,11 +41,17 @@ const SelectTreasure = () => {
               <>
                 {treasureId % 2 !== 0 ? (
                   <>
-                    <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
+                    {checkIsHoverOfClick(treasureId) ? (
+                      <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
+                    ) : (
+                      <S.BlankCard></S.BlankCard>
+                    )}
                     <TreasureCard
                       treasure={treasureId}
                       onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
-                      isClicked={checkIsClicked(treasureId)}
+                      isClicked={checkIsHoverOfClick(treasureId)}
+                      onMouseEnter={() => setHoverId(treasureId)}
+                      onMouseOut={() => setHoverId(-1)}
                     />
                   </>
                 ) : (
@@ -51,9 +59,15 @@ const SelectTreasure = () => {
                     <TreasureCard
                       treasure={treasureId}
                       onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
-                      isClicked={checkIsClicked(treasureId)}
+                      isClicked={checkIsHoverOfClick(treasureId)}
+                      onMouseEnter={() => setHoverId(treasureId)}
+                      onMouseOut={() => setHoverId(-1)}
                     />
-                    <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
+                    {checkIsHoverOfClick(treasureId) ? (
+                      <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
+                    ) : (
+                      <S.BlankCard></S.BlankCard>
+                    )}
                   </>
                 )}
               </>
