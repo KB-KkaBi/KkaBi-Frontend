@@ -175,7 +175,8 @@ export const CharacterWrapper = styled.div`
     }
     &.select {
       border: 1px solid #ecab3d;
-      filter: drop-shadow(0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
+      //filter: drop-shadow(0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
+      box-shadow: 0px 0px 20px #fcaf16;
     }
     .characterImg {
       /* width: 20rem;
