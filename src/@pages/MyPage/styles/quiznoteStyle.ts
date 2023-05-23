@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const QuizNoteTitle = styled.p`
   position: absolute;
-  ${(props) => props.theme.fonts.title};
+  ${(props) => props.theme.fonts.title}
   top: 11%;
   left: 50%;
   transform: translate(-50%, 0%);
@@ -12,7 +12,7 @@ export const QuizNoteSubtitle = styled.div`
   width: 100%;
   display: flex;
   top: 23.5%;
-  ${(props) => props.theme.fonts.button};
+  ${(props) => props.theme.fonts.button}
 `;
 
 export const QuizNumber = styled.p`
@@ -46,7 +46,7 @@ export const QuizNoteLogContainer = styled.div`
   width: 91%;
   left: 5%;
   flex-direction: column;
-  ${(props) => props.theme.fonts.text};
+  ${(props) => props.theme.fonts.text}
 `;
 
 export const QuizNumberDetail = styled.div`
@@ -59,7 +59,7 @@ export const QuizLogDetail = styled.div`
   height: 11.5rem;
   align-items: center;
   flex-wrap: wrap;
-  ${(props) => props.theme.fonts.log};
+  ${(props) => props.theme.fonts.log}
   border-bottom: 1px solid black;
 `;
 export const QuizDetailNum = styled.div`

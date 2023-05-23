@@ -1,8 +1,8 @@
-import { QuizNoteLayout } from "@/@components";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styles/quiznoteStyle";
 import QuizLogDetailContainer from "./QuizLogDetailContainer";
+import CommonQuizNoteLayout from "@/@components/common/layout/CommonQuizNoteLayout";
 
 export type QuizLogData = {
   quizLogId: number;
@@ -45,7 +45,7 @@ const QuizWrongNote = () => {
     },
   ];
   return (
-    <QuizNoteLayout
+    <CommonQuizNoteLayout
       handleClick={() => {
         navigate(-1);
       }}>
@@ -61,7 +61,7 @@ const QuizWrongNote = () => {
           return <QuizLogDetailContainer log={log} key={log.quizLogId} />;
         })}
       </S.QuizNoteLogContainer>
-    </QuizNoteLayout>
+    </CommonQuizNoteLayout>
   );
 };
 

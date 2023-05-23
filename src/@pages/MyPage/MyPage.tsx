@@ -7,10 +7,10 @@ import { calculatePercentage, getTotalMoney } from "./libs/factory";
 import { STAR_FRIENDS } from "@/core/starFriends";
 import { PieChart } from "react-minimal-pie-chart";
 
-import Treasure1 from "../../assets/icon/miniTreasure1.svg";
-import Treasure2 from "../../assets/icon/miniTreasure2.svg";
-import Treasure3 from "../../assets/icon/miniTreasure3.svg";
-import Treasure4 from "../../assets/icon/miniTreasure4.svg";
+import Treasure1 from "@/assets/icon/miniTreasure1.svg";
+import Treasure2 from "@/assets/icon/miniTreasure2.svg";
+import Treasure3 from "@/assets/icon/miniTreasure3.svg";
+import Treasure4 from "@/assets/icon/miniTreasure4.svg";
 
 const MyPage = () => {
   const navigate = useNavigate();
