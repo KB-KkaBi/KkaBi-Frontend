@@ -53,7 +53,7 @@ const Quiz = () => {
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { colors } = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
 
   const resetButtonArray = useResetRecoilState(selectedButtonArray);
   const resetIndexArray = useResetRecoilState(selectedButtonIndex);
@@ -89,11 +89,11 @@ const Quiz = () => {
       <Modal open={open}>
         <S.ModalContent>
           <div>정답입니다</div>
-          <p>
-            투자한 <S.TreasureCount $color={colors.darkYellow}>{500}</S.TreasureCount>개의 반지가
+          <div>
+            투자한 <S.TreasureCount $color={themeContext?.colors.darkYellow}>{500}</S.TreasureCount>개의 반지가
             <br />
             <S.TreasureCount $color={"#FC1616"}>{525}</S.TreasureCount>개가 되었습니다
-          </p>
+          </div>
           <Button onClick={handleClose}>확인</Button>
         </S.ModalContent>
       </Modal>
