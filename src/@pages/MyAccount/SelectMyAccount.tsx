@@ -45,14 +45,14 @@ const SelectMyAccount = () => {
                     ) : (
                       <AccountTitle $isEven={false}></AccountTitle>
                     )}
-                    <CardWrapper $isExist={existAccountId.includes(accountId)}>
-                      <Card key={accountId} account={accountId} />
+                    <CardWrapper key={accountId} $isExist={existAccountId.includes(accountId)}>
+                      <Card account={accountId} />
                     </CardWrapper>
                   </>
                 ) : (
                   <>
-                    <CardWrapper $isExist={existAccountId.includes(accountId)}>
-                      <Card key={accountId} account={accountId} />
+                    <CardWrapper key={accountId} $isExist={existAccountId.includes(accountId)}>
+                      <Card account={accountId} />
                     </CardWrapper>
                     {existAccountId.includes(accountId) ? (
                       <AccountTitle $isEven={true}>
