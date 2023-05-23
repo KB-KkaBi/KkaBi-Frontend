@@ -21,8 +21,8 @@ const MyPage = () => {
     nickname: "승구",
     character: "루나키키",
     detailMoney: {
-      totalDeposit: 11000, //예금
-      totalSavings: 10000, //적금
+      totalDeposit: 1000, //예금
+      totalSavings: 7000, //적금
       totalTreasure: 7600, // 전체 보물 자산 구한 값
     },
 
@@ -148,7 +148,10 @@ const MyPage = () => {
             <S.UserMoneyInfoContainer>
               <S.UserMoneyTotalWrapper>
                 <p className="text"> 총 자산 </p>
-                <p>{totalMoney.toLocaleString()}원 </p>
+                <div className="money">
+                  <S.Won>₩</S.Won>
+                  <p>{totalMoney.toLocaleString()} </p>
+                </div>
               </S.UserMoneyTotalWrapper>
               <S.UserTreasureTotalWrapper>
                 <S.Treasure>
@@ -180,7 +183,7 @@ const MyPage = () => {
                 labelPosition={50}
                 animate
                 labelStyle={{
-                  fontSize: "1rem",
+                  fontSize: "0.8rem",
                 }}
               />
             </S.PieChartContainer>
@@ -210,7 +213,7 @@ const MyPage = () => {
             <Button
               className="btn"
               onClick={() => {
-                navigate("/landing");
+                navigate("/mypage/quiznote");
               }}>
               퀴즈 오답노트
             </Button>

@@ -60,9 +60,19 @@ export const UserMoneyTotalWrapper = styled.div`
   justify-content: space-between;
   font-size: 4rem;
 
+  .money {
+    display: flex;
+    align-items: center;
+  }
   .text {
     margin-left: 2rem;
   }
+`;
+export const Won = styled.p`
+  ${(props) => props.theme.fonts.won}
+  font-size: 2.8rem;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
 `;
 
 export const UserTreasureTotalWrapper = styled.div`
