@@ -6,6 +6,7 @@ import TreasureCard from "./TreasureCard";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import * as S from "./style";
+import { BackArrowIcon } from "@/@components/common/icon/Icons";
 
 const SelectTreasure = () => {
   const [selectTreasure, setSelectTreasure] = useState({
@@ -28,27 +29,25 @@ const SelectTreasure = () => {
   }
 
   function checkIsHoverOfClick(id: number) {
-    return id === selectTreasure.treasureId || id === hoverId;
+    return id === selectTreasure.treasureId || (id === hoverId && hoverId !== -1);
   }
+  console.log(hoverId);
 
   return (
     <>
       <PaperLayout>
+        <BackButtonWrapper>
+          <BackArrowIcon fillColor="#5F564C" />
+        </BackButtonWrapper>
         <Title>보물을 선택해주세요</Title>
         <CardContainer>
           <CardWrapper>
             {TREASURES_DATA.map(({ treasureId, treasureName, interestRate, price }) => (
-              <>
+              <div key={treasureId}>
                 {treasureId % 2 !== 0 ? (
-                  <>
+                  <S.FlexBox>
                     {checkIsHoverOfClick(treasureId) ? (
-                      <TreasureCardContent
-                        key={treasureId}
-                        id={treasureId}
-                        name={treasureName}
-                        interest={interestRate}
-                        price={price}
-                      />
+                      <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
                     ) : (
                       <S.BlankCard></S.BlankCard>
                     )}
@@ -60,9 +59,9 @@ const SelectTreasure = () => {
                       onMouseEnter={() => setHoverId(treasureId)}
                       onMouseOut={() => setHoverId(-1)}
                     />
-                  </>
+                  </S.FlexBox>
                 ) : (
-                  <>
+                  <S.FlexBox>
                     <TreasureCard
                       key={treasureId}
                       treasure={treasureId}
@@ -82,9 +81,9 @@ const SelectTreasure = () => {
                     ) : (
                       <S.BlankCard></S.BlankCard>
                     )}
-                  </>
+                  </S.FlexBox>
                 )}
-              </>
+              </div>
             ))}
           </CardWrapper>
         </CardContainer>
@@ -125,4 +124,9 @@ const Title = styled.h1`
   padding-top: 3rem;
 
   ${({ theme }) => theme.fonts.button}
+`;
+
+const BackButtonWrapper = styled.section`
+  position: absolute;
+  margin: 1% 0 0 3%;
 `;

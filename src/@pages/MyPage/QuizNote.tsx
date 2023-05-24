@@ -1,8 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import * as S from "./styles/quiznoteStyle";
-import QuizLogDetailContainer from "./QuizLogDetailContainer";
 import CommonQuizNoteLayout from "@/@components/common/layout/CommonQuizNoteLayout";
+import { useNavigate } from "react-router-dom";
+import QuizLogDetailContainer from "./QuizLogDetailContainer";
+import * as S from "./styles/quiznoteStyle";
 
 export type QuizLogData = {
   quizLogId: number;

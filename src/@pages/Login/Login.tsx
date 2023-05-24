@@ -1,5 +1,5 @@
-import React, { useCallback, useRef, useState } from "react";
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styles/loginStyle";
 
@@ -28,6 +28,8 @@ const Login = () => {
 
   //login 할때 할 함수
   const handleLoginClicked = useCallback(async () => {
+    console.debug(email, password, isLoginOk, setIsLoginOk);
+    handleModalOpen();
     /**
      * 이메일과 비밀번호를 전송한다.
      * 결과로 status = 200이 오면 홈페이지로 가기

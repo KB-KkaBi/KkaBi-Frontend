@@ -1,8 +1,6 @@
-import { BackArrowIcon } from "@/@components/common/icon/Icons";
-import BankBackground from "@/assets/image/bankBankground.png";
-import { styled } from "styled-components";
 import { BankLayout, Button } from "@/@components/common/";
 import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
 
 const BankMain = () => {
   const navigate = useNavigate();

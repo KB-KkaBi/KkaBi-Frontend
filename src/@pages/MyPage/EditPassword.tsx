@@ -28,6 +28,7 @@ const EditPassword = () => {
   };
   //login 할때 할 함수
   const handlePasswordEditClicked = useCallback(async () => {
+    console.debug(password, newPassword, newPasswordConfrim);
     /**
      * 기존 비밀번호와 새 비밀번호를 전송한다.
      * 결과로 status = 200이 오면 마이페이지로 가기

@@ -1,4 +1,3 @@
-import { Rank1, Rank2, Rank3, Rank4, Rank5, Rank6 } from "@/assets";
 import styled from "styled-components";
 
 export const RankListRootContainer = styled.div`

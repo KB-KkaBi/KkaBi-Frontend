@@ -1,5 +1,4 @@
 import { UserType } from "./user.types";
-import * as S from "../styles/mypageStyle";
 
 export function getTotalMoney(data: UserType) {
   let totalMoney = 0;

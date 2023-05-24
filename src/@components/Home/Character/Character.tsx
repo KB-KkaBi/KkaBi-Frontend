@@ -1,6 +1,5 @@
 import { STAR_FRIENDS } from "@/core/starFriends";
 import * as St from "./style";
-import { CharacterAgo, CharacterBB, CharacterKiKi, CharacterKolly, CharacterLamu } from "@/assets";
 
 interface CharacterProps {
   characterName: String;

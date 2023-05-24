@@ -1,4 +1,3 @@
-import { Account1, Account2, Account3, Account4 } from "@/assets";
 import { styled } from "styled-components";
 import * as S from "./style";
 
