@@ -1,4 +1,4 @@
-import { Button, PaperLayout } from "@/@components";
+import { Button } from "@/@components";
 import LandingLayout from "@/@components/Landing/LandingLayout";
 import { LandingLogoIc } from "@/assets";
 import { useNavigate } from "react-router-dom";

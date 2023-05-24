@@ -37,3 +37,8 @@ export { ReactComponent as Account1 } from "./icon/account1.svg";
 export { ReactComponent as Account2 } from "./icon/account2.svg";
 export { ReactComponent as Account3 } from "./icon/account3.svg";
 export { ReactComponent as Account4 } from "./icon/account4.svg";
+
+export { ReactComponent as Rubie } from "./icon/rubie.svg";
+export { ReactComponent as Ring } from "./icon/ring.svg";
+export { ReactComponent as Crown } from "./icon/crown.svg";
+export { ReactComponent as Diamond } from "./icon/diamond.svg";

@@ -13,8 +13,8 @@ const Register = () => {
   const [email, setEmail] = useRecoilState(registerEmail);
   const [password, setPassword] = useRecoilState(registerPassword);
   const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
-  const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
-  const [nickName, setNickName] = useRecoilState(userNickname);
+  // const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
+  // const [nickName, setNickName] = useRecoilState(userNickname);
 
   //Modal 관련
   const [emailModalOpen, setEmailModalOpen] = useState(false);

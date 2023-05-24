@@ -1,6 +1,6 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import Input from "@/@components/common/textField/CommonTextField";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
