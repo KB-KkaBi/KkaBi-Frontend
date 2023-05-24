@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginFormContainer = styled.form`
+export const LoginRootContainer = styled.form`
   display: flex;
   flex-direction: column;
   height: 100%;

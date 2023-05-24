@@ -44,7 +44,7 @@ const EditPassword = () => {
           navigate(-1);
         }}>
         <S.EditPasswordFormContainer
-          onSubmit={(e) => {
+          onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             handlePasswordEditClicked();
           }}>

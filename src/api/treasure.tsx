@@ -6,12 +6,12 @@ export async function getTreasure() {
   return data.data;
 }
 
-export async function postTreasure(treasureData: any) {
-  const data = await axios.post(`${import.meta.env.VITE_BASE_URL}`, treasureData);
+// export async function postTreasure(treasureData: any) {
+//   const data = await axios.post(`${import.meta.env.VITE_BASE_URL}`, treasureData);
 
-  console.log(data);
-  return data;
-}
+//   console.log(data);
+//   return data;
+// }
 
 export async function getMyAccount() {
   const data = await axios.get(`${import.meta.env.VITE_BASE_URL}/get-account-all`);
