@@ -11,6 +11,8 @@ interface CardContentProps {
 const TreasureCardContent = (props: CardContentProps) => {
   const { id, name, interest, price } = props;
 
+  console.log(interest * 100);
+
   return (
     <>
       <CardContainer $id={id}>
