@@ -11,14 +11,12 @@ interface CardContentProps {
 const TreasureCardContent = (props: CardContentProps) => {
   const { id, name, interest, price } = props;
 
-  console.log(interest * 100);
-
   return (
     <>
       <CardContainer $id={id}>
         <Title>{name}</Title>
         <Content>1개 {price}원</Content>
-        <Content>수익률 {interest * 100}%</Content>
+        <Content>수익률 {Math.floor(interest * 100)}%</Content>
         <Content>난이도 {level(id)}</Content>
       </CardContainer>
     </>
