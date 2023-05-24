@@ -91,7 +91,7 @@ const Profile = () => {
         navigate(-1);
       }}>
       <ProfileRootContainer
-        onSubmit={(e) => {
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           handleRegisterlicked();
         }}>
