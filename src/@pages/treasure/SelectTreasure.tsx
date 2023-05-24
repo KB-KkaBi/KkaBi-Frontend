@@ -28,7 +28,7 @@ const SelectTreasure = () => {
   }
 
   function checkIsHoverOfClick(id: number) {
-    return id === selectTreasure.treasureId || id === hoverId;
+    return id === selectTreasure.treasureId || (id === hoverId && hoverId !== -1);
   }
   console.log(hoverId);
 
