@@ -26,7 +26,6 @@ const SelectTreasure = () => {
   }
 
   const { data: treasureData } = useQuery(["treasuerInfo"], getTreasure);
-  console.log(treasureData);
 
   //클릭한 보물 저장
   function clickTreasureCare(treasureId: number, treasureName: string, interestRate: number, price: number) {
