@@ -43,7 +43,7 @@ const Register = () => {
     console.log("passwordConfirm : ", passwordConfirm);
     //console.log("character : ", selectedCharacter);
     //console.log("nickname : ", nickName);
-  }, [email, password, passwordConfirm, selectedCharacter, nickName]);
+  }, [email, password, passwordConfirm]);
 
   //이메일 중복 검사할때 사용할 함수
   const handleEmailConfirmClicked = useCallback(() => {

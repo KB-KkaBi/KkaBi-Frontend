@@ -40,10 +40,10 @@ const Profile = () => {
   }, []);
 
   //테스트하기
-  useEffect(() => {
-    console.log("selectedCharacter", selectedCharacter);
-    console.log("nickName~", nickName);
-  }, [selectedCharacter, nickName]);
+  // useEffect(() => {
+  //   console.log("selectedCharacter", selectedCharacter);
+  //   console.log("nickName~", nickName);
+  // }, [selectedCharacter, nickName]);
 
   const character = [
     { key: 1, characterName: "루나키키", src: kiki },
@@ -164,8 +164,8 @@ export const CharacterWrapper = styled.div`
     cursor: pointer;
 
     &:hover {
-      border: 1px solid gray;
-      box-shadow: 0px 0px 20px black;
+      border: 1px solid #ecab3d;
+      box-shadow: 0px 0px 20px #fcaf16;
     }
 
     &:first-child {
