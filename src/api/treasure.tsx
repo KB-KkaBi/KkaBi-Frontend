@@ -12,3 +12,10 @@ export async function postTreasure(treasureData: any) {
   console.log(data);
   return data;
 }
+
+export async function getMyAccount() {
+  const data = await axios.get(`${import.meta.env.VITE_BASE_URL}/get-account-all`);
+
+  console.log(data);
+  return data;
+}

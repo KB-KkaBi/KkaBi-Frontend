@@ -25,7 +25,11 @@ const SelectTreasure = () => {
     navigate("./cnt", { state: selectTreasure });
   }
 
-  const { data: treasureData } = useQuery(["treasuerInfo"], getTreasure);
+  const { data: treasureData, isError, error } = useQuery(["treasuerInfo"], getTreasure);
+
+  if (isError) {
+    console.log({ error });
+  }
 
   //클릭한 보물 저장
   function clickTreasureCare(treasureId: number, treasureName: string, interestRate: number, price: number) {
