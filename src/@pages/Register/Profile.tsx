@@ -40,10 +40,10 @@ const Profile = () => {
   }, []);
 
   //테스트하기
-  useEffect(() => {
-    console.log("selectedCharacter", selectedCharacter);
-    console.log("nickName~", nickName);
-  }, [selectedCharacter, nickName]);
+  // useEffect(() => {
+  //   console.log("selectedCharacter", selectedCharacter);
+  //   console.log("nickName~", nickName);
+  // }, [selectedCharacter, nickName]);
 
   const character = [
     { key: 1, characterName: "루나키키", src: kiki },
@@ -161,6 +161,12 @@ export const CharacterWrapper = styled.div`
     display: flex;
     justify-content: center;
     //align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid #ecab3d;
+      box-shadow: 0px 0px 20px #fcaf16;
+    }
 
     &:first-child {
       margin-right: 1rem;
@@ -174,7 +180,8 @@ export const CharacterWrapper = styled.div`
     }
     &.select {
       border: 1px solid #ecab3d;
-      filter: drop-shadow(0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
+      //filter: drop-shadow(0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
+      box-shadow: 0px 0px 20px #fcaf16;
     }
     .characterImg {
       /* width: 20rem;

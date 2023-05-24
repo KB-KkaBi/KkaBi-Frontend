@@ -27,7 +27,7 @@ export const SelectedTitle = styled.h1`
   ${({ theme }) => theme.fonts.title}
 `;
 
-export const TreasureWrapper = styled.article<{ $isClicked: boolean }>`
+export const TreasureWrapper = styled.article<{ isClicked: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,9 +41,9 @@ export const TreasureWrapper = styled.article<{ $isClicked: boolean }>`
 
   cursor: pointer;
 
-  border: ${({ $isClicked }) => $isClicked && 1}px solid ${({ theme }) => theme.colors.main};
-  box-shadow: 0rem 0rem ${({ $isClicked }) => $isClicked && 2}rem
-    ${({ theme, $isClicked }) => $isClicked && theme.colors.main};
+  border: ${({ isClicked }) => isClicked && 1}px solid ${({ theme }) => theme.colors.main};
+  box-shadow: 0rem 0rem ${({ isClicked }) => isClicked && 2}rem
+    ${({ theme, isClicked }) => isClicked && theme.colors.main};
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.main};
