@@ -27,7 +27,7 @@ const TreasureCard = (props: CardProps) => {
   }
 
   return (
-    <S.TreasureWrapper onClick={onClick} isClicked={isClicked} onMouseEnter={onMouseEnter} onMouseOut={onMouseOut}>
+    <S.TreasureWrapper onClick={onClick} $isClicked={isClicked} onMouseEnter={onMouseEnter} onMouseOut={onMouseOut}>
       {checkTreasure()}
     </S.TreasureWrapper>
   );

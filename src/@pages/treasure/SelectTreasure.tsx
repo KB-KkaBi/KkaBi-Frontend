@@ -30,6 +30,7 @@ const SelectTreasure = () => {
   function checkIsHoverOfClick(id: number) {
     return id === selectTreasure.treasureId || id === hoverId;
   }
+  console.log(hoverId);
 
   return (
     <>
@@ -38,17 +39,11 @@ const SelectTreasure = () => {
         <CardContainer>
           <CardWrapper>
             {TREASURES_DATA.map(({ treasureId, treasureName, interestRate, price }) => (
-              <>
+              <div key={treasureId}>
                 {treasureId % 2 !== 0 ? (
-                  <>
+                  <S.FlexBox>
                     {checkIsHoverOfClick(treasureId) ? (
-                      <TreasureCardContent
-                        key={treasureId}
-                        id={treasureId}
-                        name={treasureName}
-                        interest={interestRate}
-                        price={price}
-                      />
+                      <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
                     ) : (
                       <S.BlankCard></S.BlankCard>
                     )}
@@ -60,9 +55,9 @@ const SelectTreasure = () => {
                       onMouseEnter={() => setHoverId(treasureId)}
                       onMouseOut={() => setHoverId(-1)}
                     />
-                  </>
+                  </S.FlexBox>
                 ) : (
-                  <>
+                  <S.FlexBox>
                     <TreasureCard
                       key={treasureId}
                       treasure={treasureId}
@@ -82,9 +77,9 @@ const SelectTreasure = () => {
                     ) : (
                       <S.BlankCard></S.BlankCard>
                     )}
-                  </>
+                  </S.FlexBox>
                 )}
-              </>
+              </div>
             ))}
           </CardWrapper>
         </CardContainer>
