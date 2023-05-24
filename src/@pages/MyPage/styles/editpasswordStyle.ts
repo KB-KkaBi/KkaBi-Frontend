@@ -24,6 +24,7 @@ export const NewPasswordInputWrapper = styled.div`
 export const NewPasswordConfirmInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 18rem;
   margin-bottom: 3rem;
 `;
 

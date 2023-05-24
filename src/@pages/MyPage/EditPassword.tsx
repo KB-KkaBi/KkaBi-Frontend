@@ -62,9 +62,13 @@ const EditPassword = () => {
               placeholder="새 비밀번호를 다시 입력해주세요"
               type="password"
               onChange={handleNewPasswordConfirmChange}
+              error={newPassword !== newPasswordConfrim && newPasswordConfrim !== ""}
+              helperText={
+                newPassword !== newPasswordConfrim && newPasswordConfrim !== "" && "새 비밀번호가 일치하지 않습니다"
+              }
             />
           </S.NewPasswordConfirmInputWrapper>
-          <Button color="primary" type="submit" onClick={handleModalOpen}>
+          <Button color="primary" type="submit" onClick={handleModalOpen} disabled={newPassword !== newPasswordConfrim}>
             확인
           </Button>
           <Modal open={open} onClose={handleModalClose}>
