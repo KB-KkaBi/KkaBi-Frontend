@@ -162,6 +162,12 @@ export const CharacterWrapper = styled.div`
     display: flex;
     justify-content: center;
     //align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid gray;
+      box-shadow: 0px 0px 20px black;
+    }
 
     &:first-child {
       margin-right: 1rem;
