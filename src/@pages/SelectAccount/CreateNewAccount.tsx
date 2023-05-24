@@ -70,12 +70,12 @@ const Title = styled.h1`
   display: flex;
   justify-content: center;
 
-  padding-top: 3rem;
-
   ${({ theme }) => theme.fonts.button}
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+
+  margin-top: 1rem;
 `;
