@@ -1,4 +1,3 @@
-import { styled } from "styled-components";
 import { STAR_FRIENDS } from "@/core/starFriends";
 import * as St from "./style";
 

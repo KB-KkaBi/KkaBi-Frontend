@@ -1,5 +1,5 @@
-import React, { useCallback, useRef, useState } from "react";
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styles/loginStyle";
 
@@ -28,10 +28,13 @@ const Login = () => {
 
   //login 할때 할 함수
   const handleLoginClicked = useCallback(async () => {
+    console.debug(email, password, isLoginOk, setIsLoginOk);
+    handleModalOpen();
     /**
      * 이메일과 비밀번호를 전송한다.
      * 결과로 status = 200이 오면 홈페이지로 가기
      * 로그인이 안되면 에러 모달 띄어주고 다시 로그인페이지로 가기
+     * 로그인이 되면 사용자의 닉네임을 userNickname recoil 변수에 추가하기
      * */
   }, []);
 
@@ -40,7 +43,7 @@ const Login = () => {
       handleClick={() => {
         navigate(-1);
       }}>
-      <S.LoginFormWrapper
+      <S.LoginFormContainer
         onSubmit={(e) => {
           e.preventDefault();
           handleLoginClicked();
@@ -63,7 +66,7 @@ const Login = () => {
             <Button onClick={handleModalClose}>확인</Button>
           </S.ModalWrapper>
         </Modal>
-      </S.LoginFormWrapper>
+      </S.LoginFormContainer>
     </PaperLayout>
   );
 };

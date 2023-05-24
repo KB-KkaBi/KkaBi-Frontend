@@ -1,10 +1,9 @@
 import { Button, PaperLayout } from "@/@components";
 import Card from "@/@components/common/card/Card";
-import React from "react";
-import { styled } from "styled-components";
-import { ACCOUNTS_DATA } from "@/core/accountsData";
 import CardContent from "@/@components/common/card/CardContent";
+import { ACCOUNTS_DATA } from "@/core/accountsData";
 import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
 
 const CreateNewAccount = () => {
   const navigate = useNavigate();
@@ -23,13 +22,13 @@ const CreateNewAccount = () => {
               <>
                 {accountId % 2 !== 0 ? (
                   <>
-                    <CardContent title={title} content={content} />
+                    <CardContent title={title || ""} content={content || ""} />
                     <Card account={accountId} />
                   </>
                 ) : (
                   <>
                     <Card account={accountId} />
-                    <CardContent title={title} content={content} />
+                    <CardContent title={title || ""} content={content || ""} />
                   </>
                 )}
               </>
@@ -71,12 +70,12 @@ const Title = styled.h1`
   display: flex;
   justify-content: center;
 
-  padding-top: 3rem;
-
   ${({ theme }) => theme.fonts.button}
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+
+  margin-top: 1rem;
 `;

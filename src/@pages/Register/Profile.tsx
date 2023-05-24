@@ -1,32 +1,26 @@
-import { Button, PaperLayout, TextField } from "@/@components";
+import { Button, Modal, PaperLayout, TextField } from "@/@components";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Modal } from "@/@components";
 
 import ago from "../../assets/icon/characterAgo.svg";
 import bibi from "../../assets/icon/characterBb.svg";
 import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
-import { useRecoilState } from "recoil";
-import {
-  registerEmail,
-  registerNickname,
-  registerPassword,
-  registerPasswordConfirm,
-  registerSelectedCharacter,
-} from "@/recoil/Register";
-import { log } from "console";
+
+import { registerEmail, registerPassword, registerPasswordConfirm, registerSelectedCharacter } from "@/recoil/Register";
+import { userNickname } from "@/recoil/User";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useRecoilState(registerEmail);
-  const [password, setPassword] = useRecoilState(registerPassword);
-  const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
+  const email = useRecoilValue(registerEmail);
+  const password = useRecoilValue(registerPassword);
+  const passwordConfirm = useRecoilValue(registerPasswordConfirm);
   const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
-  const [nickName, setNickName] = useRecoilState(registerNickname);
+  const [nickName, setNickName] = useRecoilState(userNickname);
 
   const [open, setOpen] = useState(false); //Modal Open
 
@@ -46,10 +40,10 @@ const Profile = () => {
   }, []);
 
   //테스트하기
-  useEffect(() => {
-    console.log("selectedCharacter", selectedCharacter);
-    console.log("nickName~", nickName);
-  }, [selectedCharacter, nickName]);
+  // useEffect(() => {
+  //   console.log("selectedCharacter", selectedCharacter);
+  //   console.log("nickName~", nickName);
+  // }, [selectedCharacter, nickName]);
 
   const character = [
     { key: 1, characterName: "루나키키", src: kiki },
@@ -82,6 +76,7 @@ const Profile = () => {
     // FormData의 value
 
     console.log("회원가입 버튼 눌렀음");
+    handleModalOpen();
   }, [selectedCharacter, nickName]);
 
   useEffect(() => {
@@ -100,7 +95,7 @@ const Profile = () => {
           e.preventDefault();
           handleRegisterlicked();
         }}>
-        <CharacterTextWrapper>
+        <CharacterTextContainer>
           <p>나의 깨비를 선택해주세요!</p>
           <CharacterWrapper>
             {character.map((item) => {
@@ -114,7 +109,7 @@ const Profile = () => {
               );
             })}
           </CharacterWrapper>
-        </CharacterTextWrapper>
+        </CharacterTextContainer>
         <NickNameWrapper>
           <p>NickName</p>
           <TextField placeholder="닉네임을 입력해주세요" value={nickName} onChange={handleNickNameInput} />
@@ -145,7 +140,7 @@ export const ProfileRootContainer = styled.form`
   ${({ theme }) => theme.fonts.text}
 `;
 
-export const CharacterTextWrapper = styled.div`
+export const CharacterTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,6 +161,12 @@ export const CharacterWrapper = styled.div`
     display: flex;
     justify-content: center;
     //align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid #ecab3d;
+      box-shadow: 0px 0px 20px #fcaf16;
+    }
 
     &:first-child {
       margin-right: 1rem;
@@ -179,7 +180,8 @@ export const CharacterWrapper = styled.div`
     }
     &.select {
       border: 1px solid #ecab3d;
-      filter: drop-shadow(0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
+      //filter: drop-shadow(0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
+      box-shadow: 0px 0px 20px #fcaf16;
     }
     .characterImg {
       /* width: 20rem;
