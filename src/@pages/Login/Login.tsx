@@ -44,7 +44,7 @@ const Login = () => {
         navigate(-1);
       }}>
       <S.LoginFormContainer
-        onSubmit={(e) => {
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           handleLoginClicked();
         }}>

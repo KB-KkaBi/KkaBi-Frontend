@@ -1,6 +1,5 @@
-import { TextField, PaperLayout, Button, Modal } from "@/@components";
-import { registerEmail, registerPassword, registerPasswordConfirm, registerSelectedCharacter } from "@/recoil/Register";
-import { userNickname } from "@/recoil/User";
+import { Button, Modal, PaperLayout, TextField } from "@/@components";
+import { registerEmail, registerPassword, registerPasswordConfirm } from "@/recoil/Register";
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -66,7 +65,7 @@ const Register = () => {
         navigate(-1);
       }}>
       <SignUpContainer
-        onSubmit={(e) => {
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           handleEmailConfirmClicked();
         }}>
