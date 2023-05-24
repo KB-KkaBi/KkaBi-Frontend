@@ -29,7 +29,7 @@ const EditNickname = () => {
           navigate(-1);
         }}>
         <S.EditNicknameFormContainer
-          onSubmit={(e) => {
+          onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
             handleNicknameEditClicked();
           }}>

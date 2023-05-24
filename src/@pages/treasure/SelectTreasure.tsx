@@ -1,14 +1,14 @@
 import { Button, PaperLayout } from "@/@components";
+import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import TreasureCardContent from "@/@pages/treasure/TreasureCardContent";
-import { TREASURES_DATA, TreasureDataTypes } from "@/core/treasuresData";
+import { getTreasure } from "@/api/treasure";
+import { TreasureDataTypes } from "@/core/treasuresData";
+import { useState } from "react";
+import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import TreasureCard from "./TreasureCard";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import * as S from "./style";
-import { BackArrowIcon } from "@/@components/common/icon/Icons";
-import { getTreasure } from "@/api/treasure";
-import { useQuery } from "react-query";
 
 const SelectTreasure = () => {
   const [selectTreasure, setSelectTreasure] = useState({
