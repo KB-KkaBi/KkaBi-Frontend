@@ -6,6 +6,7 @@ import TreasureCard from "./TreasureCard";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import * as S from "./style";
+import { BackArrowIcon } from "@/@components/common/icon/Icons";
 
 const SelectTreasure = () => {
   const [selectTreasure, setSelectTreasure] = useState({
@@ -35,6 +36,9 @@ const SelectTreasure = () => {
   return (
     <>
       <PaperLayout>
+        <BackButtonWrapper>
+          <BackArrowIcon fillColor="#5F564C" />
+        </BackButtonWrapper>
         <Title>보물을 선택해주세요</Title>
         <CardContainer>
           <CardWrapper>
@@ -120,4 +124,9 @@ const Title = styled.h1`
   padding-top: 3rem;
 
   ${({ theme }) => theme.fonts.button}
+`;
+
+const BackButtonWrapper = styled.section`
+  position: absolute;
+  margin: 1% 0 0 3%;
 `;
