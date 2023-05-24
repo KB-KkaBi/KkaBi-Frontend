@@ -1,4 +1,4 @@
-interface TreasureDataTypes {
+export interface TreasureDataTypes {
   treasureId: number;
   treasureName: string;
   interestRate: number;

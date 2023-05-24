@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export async function getTreasure() {
-  const data = await axios.get(`서버url`);
+  console.log(import.meta.env.VITE_BASE_URL);
+  const data = await axios.get(`${import.meta.env.VITE_BASE_URL}/treasure-info`);
 
-  console.log(data);
-  return data;
+  return data.data;
 }
 
 export async function postTreasure(treasureData: any) {

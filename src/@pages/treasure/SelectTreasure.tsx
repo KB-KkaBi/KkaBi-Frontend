@@ -1,12 +1,14 @@
 import { Button, PaperLayout } from "@/@components";
 import TreasureCardContent from "@/@pages/treasure/TreasureCardContent";
-import { TREASURES_DATA } from "@/core/treasuresData";
+import { TREASURES_DATA, TreasureDataTypes } from "@/core/treasuresData";
 import { styled } from "styled-components";
 import TreasureCard from "./TreasureCard";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import * as S from "./style";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
+import { getTreasure } from "@/api/treasure";
+import { useQuery } from "react-query";
 
 const SelectTreasure = () => {
   const [selectTreasure, setSelectTreasure] = useState({
@@ -23,6 +25,9 @@ const SelectTreasure = () => {
     navigate("./cnt", { state: selectTreasure });
   }
 
+  const { data: treasureData } = useQuery(["treasuerInfo"], getTreasure);
+  console.log(treasureData);
+
   //클릭한 보물 저장
   function clickTreasureCare(treasureId: number, treasureName: string, interestRate: number, price: number) {
     setSelectTreasure({ treasureId: treasureId, treasureName: treasureName, interestRate: interestRate, price: price });
@@ -31,7 +36,6 @@ const SelectTreasure = () => {
   function checkIsHoverOfClick(id: number) {
     return id === selectTreasure.treasureId || (id === hoverId && hoverId !== -1);
   }
-  console.log(hoverId);
 
   return (
     <>
@@ -42,7 +46,7 @@ const SelectTreasure = () => {
         <Title>보물을 선택해주세요</Title>
         <CardContainer>
           <CardWrapper>
-            {TREASURES_DATA.map(({ treasureId, treasureName, interestRate, price }) => (
+            {treasureData?.map(({ treasureId, treasureName, interestRate, price }: TreasureDataTypes) => (
               <div key={treasureId}>
                 {treasureId % 2 !== 0 ? (
                   <S.FlexBox>
