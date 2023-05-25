@@ -5,7 +5,7 @@ export const userNickname = atom({
   default: "",
 });
 
-export const userSeq = atom({
+export const userSequence = atom({
   key: "userSequence",
   default: -123,
 });

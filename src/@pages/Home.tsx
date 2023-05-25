@@ -4,6 +4,11 @@ import Background from "../assets/image/homeBackground.png";
 import MyInfo from "../@components/Home/MyInfo/MyInfo";
 import { useNavigate } from "react-router-dom";
 import Character from "@/@components/Home/Character/Character";
+import { useQuery } from "react-query";
+import { getUserInfo } from "@/api/user";
+import { UserInfoDataTypes } from "@/core/userInfoData";
+import { useState } from "react";
+import { getTotalMoney } from "./MyPage/libs/factory";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,13 +25,25 @@ const Home = () => {
     navigate("/mypage");
   }
 
+  const { data: userInfoData } = useQuery<UserInfoDataTypes>(["userHomeInfo"], getUserInfo);
+
+  const totalMoney =
+    userInfoData?.detailMoney.totalDeposit! +
+    userInfoData?.detailMoney.totalSavings! +
+    userInfoData?.detailMoney.totalTreasure!;
+
   return (
     <>
-      <MyInfo characterName="루나키키" nickName="지수수" totalMoney={11000} onClick={moveToMyPage} />
+      <MyInfo
+        characterName={userInfoData?.character || ""}
+        nickName={userInfoData?.nickname || ""}
+        totalMoney={totalMoney}
+        onClick={moveToMyPage}
+      />
       <ImgContainer>
         <ImgWrapper>
           <HomeTreasureIc onClick={moveToTreasure} />
-          <Character characterName="루나키키" />
+          <Character characterName={userInfoData?.character || ""} />
           <HomeKkaBiBankIc onClick={moveToBank} />
         </ImgWrapper>
       </ImgContainer>

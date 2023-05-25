@@ -1,6 +1,6 @@
-import { UserType } from "./user.types";
+import { UserInfoDataTypes } from "@/core/userInfoData";
 
-export function getTotalMoney(data: UserType) {
+export function getTotalMoney(data: UserInfoDataTypes) {
   let totalMoney = 0;
 
   totalMoney += data.detailMoney.totalDeposit + data.detailMoney.totalSavings + data.detailMoney.totalTreasure;
