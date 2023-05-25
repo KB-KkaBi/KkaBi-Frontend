@@ -1,7 +1,12 @@
 import axios from "axios";
 
-export async function postCheckEmail(email: string) {
-  const data = await axios.post(`${import.meta.env.VITE_BASE_URL}/check-email`, email);
+interface EmailType {
+  email: string;
+}
+
+export async function postCheckEmail(email: EmailType) {
+  console.log(email);
+  const data = await axios.post(`/api/check-email`, email, { withCredentials: true });
 
   console.log(data);
   return data;
