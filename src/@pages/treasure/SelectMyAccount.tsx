@@ -8,11 +8,9 @@ import styled from "styled-components";
 
 const SelectMyAccount = () => {
   const { data: myAccount } = useQuery(["myAccount"], getMyAccount);
-  console.log(myAccount);
 
-  // const { data: accountInfo } = useQuery(["accountInfo"], getAccountInfo);
-
-  const [existAccountId, setExistAccountId] = useState<number[]>([]);
+  const [hoverId, setHoverId] = useState<number>(-1);
+  const [clickId, setClickId] = useState<number>(-1);
   // const newAccountId: number[] = [];
 
   const navigate = useNavigate();
@@ -21,23 +19,11 @@ const SelectMyAccount = () => {
     return id === 3 || id === 4;
   }
 
-  // function checkExistAccount() {
-  //   myAccount.map((account: any) => {
-  //     // if (!newAccountId.includes(account.accountId)) {
-  //     //   newAccountId.push(account.accountId);
-  //     // }
-  //     if (checkDepositAccount(account.accountInfo.accountInfoId)) {
-  //       // newAccountId.push(account);
-  //     }
-  //   });
-  //   // setExistAccountId(newAccountId);
-  // }
-
-  // useEffect(() => {
-  //   checkExistAccount();
-  // }, []);
-
   console.log(myAccount);
+
+  function checkIsHoverOfClick(id: number) {
+    return id === clickId || (id === hoverId && hoverId !== -1);
+  }
 
   return (
     <SelectMyAccountWrapper>
@@ -47,8 +33,6 @@ const SelectMyAccount = () => {
           <CardContainer>
             {myAccount &&
               myAccount.map((account: any) => (
-                // <>{checkDepositAccount(account.accountInfo.accountInfoId) && <Card account={account.accountId} />}</>
-
                 <>
                   {checkDepositAccount(account.accountInfo.accountInfoId) && (
                     <>
@@ -56,13 +40,27 @@ const SelectMyAccount = () => {
                         <>
                           <AccountTitle $isEven={false}>{account.accountName}</AccountTitle>
                           <CardWrapper key={account.accountInfoId} $isExist={true}>
-                            <Card account={account.accountId} />
+                            <Card
+                              key={account.accountId}
+                              account={account.accountId}
+                              isClicked={checkIsHoverOfClick(account.accountId)}
+                              onClick={() => setClickId(account.accountId)}
+                              onMouseEnter={() => setHoverId(account.accountId)}
+                              onMouseOut={() => setHoverId(-1)}
+                            />
                           </CardWrapper>
                         </>
                       ) : (
                         <>
                           <CardWrapper key={account.accountInfoId} $isExist={true}>
-                            <Card account={account.accountId} />
+                            <Card
+                              key={account.accountId}
+                              account={account.accountId}
+                              isClicked={checkIsHoverOfClick(account.accountId)}
+                              onClick={() => setClickId(account.accountId)}
+                              onMouseEnter={() => setHoverId(account.accountId)}
+                              onMouseOut={() => setHoverId(-1)}
+                            />
                           </CardWrapper>
                           <AccountTitle $isEven={true}>{account.accountName}</AccountTitle>
                         </>
