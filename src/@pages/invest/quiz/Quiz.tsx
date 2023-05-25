@@ -1,7 +1,9 @@
 import { Button, Modal, PaperLayout } from "@/@components";
+import { getQuizList } from "@/api/invest";
 import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
 import { useCallback, useContext, useMemo, useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import { ThemeContext } from "styled-components";
@@ -47,8 +49,10 @@ const quizInfo: QuizInfo[] = [
   },
 ];
 const selectedIndex = 2;
+const treasureId: number = 2;
 
 const Quiz = () => {
+  const { data: quizData } = useQuery(["quizInfo", treasureId], () => getQuizList(treasureId));
   const selectedArray = useRecoilValue(selectedButtonArray);
   const buttonArray = useMemo(() => shuffle(quizInfo[selectedIndex].array.split(", ")), []);
   const navigate = useNavigate();
