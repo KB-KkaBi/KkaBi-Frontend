@@ -5,6 +5,8 @@ import { useQuery } from "react-query";
 const SelectMyAccount = () => {
   const { data: myAccount, isError, error } = useQuery(["myAccount"], getMyAccount);
 
+  console.log(myAccount);
+
   if (isError) {
     console.log({ error });
   } else {
