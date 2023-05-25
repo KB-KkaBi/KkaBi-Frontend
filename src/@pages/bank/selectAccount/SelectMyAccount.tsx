@@ -21,7 +21,7 @@ const SelectMyAccount = () => {
   }
 
   function moveToBank() {
-    navigate("./my-account");
+    navigate("../my-account");
   }
 
   useEffect(() => {

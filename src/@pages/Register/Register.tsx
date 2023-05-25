@@ -1,8 +1,6 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
-import { postCheckEmail } from "@/api/register";
 import { registerEmail, registerPassword, registerPasswordConfirm } from "@/recoil/Register";
 import React, { useCallback, useEffect, useState } from "react";
-import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
@@ -66,29 +64,20 @@ const Register = () => {
     //console.log("nickname : ", nickName);
   }, [email, password, passwordConfirm]);
 
-  const { mutate: emailCheckPost } = useMutation(postCheckEmail, {
-    onSuccess: (response) => {
-      navigate("/register/profile");
-    },
-    onError: (error) => {
-      handleEmailModalOpen();
-    },
-  });
   //이메일 중복 검사할때 사용할 함수
-  const handleEmailConfirmClicked = () => {
+  const handleEmailConfirmClicked = useCallback(() => {
     /**
      * 이메일을 전송한다.
      * 결과로 status = 200이 오면 캐릭터 선택으로 넘어가기
      * 이메일이 중복이면 모달 띄워서 중복된 아이디가 존재한다고 알려주기
      * */
-    if (!password) {
-      handlePasswordModalOpen();
+    if (!isEmail) {
+      handleEmailModalOpen();
     } else {
-      emailCheckPost({ email: email });
     }
 
     console.log("이메일 중복체크 함수 들어옴");
-  };
+  }, [email]);
 
   return (
     <PaperLayout
@@ -136,7 +125,7 @@ const Register = () => {
         <Modal open={passwordModalOpen} onClose={handlePasswordModalClose}>
           <ModalWrapper>
             <p className="text">비밀번호를 입력해주세요</p>
-            <Button onClick={handlePasswordModalClose}>확인</Button>
+            <Button onClick={handleEmailModalClose}>확인</Button>
           </ModalWrapper>
         </Modal>
       </SignUpContainer>

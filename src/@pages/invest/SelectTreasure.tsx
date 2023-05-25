@@ -1,6 +1,5 @@
 import { Button, PaperLayout } from "@/@components";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
-import TreasureCardContent from "@/@pages/treasure/TreasureCardContent";
 import { getTreasure } from "@/api/treasure";
 import { TreasureDataTypes } from "@/core/treasuresData";
 import { useState } from "react";
@@ -8,6 +7,7 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import TreasureCard from "./TreasureCard";
+import TreasureCardContent from "./TreasureCardContent";
 import * as S from "./style";
 
 const SelectTreasure = () => {
@@ -22,7 +22,7 @@ const SelectTreasure = () => {
   const navigate = useNavigate();
 
   function moveToSelectCnt() {
-    navigate("./cnt", { state: selectTreasure });
+    navigate("./select-amount", { state: selectTreasure });
   }
 
   const { data: treasureData, isError, error } = useQuery(["treasuerInfo"], getTreasure);

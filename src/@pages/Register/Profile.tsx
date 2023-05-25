@@ -88,7 +88,7 @@ const Profile = () => {
   return (
     <PaperLayout
       handleClick={() => {
-        navigate(-1);
+        navigate("./register");
       }}>
       <ProfileRootContainer
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
