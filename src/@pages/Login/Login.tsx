@@ -53,7 +53,7 @@ const Login = () => {
   return (
     <PaperLayout
       handleClick={() => {
-        navigate(-1);
+        navigate("/");
       }}>
       <S.LoginRootContainer
         onSubmit={(e) => {

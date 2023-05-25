@@ -11,7 +11,7 @@ import Treasure2 from "@/assets/icon/miniTreasure2.svg";
 import Treasure3 from "@/assets/icon/miniTreasure3.svg";
 import Treasure4 from "@/assets/icon/miniTreasure4.svg";
 
-const MyPage = () => {
+const MyPageMain = () => {
   const navigate = useNavigate();
   /**
    * 원래는 이 페이지 부르기 전 get 요청해서 유저정보 값(닉네임, 캐릭터, 금액들) 가져옴
@@ -129,7 +129,7 @@ const MyPage = () => {
     <>
       <PaperLayout
         handleClick={() => {
-          navigate(-1);
+          navigate("/home");
         }}>
         <S.MyPageRootContainer>
           <S.UserNickNameContainer>
@@ -196,14 +196,14 @@ const MyPage = () => {
                 <Button
                   className="btn"
                   onClick={() => {
-                    navigate("/mypage/editnickname");
+                    navigate("../editnickname");
                   }}>
                   닉네임 수정
                 </Button>
                 <Button
                   className="btn"
                   onClick={() => {
-                    navigate("/mypage/editpassword");
+                    navigate("../editpassword");
                   }}>
                   비밀번호 수정
                 </Button>
@@ -212,7 +212,7 @@ const MyPage = () => {
             <Button
               className="btn"
               onClick={() => {
-                navigate("/mypage/quiznote");
+                navigate("../quiznote");
               }}>
               퀴즈 오답노트
             </Button>
@@ -240,4 +240,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default MyPageMain;

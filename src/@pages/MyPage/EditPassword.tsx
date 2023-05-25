@@ -41,7 +41,7 @@ const EditPassword = () => {
     <>
       <PaperLayout
         handleClick={() => {
-          navigate(-1);
+          navigate("/mypage");
         }}>
         <S.EditPasswordFormContainer
           onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
