@@ -8,9 +8,14 @@ const Withdraw = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState("");
+  const [reason, setReason] = useState("");
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(e.target.value);
+    const val = e.target.value?.replace(/(^0+)/, "");
+    setAmount(val);
+  };
+  const handleReasonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setReason(e.target.value);
   };
 
   const handleOpen = () => setOpen(true);
@@ -26,17 +31,20 @@ const Withdraw = () => {
         <TextField
           type="number"
           onChange={handleAmountChange}
+          value={amount}
           InputProps={{
             endAdornment: <S.Won color={!!amount ? "#000" : "#aaaaaa"}>\</S.Won>,
           }}></TextField>
         <S.Guide>출금 사유를 작성해주세요</S.Guide>
-        <TextField placeholder="ex. 사탕 사먹기"></TextField>
+        <TextField value={reason} onChange={handleReasonChange} placeholder="ex. 사탕 사먹기"></TextField>
         <Button onClick={handleOpen}>확인</Button>
       </S.TransactionContent>
       <Modal open={open}>
         <>
           <S.Guide>출금되었습니다</S.Guide>
-          <Button onClick={handleClose}>확인</Button>
+          <Button onClick={handleClose} disabled={!amount || !reason}>
+            확인
+          </Button>
         </>
       </Modal>
     </PaperLayout>

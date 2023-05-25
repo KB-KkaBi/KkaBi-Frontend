@@ -1,9 +1,11 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styles/loginStyle";
 import { useMutation } from "react-query";
 import { postLogin } from "@/api/login";
+import { useRecoilState } from "recoil";
+import { userSequence } from "@/recoil/User";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,13 +13,15 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false); //Modal Open
-  const [isLoginOk, setIsLoginOk] = useState(true); //로그인 가능한지 안한지!
+  const [userSeq, setUserSeq] = useRecoilState(userSequence);
 
   const { mutate: loginPost } = useMutation(postLogin, {
     onSuccess: (response) => {
+      setUserSeq(response.data.user.userSeq);
       navigate("/home");
     },
     onError: (error) => {
+      console.debug(error);
       handleModalOpen();
     },
   });
@@ -50,16 +54,16 @@ const Login = () => {
     email && password && loginPost({ email: email, pw: password });
   };
 
+  useEffect(() => {
+    console.log("현재 로그인 한 유저 시퀀스 : ", userSeq);
+  }, [userSeq]);
+
   return (
     <PaperLayout
       handleClick={() => {
         navigate("/");
       }}>
-      <S.LoginRootContainer
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLoginClicked();
-        }}>
+      <S.LoginRootContainer>
         <S.EmailInputWrapper>
           <p>EMAIL</p>
           <TextField placeholder="이메일을 입력해주세요" type="text" onChange={handleEmailChange} />
@@ -69,7 +73,7 @@ const Login = () => {
           <p>PASSWORD</p>
           <TextField placeholder="비밀번호를 입력해주세요" type="password" onChange={handlePasswordChange} />
         </S.PasswordInputWrapper>
-        <Button color="primary" type="submit" onClick={handleLoginClicked}>
+        <Button color="primary" onClick={handleLoginClicked}>
           확인
         </Button>
         <Modal open={open} onClose={handleModalClose}>
