@@ -7,6 +7,7 @@ const Router = () => {
       <Route path="/" element={<B.BankMain />} />
       <Route path="/create-new-account" element={<B.CreateNewAccount />} />
       <Route path="/create-new-account-name" element={<B.CreateNewAccountName />} />
+      <Route path="/select-my-account" element={<B.SelectMyAccount />} />
       <Route path="/my-account/*">
         <Route path="" element={<B.MyAccountMain />} />
         <Route path="withdraw" element={<B.Withdraw />} />
