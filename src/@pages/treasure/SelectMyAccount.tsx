@@ -18,10 +18,12 @@ const SelectMyAccount = () => {
     return id === 3 || id === 4;
   }
 
-  console.log(myAccount);
-
   function checkIsHoverOfClick(id: number) {
     return id === clickId || (id === hoverId && hoverId !== -1);
+  }
+
+  function selectDepositAccount() {
+    clickId !== -1 && navigate("/", { state: clickId });
   }
 
   return (
@@ -71,7 +73,7 @@ const SelectMyAccount = () => {
           </CardContainer>
         </CardBox>
         <ButtonWrapper>
-          <Button>확인</Button>
+          <Button onClick={selectDepositAccount}>확인</Button>
         </ButtonWrapper>
       </PaperLayout>
     </SelectMyAccountWrapper>
