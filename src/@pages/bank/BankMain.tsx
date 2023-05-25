@@ -10,7 +10,7 @@ const BankMain = () => {
   };
 
   const moveToMyAccount = () => {
-    navigate("/bank");
+    navigate("./my-account");
   };
 
   return (

@@ -122,6 +122,12 @@ const Register = () => {
             <Button onClick={handleEmailModalClose}>확인</Button>
           </ModalWrapper>
         </Modal>
+        <Modal open={passwordModalOpen} onClose={handlePasswordModalClose}>
+          <ModalWrapper>
+            <p className="text">비밀번호를 입력해주세요</p>
+            <Button onClick={handleEmailModalClose}>확인</Button>
+          </ModalWrapper>
+        </Modal>
       </SignUpContainer>
     </PaperLayout>
   );

@@ -14,8 +14,7 @@ const Router = () => {
         </Route>
         <Route path="/home" element={<P.Home />} />
         <Route path="/mypage/*" element={<P.Mypage />} />
-        <Route path="/bank/*" element={<P.MyAccount />} />
-        <Route path="/banks/*" element={<P.SelectAccount />} />
+        <Route path="/bank/*" element={<P.Bank />} />
         <Route path="/invest/*" element={<P.Invest />} />
         <Route path="/quiz" element={<P.Quiz />} />
       </Routes>
