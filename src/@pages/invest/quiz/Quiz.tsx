@@ -1,11 +1,12 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import { getQuizList } from "@/api/invest";
+import { investInfo } from "@/recoil/Invest";
 import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
 import { useCallback, useContext, useMemo, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import { ThemeContext } from "styled-components";
 import MemoizedAnswerSelector from "./AnswerSelector";
 import * as S from "./style";
@@ -32,6 +33,7 @@ const Quiz = () => {
 
   const resetButtonArray = useResetRecoilState(selectedButtonArray);
   const resetIndexArray = useResetRecoilState(selectedButtonIndex);
+  const [investData, setInvestData] = useRecoilState(investInfo);
 
   const handleReset = useCallback(() => {
     resetButtonArray();

@@ -43,44 +43,43 @@ const SelectMyAccount = () => {
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
-            {myAccount &&
-              myAccount.map((account: any) => (
-                <>
-                  {checkDepositAccount(account.accountInfo.accountInfoId) && (
-                    <>
-                      {account.accountInfo.accountInfoId % 2 !== 0 ? (
-                        <>
-                          <AccountTitle $isEven={false}>{account.accountName}</AccountTitle>
-                          <CardWrapper key={account.accountInfoId} $isExist={true}>
-                            <Card
-                              key={account.accountId}
-                              account={account.accountId}
-                              isClicked={checkIsHoverOfClick(account.accountId)}
-                              onClick={() => setClickId(account.accountId)}
-                              onMouseEnter={() => setHoverId(account.accountId)}
-                              onMouseOut={() => setHoverId(-1)}
-                            />
-                          </CardWrapper>
-                        </>
-                      ) : (
-                        <>
-                          <CardWrapper key={account.accountInfoId} $isExist={true}>
-                            <Card
-                              key={account.accountId}
-                              account={account.accountId}
-                              isClicked={checkIsHoverOfClick(account.accountId)}
-                              onClick={() => setClickId(account.accountId)}
-                              onMouseEnter={() => setHoverId(account.accountId)}
-                              onMouseOut={() => setHoverId(-1)}
-                            />
-                          </CardWrapper>
-                          <AccountTitle $isEven={true}>{account.accountName}</AccountTitle>
-                        </>
-                      )}
-                    </>
-                  )}
-                </>
-              ))}
+            {myAccount?.map((account: any) => (
+              <div key={account.accountId}>
+                {checkDepositAccount(account.accountInfo.accountInfoId) && (
+                  <AccountWrapper>
+                    {account.accountInfo.accountInfoId % 2 !== 0 ? (
+                      <AccountWrapper>
+                        <AccountTitle $isEven={false}>{account.accountName}</AccountTitle>
+                        <CardWrapper key={account.accountInfoId} $isExist={true}>
+                          <Card
+                            key={account.accountId}
+                            account={account.accountId}
+                            $isClicked={checkIsHoverOfClick(account.accountId)}
+                            onClick={() => setClickId(account.accountId)}
+                            onMouseEnter={() => setHoverId(account.accountId)}
+                            onMouseOut={() => setHoverId(-1)}
+                          />
+                        </CardWrapper>
+                      </AccountWrapper>
+                    ) : (
+                      <AccountWrapper>
+                        <CardWrapper key={account.accountInfoId} $isExist={true}>
+                          <Card
+                            key={account.accountId}
+                            account={account.accountId}
+                            $isClicked={checkIsHoverOfClick(account.accountId)}
+                            onClick={() => setClickId(account.accountId)}
+                            onMouseEnter={() => setHoverId(account.accountId)}
+                            onMouseOut={() => setHoverId(-1)}
+                          />
+                        </CardWrapper>
+                        <AccountTitle $isEven={true}>{account.accountName}</AccountTitle>
+                      </AccountWrapper>
+                    )}
+                  </AccountWrapper>
+                )}
+              </div>
+            ))}
           </CardContainer>
         </CardBox>
         <ButtonWrapper>
@@ -157,4 +156,8 @@ const AccountTitle = styled.p<{ $isEven: boolean }>`
 const BackButtonWrapper = styled.section`
   position: absolute;
   margin: 1% 0 0 3%;
+`;
+
+const AccountWrapper = styled.div`
+  display: flex;
 `;

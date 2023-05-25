@@ -64,10 +64,9 @@ const SelectTreasure = () => {
                       <S.BlankCard></S.BlankCard>
                     )}
                     <TreasureCard
-                      key={treasureId}
                       treasure={treasureId}
                       onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
-                      isClicked={checkIsHoverOfClick(treasureId)}
+                      $isClicked={checkIsHoverOfClick(treasureId)}
                       onMouseEnter={() => setHoverId(treasureId)}
                       onMouseOut={() => setHoverId(-1)}
                     />
@@ -75,10 +74,9 @@ const SelectTreasure = () => {
                 ) : (
                   <S.FlexBox>
                     <TreasureCard
-                      key={treasureId}
                       treasure={treasureId}
                       onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
-                      isClicked={checkIsHoverOfClick(treasureId)}
+                      $isClicked={checkIsHoverOfClick(treasureId)}
                       onMouseEnter={() => setHoverId(treasureId)}
                       onMouseOut={() => setHoverId(-1)}
                     />

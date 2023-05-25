@@ -3,14 +3,14 @@ import * as S from "./style";
 
 interface CardProps {
   account: number;
-  isClicked: boolean;
+  $isClicked: boolean;
   onClick: () => void;
   onMouseEnter: () => void;
   onMouseOut: () => void;
 }
 
 const Card = (props: CardProps) => {
-  const { account, isClicked, onClick, onMouseEnter, onMouseOut } = props;
+  const { account, $isClicked, onClick, onMouseEnter, onMouseOut } = props;
 
   function checkAccount() {
     switch (account) {
@@ -28,7 +28,7 @@ const Card = (props: CardProps) => {
   }
 
   return (
-    <CardWrapper isClicked={isClicked} onClick={onClick} onMouseEnter={onMouseEnter} onMouseOut={onMouseOut}>
+    <CardWrapper $isClicked={$isClicked} onClick={onClick} onMouseEnter={onMouseEnter} onMouseOut={onMouseOut}>
       {checkAccount()}
     </CardWrapper>
   );
@@ -36,7 +36,7 @@ const Card = (props: CardProps) => {
 
 export default Card;
 
-const CardWrapper = styled.article<{ isClicked: boolean }>`
+const CardWrapper = styled.article<{ $isClicked: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,8 +50,8 @@ const CardWrapper = styled.article<{ isClicked: boolean }>`
 
   cursor: pointer;
 
-  border: ${({ isClicked }) => isClicked && 1}px solid ${({ theme }) => theme.colors.main};
-  box-shadow: 0rem 0rem ${({ isClicked }) => isClicked && 2}rem ${({ theme }) => theme.colors.main};
+  border: ${({ $isClicked }) => $isClicked && 1}px solid ${({ theme }) => theme.colors.main};
+  box-shadow: 0rem 0rem ${({ $isClicked }) => $isClicked && 2}rem ${({ theme }) => theme.colors.main};
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.main};
