@@ -14,9 +14,10 @@ const SelectMyAccount = () => {
   const navigate = useNavigate();
 
   const {data: myAccountData} = useQuery(["myAccount"], getMyAccount);
+  console.log(myAccountData)
 
   function checkExistAccount() {
-    myAccountData.map(( accountId:number ) => {
+    myAccountData?.map(( accountId:number ) => {
       if (!newAccountId.includes(accountId)) {
         newAccountId.push(accountId);
       }
@@ -38,13 +39,13 @@ const SelectMyAccount = () => {
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
-            {myAccountData?.map(( accountId:number ) => (
+            {/* {myAccountData&&myAccountData?.map(( accountId:number ) => (
               <>
                 {accountId % 2 !== 0 ? (
                   <>
                     {existAccountId.includes(accountId) ? (
                       <AccountTitle $isEven={false}>
-                        {myAccountData.filter((acc:MyAccount) => acc?.accountId === accountId)[0]?.name}
+                        {myAccountData?.filter((acc:MyAccount) => acc?.accountId === accountId)[0]?.name}
                       </AccountTitle>
                     ) : (
                       <AccountTitle $isEven={false}></AccountTitle>
@@ -68,7 +69,7 @@ const SelectMyAccount = () => {
                   </>
                 )}
               </>
-            ))}
+            ))} */}
           </CardContainer>
         </CardBox>
         <ButtonWrapper>

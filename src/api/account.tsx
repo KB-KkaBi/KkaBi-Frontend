@@ -6,7 +6,8 @@ export async function getAccountInfo() {
 }
 
 export async function getMyAccount() {
-  const data = await axios.get(`${import.meta.env.VITE_BASE_URL}/get-account-all`);
+   console.log("sdsfdsdsf")
+  const data = await axios.get(`/get-account-all`, {withCredentials: true});
   console.log(data.data);
   return data.data;
 }
