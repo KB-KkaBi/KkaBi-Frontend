@@ -1,6 +1,7 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
 import styled from "styled-components";
 
 import ago from "../../assets/icon/characterAgo.svg";
@@ -9,26 +10,27 @@ import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
 
-import { registerEmail, registerPassword, registerPasswordConfirm, registerSelectedCharacter } from "@/recoil/Register";
-import { userNickname } from "@/recoil/User";
+import { registerEmail, registerNickname, registerPassword, registerSelectedCharacter } from "@/recoil/Register";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { postRegister } from "@/api/register";
 
 const Profile = () => {
   const navigate = useNavigate();
 
   const email = useRecoilValue(registerEmail);
   const password = useRecoilValue(registerPassword);
-  const passwordConfirm = useRecoilValue(registerPasswordConfirm);
-  const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
-  const [nickName, setNickName] = useRecoilState(userNickname);
 
-  const [open, setOpen] = useState(false); //Modal Open
+  const [isSuccess, setIsSuccess] = useState(false); // 회원가입 성공여부
+  const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
+  const [nickName, setNickName] = useRecoilState(registerNickname);
+
+  const [modalOpen, setModalOpen] = useState(false); //Register Success Modal Open
 
   const handleModalOpen = useCallback(() => {
-    setOpen(true);
+    setModalOpen(true);
   }, []);
   const handleModalClose = useCallback(() => {
-    setOpen(false);
+    setModalOpen(false);
   }, []);
 
   const handleSelectCharacter = useCallback((character: string) => {
@@ -53,54 +55,54 @@ const Profile = () => {
     { key: 5, characterName: "포스아거", src: ago },
   ];
 
-  const form = new FormData();
+  const { mutate: registerPost } = useMutation(postRegister, {
+    onSuccess: (response) => {
+      setIsSuccess(true);
+      handleModalOpen();
+    },
+    onError: (error) => {
+      handleModalOpen();
+    },
+  });
+
   //할때 할 함수
-  const handleRegisterlicked = useCallback(() => {
+  const handleRegisterlicked = () => {
     // 모든 정보를 담은 폼 생성
-
-    form.append("email", email);
-    form.append("pw", password);
-    form.append("character", selectedCharacter);
-    form.append("nickname", nickName);
-
-    console.log("email : ", email);
-    console.log("password : ", password);
-    console.log("passwordConfirm : ", passwordConfirm);
-    console.log("character : ", selectedCharacter);
-    console.log("nickname : ", nickName);
+    // console.log("email : ", email);
+    // console.log("password : ", password);
+    // console.log("passwordConfirm : ", passwordConfirm);
+    // console.log("character : ", selectedCharacter);
+    // console.log("nickname : ", nickName);
     /**
      * 회원가입정보를 전송한다.
      * 결과로 status = 200이 오면 홈페이지로 가기
      * 회원가입이 안되면 에러 모달 띄어주고 다시 로그인페이지로 가기
      * */
-    // FormData의 value
+
+    email &&
+      registerPost({
+        character: selectedCharacter,
+        email: email,
+        nickname: nickName,
+        pw: password,
+      });
 
     console.log("회원가입 버튼 눌렀음");
-    handleModalOpen();
-  }, [selectedCharacter, nickName]);
+  };
 
-  useEffect(() => {
-    /* value 확인하기 */
-    for (let value of form.values()) {
-      console.log(value);
-    }
-  }, []);
   return (
     <PaperLayout
       handleClick={() => {
         navigate("./register");
       }}>
-      <ProfileRootContainer
-        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          handleRegisterlicked();
-        }}>
+      <ProfileRootContainer>
         <CharacterTextContainer>
           <p>나의 깨비를 선택해주세요!</p>
           <CharacterWrapper>
             {character.map((item) => {
               return (
                 <div
+                  key={item.key}
                   className={`characterContainer 
                     ${selectedCharacter === item.characterName ? "select" : ""}`}
                   onClick={() => handleSelectCharacter(item.characterName)}>
@@ -114,10 +116,16 @@ const Profile = () => {
           <p>NickName</p>
           <TextField placeholder="닉네임을 입력해주세요" value={nickName} onChange={handleNickNameInput} />
         </NickNameWrapper>
-        <Button type="submit">확인</Button>
-        <Modal open={open} onClose={handleModalClose}>
+        <Button disabled={!nickName} onClick={handleRegisterlicked}>
+          확인
+        </Button>
+        <Modal open={modalOpen} onClose={handleModalClose}>
           <ModalWrapper>
-            <p className="text">회원가입 완료되었습니다</p>
+            {isSuccess ? (
+              <p className="text">회원가입 완료되었습니다</p>
+            ) : (
+              <p className="text">회원가입 실패했습니다</p>
+            )}
             <Button
               onClick={() => {
                 navigate("/landing");
@@ -133,7 +141,7 @@ const Profile = () => {
 
 export default Profile;
 
-export const ProfileRootContainer = styled.form`
+export const ProfileRootContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
