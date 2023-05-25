@@ -1,3 +1,4 @@
+import { EmailType } from "@/api/register";
 import { atom } from "recoil";
 
 export const registerEmail = atom({

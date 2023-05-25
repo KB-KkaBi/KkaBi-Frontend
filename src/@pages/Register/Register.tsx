@@ -58,17 +58,9 @@ const Register = () => {
     setPasswordConfirm(e.target.value);
   }, []);
 
-  useEffect(() => {
-    console.log("email : ", email);
-    console.log("password : ", password);
-    console.log("passwordConfirm : ", passwordConfirm);
-    //console.log("character : ", selectedCharacter);
-    //console.log("nickname : ", nickName);
-  }, [email, password, passwordConfirm]);
-
   const { mutate: emailCheckPost } = useMutation(postCheckEmail, {
     onSuccess: (response) => {
-      navigate("/register/profile");
+      navigate("/");
     },
     onError: (error) => {
       handleEmailModalOpen();
@@ -81,12 +73,8 @@ const Register = () => {
      * 결과로 status = 200이 오면 캐릭터 선택으로 넘어가기
      * 이메일이 중복이면 모달 띄워서 중복된 아이디가 존재한다고 알려주기
      * */
-    if (!password) {
-      handlePasswordModalOpen();
-    } else {
-      emailCheckPost({ email: email });
-    }
 
+    password && emailCheckPost({ email: email });
     console.log("이메일 중복체크 함수 들어옴");
   };
 
@@ -95,11 +83,7 @@ const Register = () => {
       handleClick={() => {
         navigate("/");
       }}>
-      <SignUpContainer
-        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          handleEmailConfirmClicked();
-        }}>
+      <SignUpContainer>
         <EmailInputWrapper>
           <p>EMAIL</p>
           <TextField
@@ -124,7 +108,7 @@ const Register = () => {
             helperText={password !== passwordConfirm && passwordConfirm !== "" && "비밀번호가 일치하지 않습니다."}
           />
         </PasswordConfirmInputWrapper>
-        <Button type="submit" disabled={password !== passwordConfirm || !isEmail}>
+        <Button type="button" disabled={password !== passwordConfirm || !isEmail} onClick={handleEmailConfirmClicked}>
           확인
         </Button>
         <Modal open={emailModalOpen} onClose={handleEmailModalClose}>
@@ -146,7 +130,7 @@ const Register = () => {
 
 export default Register;
 
-export const SignUpContainer = styled.form`
+export const SignUpContainer = styled.section`
   display: flex;
   flex-direction: column;
   height: 100%;

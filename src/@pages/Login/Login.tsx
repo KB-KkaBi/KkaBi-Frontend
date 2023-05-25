@@ -55,11 +55,7 @@ const Login = () => {
       handleClick={() => {
         navigate("/");
       }}>
-      <S.LoginRootContainer
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLoginClicked();
-        }}>
+      <S.LoginRootContainer>
         <S.EmailInputWrapper>
           <p>EMAIL</p>
           <TextField placeholder="이메일을 입력해주세요" type="text" onChange={handleEmailChange} />
@@ -69,7 +65,7 @@ const Login = () => {
           <p>PASSWORD</p>
           <TextField placeholder="비밀번호를 입력해주세요" type="password" onChange={handlePasswordChange} />
         </S.PasswordInputWrapper>
-        <Button color="primary" type="submit" onClick={handleLoginClicked}>
+        <Button color="primary" onClick={handleLoginClicked}>
           확인
         </Button>
         <Modal open={open} onClose={handleModalClose}>
