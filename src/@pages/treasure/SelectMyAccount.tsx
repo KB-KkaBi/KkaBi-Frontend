@@ -1,5 +1,4 @@
 import { PaperLayout } from "@/@components";
-import Card from "@/@components/common/card/Card";
 import { getMyAccount } from "@/api/treasure";
 import { useQuery } from "react-query";
 

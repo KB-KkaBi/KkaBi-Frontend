@@ -1,9 +1,9 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
+import { postLogin } from "@/api/login";
 import React, { useCallback, useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styles/loginStyle";
-import { useMutation } from "react-query";
-import { postLogin } from "@/api/login";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Login = () => {
 
   const { mutate: loginPost } = useMutation(postLogin, {
     onSuccess: (response) => {
+      console.log("djdjddjdj");
       navigate("/home");
     },
     onError: (error) => {

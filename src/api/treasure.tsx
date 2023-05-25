@@ -1,7 +1,8 @@
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 export async function getTreasure() {
-  const data = await axios.get(`${import.meta.env.VITE_BASE_URL}/treasure-info`);
+  const data = await axios.get(`/treasure-info`, { withCredentials: true });
 
   return data.data;
 }
@@ -14,7 +15,12 @@ export async function getTreasure() {
 // }
 
 export async function getMyAccount() {
-  const data = await axios.get(`${import.meta.env.VITE_BASE_URL}/get-account-all`);
+  const data = await axios.get(`/api/get-account-all`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true,
+  });
 
   console.log(data);
   return data;
