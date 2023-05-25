@@ -7,7 +7,7 @@ export async function getTreasure() {
 }
 
 export async function postTreasure(treasureData: any) {
-  const data = await axios.post(`${import.meta.env.VITE_BASE_URL}`, treasureData);
+  const data = await axios.post(`${import.meta.env.VITE_BASE_URL}/`, treasureData);
 
   console.log(data);
   return data;
