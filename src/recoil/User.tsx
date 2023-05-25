@@ -2,5 +2,10 @@ import { atom } from "recoil";
 
 export const userNickname = atom({
   key: "userNickname",
-  default: "승구",
+  default: "",
+});
+
+export const userSeq = atom({
+  key: "userSequence",
+  default: -123,
 });
