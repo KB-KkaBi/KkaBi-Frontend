@@ -1,5 +1,5 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import styled from "styled-components";
@@ -10,14 +10,7 @@ import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
 
-import {
-  registerEmail,
-  registerNickname,
-  registerPassword,
-  registerPasswordConfirm,
-  registerSelectedCharacter,
-} from "@/recoil/Register";
-import { userNickname } from "@/recoil/User";
+import { registerEmail, registerNickname, registerPassword, registerSelectedCharacter } from "@/recoil/Register";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { postRegister } from "@/api/register";
 
@@ -26,7 +19,6 @@ const Profile = () => {
 
   const email = useRecoilValue(registerEmail);
   const password = useRecoilValue(registerPassword);
-  const passwordConfirm = useRecoilValue(registerPasswordConfirm);
 
   const [isSuccess, setIsSuccess] = useState(false); // 회원가입 성공여부
   const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름

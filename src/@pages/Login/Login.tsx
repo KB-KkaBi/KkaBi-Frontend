@@ -13,7 +13,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false); //Modal Open
-  const [isLoginOk, setIsLoginOk] = useState(true); //로그인 가능한지 안한지!
   const [userSeq, setUserSeq] = useRecoilState(userSequence);
 
   const { mutate: loginPost } = useMutation(postLogin, {
@@ -22,6 +21,7 @@ const Login = () => {
       navigate("/home");
     },
     onError: (error) => {
+      console.debug(error);
       handleModalOpen();
     },
   });

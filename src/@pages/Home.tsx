@@ -7,8 +7,6 @@ import Character from "@/@components/Home/Character/Character";
 import { useQuery } from "react-query";
 import { getUserInfo } from "@/api/user";
 import { UserInfoDataTypes } from "@/core/userInfoData";
-import { useState } from "react";
-import { getTotalMoney } from "./MyPage/libs/factory";
 
 const Home = () => {
   const navigate = useNavigate();

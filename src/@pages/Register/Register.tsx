@@ -1,6 +1,6 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
 import { registerEmail, registerPassword, registerPasswordConfirm } from "@/recoil/Register";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
@@ -73,9 +73,11 @@ const Register = () => {
      * 결과로 status = 200이 오면 캐릭터 선택으로 넘어가기
      * 이메일이 중복이면 모달 띄워서 중복된 아이디가 존재한다고 알려주기
      * */
-
-    password && emailCheckPost({ email: email });
-    console.log("이메일 중복체크 함수 들어옴");
+    if (password) {
+      emailCheckPost({ email: email });
+    } else {
+      handlePasswordModalOpen();
+    }
   };
 
   return (
