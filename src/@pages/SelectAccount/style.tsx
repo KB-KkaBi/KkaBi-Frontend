@@ -1,22 +1,22 @@
-import { Crown, Diamond, Ring, Rubie } from "@/assets";
+import { Account1, Account2, Account3, Account4 } from "@/assets";
 import { styled } from "styled-components";
 
-export const RubieIcon = styled(Rubie)`
+export const Account1Icon = styled(Account1)`
   width: 20rem;
   height: 20rem;
 `;
 
-export const RingIcon = styled(Ring)`
+export const Account2Icon = styled(Account2)`
   width: 20rem;
   height: 20rem;
 `;
 
-export const CrownIcon = styled(Crown)`
+export const Account3Icon = styled(Account3)`
   width: 20rem;
   height: 20rem;
 `;
 
-export const DiamondIcon = styled(Diamond)`
+export const Account4Icon = styled(Account4)`
   width: 20rem;
   height: 20rem;
 `;
@@ -27,7 +27,7 @@ export const SelectedTitle = styled.h1`
   ${({ theme }) => theme.fonts.title}
 `;
 
-export const TreasureWrapper = styled.article<{ $isClicked: boolean }>`
+export const AccountWrapper = styled.article<{ $isClicked: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +51,7 @@ export const TreasureWrapper = styled.article<{ $isClicked: boolean }>`
   }
 `;
 
-export const TreasureContentWrapper = styled.article`
+export const AccountContentWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,7 +83,7 @@ export const Title = styled.h1`
   ${({ theme }) => theme.fonts.text};
 `;
 
-export const SelectTreasureCntWrapper = styled.div`
+export const SelectAccountCntWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
