@@ -1,9 +1,9 @@
+import { Button, Modal, PaperLayout } from "@/@components";
+import Input from "@/@components/common/textField/CommonTextField";
+import { level } from "@/core/treasureLevel";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./style";
-import { Button, Modal, PaperLayout } from "@/@components";
-import { level } from "@/core/treasureLevel";
-import Input from "@/@components/common/textField/CommonTextField";
 
 const SelectTreasureCnt = () => {
   const { state } = useLocation();
@@ -46,7 +46,7 @@ const SelectTreasureCnt = () => {
   }
 
   function moveToQuiz() {
-    navigate("./quiz");
+    navigate("../quiz");
   }
 
   return (
@@ -65,10 +65,10 @@ const SelectTreasureCnt = () => {
         <Modal open={open} onClose={handleClose}>
           <S.ModalContent>
             <S.TextWrapper>
-              <p>
-                {treasureName}
-                <p>{cnt}</p>개를
-              </p>
+              <div>
+                <p>{treasureName}</p>
+                <p>{cnt}개를</p>
+              </div>
               <p>투자하시겠습니까?</p>
             </S.TextWrapper>
             <S.ButtonWrapper>

@@ -1,6 +1,6 @@
 import { TransactionLogLayout } from "@/@components";
 import { useNavigate } from "react-router-dom";
-import { LogDetailContainer } from "..";
+import LogDetailContainer from "./LogDetailContainer";
 import * as S from "./style";
 
 export type AccountLogData = {
@@ -24,7 +24,7 @@ const AccountLog = () => {
   const navigate = useNavigate();
 
   return (
-    <TransactionLogLayout handleClick={() => navigate(-1)}>
+    <TransactionLogLayout handleClick={() => navigate("../")}>
       <>
         <S.TransactionTitle>{accountInfo.name}</S.TransactionTitle>
         <S.TransactionSubTitle>

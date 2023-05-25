@@ -12,8 +12,9 @@ const Register = () => {
   const [email, setEmail] = useRecoilState(registerEmail);
   const [password, setPassword] = useRecoilState(registerPassword);
   const [passwordConfirm, setPasswordConfirm] = useRecoilState(registerPasswordConfirm);
-  // const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
-  // const [nickName, setNickName] = useRecoilState(userNickname);
+
+  //유효성 검사
+  const [isEmail, setIsEmail] = useState(false);
 
   //Modal 관련
   const [emailModalOpen, setEmailModalOpen] = useState(false);
@@ -24,8 +25,27 @@ const Register = () => {
     setEmailModalOpen(false);
   }, []);
 
+  // 비밀번호 모달관련
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const handlePasswordModalOpen = useCallback(() => {
+    setPasswordModalOpen(true);
+  }, []);
+  const handlePasswordModalClose = useCallback(() => {
+    setPasswordModalOpen(false);
+  }, []);
+
+  //이메일 중복 검사 버튼
   const handleEmailInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    const emailRegex =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const emailCurrent = e.target.value;
+    setEmail(emailCurrent);
+
+    if (!emailRegex.test(emailCurrent)) {
+      setIsEmail(false);
+    } else {
+      setIsEmail(true);
+    }
   }, []);
 
   const handlePwInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +71,7 @@ const Register = () => {
      * 결과로 status = 200이 오면 캐릭터 선택으로 넘어가기
      * 이메일이 중복이면 모달 띄워서 중복된 아이디가 존재한다고 알려주기
      * */
-    if (!email) {
+    if (!isEmail) {
       handleEmailModalOpen();
     } else {
     }
@@ -62,7 +82,7 @@ const Register = () => {
   return (
     <PaperLayout
       handleClick={() => {
-        navigate(-1);
+        navigate("/");
       }}>
       <SignUpContainer
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
@@ -71,7 +91,13 @@ const Register = () => {
         }}>
         <EmailInputWrapper>
           <p>EMAIL</p>
-          <TextField placeholder="이메일을 입력해주세요" type="email" value={email} onChange={handleEmailInput} />
+          <TextField
+            placeholder="이메일을 입력해주세요"
+            type="text"
+            onChange={handleEmailInput}
+            error={!isEmail && email !== ""}
+            helperText={!isEmail && "이메일 형식이 아니에요"}
+          />
         </EmailInputWrapper>
         <PasswordInputWrapper>
           <p>PASSWORD</p>
@@ -87,12 +113,18 @@ const Register = () => {
             helperText={password !== passwordConfirm && passwordConfirm !== "" && "비밀번호가 일치하지 않습니다."}
           />
         </PasswordConfirmInputWrapper>
-        <Button type="submit" disabled={password !== passwordConfirm}>
+        <Button type="submit" disabled={password !== passwordConfirm || !isEmail}>
           확인
         </Button>
         <Modal open={emailModalOpen} onClose={handleEmailModalClose}>
           <ModalWrapper>
-            <p className="text">이메일을 입력해주세요</p>
+            <p className="text">중복된 이메일입니다</p>
+            <Button onClick={handleEmailModalClose}>확인</Button>
+          </ModalWrapper>
+        </Modal>
+        <Modal open={passwordModalOpen} onClose={handlePasswordModalClose}>
+          <ModalWrapper>
+            <p className="text">비밀번호를 입력해주세요</p>
             <Button onClick={handleEmailModalClose}>확인</Button>
           </ModalWrapper>
         </Modal>
@@ -115,7 +147,7 @@ export const SignUpContainer = styled.form`
 export const EmailInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
+  height: 21rem;
 `;
 
 export const PasswordInputWrapper = styled.div`

@@ -2,6 +2,7 @@ import { Button, Modal, PaperLayout } from "@/@components";
 import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
 import { useCallback, useContext, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import { ThemeContext } from "styled-components";
 import MemoizedAnswerSelector from "./AnswerSelector";
@@ -50,9 +51,13 @@ const selectedIndex = 2;
 const Quiz = () => {
   const selectedArray = useRecoilValue(selectedButtonArray);
   const buttonArray = useMemo(() => shuffle(quizInfo[selectedIndex].array.split(", ")), []);
+  const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = useCallback(() => {
+    setOpen(false);
+    navigate("../../home");
+  }, []);
   const themeContext = useContext(ThemeContext);
 
   const resetButtonArray = useResetRecoilState(selectedButtonArray);

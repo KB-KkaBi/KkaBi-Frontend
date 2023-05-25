@@ -1,22 +1,42 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import Input from "@/@components/common/textField/CommonTextField";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { postNewAccount } from "@/api/account";
+import { error } from "console";
+import React, { useState } from "react";
+import { useMutation } from "react-query";
+import { useLocation, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 const CreateNewAccountName = () => {
+  const { state } = useLocation();
+
   const [open, setOpen] = useState(false);
+  const [accountName, setAccountName] = useState("");
   const navigate = useNavigate();
 
-  //여기를 지우시고, 계좌를 클릭했을때 어떤 계좌인지를 저장하고 이름을 넘겨와주세요.
-  const accountName = "지수네 통장";
+  const {mutate : createNewAccount} = useMutation(postNewAccount,{
+    onSuccess:() => {
+      setOpen(true);
+    },
+    onError: (error) =>{
+      console.log(error);
+    }
+  });
+
+  function confirmNewAccount(){
+    createNewAccount({accountInfoId: state, accountName: accountName})
+  }
+
+  function checkAccountName(e: React.ChangeEvent<HTMLInputElement>){
+    setAccountName(e.target.value);
+  }
 
   function handleClose() {
     setOpen(false);
   }
 
   function moveToBank() {
-    navigate("/banks");
+    navigate("/bank");
   }
 
   return (
@@ -33,9 +53,9 @@ const CreateNewAccountName = () => {
       <PaperLayout>
         <CreateNewAccountNameWrapper>
           <Title>계좌 이름</Title>
-          <Input placeholder="계좌 이름을 입력해주세요"></Input>
+          <Input placeholder="계좌 이름을 입력해주세요" onChange={checkAccountName}></Input>
           <ButtonWrapper>
-            <Button onClick={() => setOpen(true)}>확인</Button>
+            <Button onClick={confirmNewAccount}>확인</Button>
           </ButtonWrapper>
         </CreateNewAccountNameWrapper>
       </PaperLayout>

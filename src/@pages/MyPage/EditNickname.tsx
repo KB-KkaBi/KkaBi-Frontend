@@ -55,7 +55,7 @@ const EditNickname = () => {
     <>
       <PaperLayout
         handleClick={() => {
-          navigate(-1);
+          navigate("/mypage");
         }}>
         <S.EditNicknameRootContainer>
           <S.NickNameInputWrapper>
