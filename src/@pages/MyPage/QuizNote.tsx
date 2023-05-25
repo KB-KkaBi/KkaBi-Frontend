@@ -46,7 +46,7 @@ const QuizWrongNote = () => {
   return (
     <CommonQuizNoteLayout
       handleClick={() => {
-        navigate(-1);
+        navigate("/mypage");
       }}>
       <S.QuizNoteTitle>퀴즈 오답노트</S.QuizNoteTitle>
       <S.QuizNoteSubtitle>

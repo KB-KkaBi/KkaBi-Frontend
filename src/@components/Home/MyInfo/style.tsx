@@ -30,6 +30,7 @@ export const MyInfoWrapper = styled.section`
   background-repeat: no-repeat;
 
   ${({ theme }) => theme.fonts.text}
+  z-index: 2;
 `;
 export const Money = styled.p`
   ${({ theme }) => theme.fonts.log}

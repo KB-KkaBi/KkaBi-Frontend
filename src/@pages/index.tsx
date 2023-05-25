@@ -1,11 +1,7 @@
 export { default as Home } from "./Home";
 export { default as Landing } from "./Landing";
 export { default as Login } from "./Login/Login";
-export { default as EditNickname } from "./MyPage/EditNickname";
-export { default as EditPassword } from "./MyPage/EditPassword";
-export { default as MyPage } from "./MyPage/MyPage";
-export { default as QuizNote } from "./MyPage/QuizNote";
-export { default as RankList } from "./MyPage/RankList";
+export { Mypage } from "./MyPage";
 export { default as Profile } from "./Register/Profile";
 export { default as Register } from "./Register/Register";
 export { Bank } from "./bank";
