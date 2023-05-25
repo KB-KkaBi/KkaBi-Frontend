@@ -7,17 +7,17 @@ export async function getTreasure() {
   return data.data;
 }
 
-// export async function postInvestLog(treasureData: any) {
-//   const data = await axios.post(`${import.meta.env.VITE_BASE_URL}`, treasureData);
+export async function postInvestLog(treasureData: any) {
+  const data = await axios.post(`/api/account-log`, treasureData);
 
-//   console.log(data);
-//   return data;
-// }
+  console.log(data.data);
+  return data.data;
+}
 
 export async function getMyAccount() {
   const data = await axios.get(`/api/get-account-all`, { withCredentials: true });
 
-  // console.log(data.data);
+  console.log(data.data);
   return data.data;
 }
 

@@ -17,6 +17,13 @@ const SelectTreasureCnt = () => {
   const [isHundred, setIsHundred] = useState(false);
   const navigate = useNavigate();
   const [investData, setInvestData] = useRecoilState(investInfo);
+  // const [investLog, setInvestLog]=useState({
+  //   "accountId": ,
+  //   "accountLogMoney": 13000,
+  //   "transactionAmount": -2000,
+  //   "transactionReason": "용돈",
+  //   "transactionType": "투자"
+  // })
 
   function checkTreasure() {
     switch (treasureId) {
