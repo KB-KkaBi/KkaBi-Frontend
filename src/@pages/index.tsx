@@ -1,7 +1,6 @@
 export { default as Home } from "./Home";
 export { default as Landing } from "./Landing";
 export { default as Login } from "./Login/Login";
-export { MyAccount } from "./MyAccount";
 export { default as EditNickname } from "./MyPage/EditNickname";
 export { default as EditPassword } from "./MyPage/EditPassword";
 export { default as MyPage } from "./MyPage/MyPage";
@@ -9,6 +8,6 @@ export { default as QuizNote } from "./MyPage/QuizNote";
 export { default as RankList } from "./MyPage/RankList";
 export { default as Profile } from "./Register/Profile";
 export { default as Register } from "./Register/Register";
-export { SelectAccount } from "./SelectAccount";
+export { Bank } from "./bank";
 export { default as Quiz } from "./quiz/Quiz";
 export { Invest } from "./treasure";

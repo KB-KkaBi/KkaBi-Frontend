@@ -20,7 +20,7 @@ const Withdraw = () => {
   };
 
   return (
-    <PaperLayout handleClick={() => navigate(-1)}>
+    <PaperLayout handleClick={() => navigate("../")}>
       <S.TransactionContent>
         <S.Guide>얼마를 출금할까요?</S.Guide>
         <TextField

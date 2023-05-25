@@ -16,7 +16,7 @@ const CreateNewAccountName = () => {
   }
 
   function moveToBank() {
-    navigate("/banks");
+    navigate("/bank");
   }
 
   return (
