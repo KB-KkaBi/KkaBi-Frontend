@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./styles/editpasswordStyle";
 import { useMutation } from "react-query";
 import { updatePassword } from "@/api/mypage";
-import { Console } from "console";
+
 
 const EditPassword = () => {
   const navigate = useNavigate();
