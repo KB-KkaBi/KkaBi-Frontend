@@ -16,7 +16,6 @@ const Router = () => {
         <Route path="/mypage/*" element={<P.Mypage />} />
         <Route path="/bank/*" element={<P.Bank />} />
         <Route path="/invest/*" element={<P.Invest />} />
-        <Route path="/quiz" element={<P.Quiz />} />
       </Routes>
     </BrowserRouter>
   );
