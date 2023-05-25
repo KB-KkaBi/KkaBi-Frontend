@@ -10,77 +10,107 @@ import Treasure1 from "@/assets/icon/miniTreasure1.svg";
 import Treasure2 from "@/assets/icon/miniTreasure2.svg";
 import Treasure3 from "@/assets/icon/miniTreasure3.svg";
 import Treasure4 from "@/assets/icon/miniTreasure4.svg";
-import { Mutation, useMutation } from "react-query";
+import { Mutation, useMutation, useQuery } from "react-query";
+import { UserInfoDataTypes } from "@/core/userInfoData";
+import { getUserInfo } from "@/api/user";
+import { postLogout } from "@/api/logout";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {userSequence} from "@/recoil/User";
 
 const MyPageMain = () => {
   const navigate = useNavigate();
   /**
    * 원래는 이 페이지 부르기 전 get 요청해서 유저정보 값(닉네임, 캐릭터, 금액들) 가져옴
    */
-  const UserDummy = {
-    nickname: "승구",
-    character: "루나키키",
-    detailMoney: {
-      totalDeposit: 1000, //예금
-      totalSavings: 7000, //적금
-      totalTreasure: 7600, // 전체 보물 자산 구한 값
-    },
+  // const UserDummy = {
+  //   nickname: "승구",
+  //   character: "루나키키",
+  //   detailMoney: {
+  //     totalDeposit: 1000, //예금
+  //     totalSavings: 7000, //적금
+  //     totalTreasure: 7600, // 전체 보물 자산 구한 값
+  //   },
 
-    detailTreasure: {
-      treasure1: 103,
-      treasure2: 90,
-      treasure3: 40,
-      treasure4: 12,
-    },
-  };
+  //   detailTreasure: {
+  //     treasure1: 103,
+  //     treasure2: 90,
+  //     treasure3: 40,
+  //     treasure4: 12,
+  //   },
+ // };
 
   const [profileEditopen, setProfileEditOpen] = React.useState(false);
   const handleProfileEditModalOpen = () => setProfileEditOpen(true);
   const handleProfileEditModalClose = () => setProfileEditOpen(false);
 
+
   /**
    * 로그아웃관련
    */
   const [logoutModalOpen, setLogoutModalOpen] = React.useState(false);
+  const [userSeq, setUserSeq] = useRecoilState(userSequence)
   const handleLogoutModalOpen = () => setLogoutModalOpen(true);
   const handleLogoutModalClose = () => setLogoutModalOpen(false);
 
+
+
+
+  const [pieData, setPieData] = useState([
+    { title: "예금", value: 0, color: "#f4b7b5" },
+    { title: "적금", value: 0, color: "#98caff" },
+    { title: "보물", value: 0, color: "#f8bd57" },
+  ]);
+
+   
   //logout 할때 할 함수
-  const handleLoginClicked = useCallback(() => {
-    Mutation.logout();
+  const handleLogoutClicked = useCallback(() => {
+    logout();
     console.log("로그아웃 버튼눌림");
   }, []);
 
-  const [totalMoney, setTotalMoney] = useState(getTotalMoney(UserDummy));
-
-  /**
-   * pie chart 데이터
-   */
-  const [percentDeposit, setPercentDeposit] = useState(
-    calculatePercentage(UserDummy.detailMoney.totalDeposit, totalMoney) || 0,
-  );
-  const [percentSavings, setPercentSavings] = useState(
-    calculatePercentage(UserDummy.detailMoney.totalSavings, totalMoney) || 0,
-  );
-  const [percentTreasure, setPercentTreasure] = useState(
-    calculatePercentage(UserDummy.detailMoney.totalTreasure, totalMoney) || 0,
-  );
-
-  const [pieData, setPieData] = useState([
-    { title: "예금", value: percentDeposit, color: "#f4b7b5" },
-    { title: "적금", value: percentSavings, color: "#98caff" },
-    { title: "보물", value: percentTreasure, color: "#f8bd57" },
-  ]);
-
-  const {mutate: logout} = useMutation({
+  const {mutate: logout} = useMutation(postLogout,{
     onSuccess: (response) => {
+      setUserSeq(-123); // 리코일 userseq값 초기화시키기
       navigate("/landing");
+      
+
+      
     },
     onError: (error) => {
-      //console.log(error);
+      console.log(error);
     }
   });
+ 
+  /**
+   * 유저 정보가지고 오기
+   */
+  const [totalMoney, setTotalMoney] = useState(0);
+  /**
+  * pie chart 데이터
+  */
+  const [percentDeposit, setPercentDeposit] = useState(
+    calculatePercentage(0, totalMoney)
+  );
+  const [percentSavings, setPercentSavings] = useState(
+    calculatePercentage(0, totalMoney)
+  );
+  const [percentTreasure, setPercentTreasure] = useState(
+    calculatePercentage(0, totalMoney)
+  );
 
+  const { data: userMyData } = useQuery<UserInfoDataTypes>(["userMyInfo"], getUserInfo, {
+    onSuccess: (res) => {
+      setTotalMoney(getTotalMoney(userMyData!));
+      setPercentDeposit(calculatePercentage(userMyData?.detailMoney.totalDeposit || 0, totalMoney));
+      setPercentSavings(calculatePercentage(userMyData?.detailMoney.totalSavings || 0, totalMoney));
+      setPercentTreasure(calculatePercentage(userMyData?.detailMoney.totalTreasure || 0, totalMoney));
+      setPieData([
+        { title: "예금", value: percentDeposit, color: "#f4b7b5" },
+        { title: "적금", value: percentSavings, color: "#98caff" },
+        { title: "보물", value: percentTreasure, color: "#f8bd57" },
+      ]);
+    }
+  });
 
   function selectRank() {
     if (totalMoney < 10000) {
@@ -121,18 +151,21 @@ const MyPageMain = () => {
     // console.log(percentTreasure);
 
     //User정보 가지고 오자마자 바로 함수 발동해서 값 넣기
-    setTotalMoney(getTotalMoney(UserDummy));
+    setTotalMoney(getTotalMoney(userMyData!));
 
-    setPercentDeposit(calculatePercentage(UserDummy.detailMoney.totalDeposit, totalMoney));
-    setPercentSavings(calculatePercentage(UserDummy.detailMoney.totalSavings, totalMoney));
-    setPercentTreasure(calculatePercentage(UserDummy.detailMoney.totalTreasure, totalMoney));
+    setPercentDeposit(calculatePercentage(userMyData?.detailMoney.totalDeposit || 0, totalMoney));
+    setPercentSavings(calculatePercentage(userMyData?.detailMoney.totalSavings || 0, totalMoney));
+    setPercentTreasure(calculatePercentage(userMyData?.detailMoney.totalTreasure || 0, totalMoney));
 
     setPieData([
       { title: "예금", value: percentDeposit, color: "#f4b7b5" },
       { title: "적금", value: percentSavings, color: "#98caff" },
       { title: "보물", value: percentTreasure, color: "#f8bd57" },
     ]);
-  }, [percentDeposit, percentSavings, percentTreasure]);
+
+  console.log("user~~", userSeq);
+    
+  }, [userMyData, userSeq]);
 
   return (
     <>
@@ -142,7 +175,7 @@ const MyPageMain = () => {
         }}>
         <S.MyPageRootContainer>
           <S.UserNickNameContainer>
-            <p className="text">{UserDummy.nickname}</p>
+            <p className="text">{userMyData?.nickname || ""}</p>
             <S.RankListWrapper
               onClick={() => {
                 navigate("/mypage/ranklist");
@@ -151,7 +184,7 @@ const MyPageMain = () => {
             </S.RankListWrapper>
           </S.UserNickNameContainer>
           <S.UserInfoContainer>
-            <S.UserProfileContainer>{selectCharacter(UserDummy.character)}</S.UserProfileContainer>
+            <S.UserProfileContainer>{selectCharacter(userMyData?.character || "루나키키")}</S.UserProfileContainer>
 
             <S.UserMoneyInfoContainer>
               <S.UserMoneyTotalWrapper>
@@ -164,19 +197,19 @@ const MyPageMain = () => {
               <S.UserTreasureTotalWrapper>
                 <S.Treasure>
                   <img src={Treasure1} alt="보물1" />
-                  <p>{UserDummy.detailTreasure.treasure1}개</p>
+                  <p>{userMyData?.detailTreasure.treasure1}개</p>
                 </S.Treasure>
                 <S.Treasure>
                   <img src={Treasure2} alt="보물2" />
-                  <p>{UserDummy.detailTreasure.treasure2}개</p>
+                  <p>{userMyData?.detailTreasure.treasure2}개</p>
                 </S.Treasure>
                 <S.Treasure>
                   <img src={Treasure3} alt="보물3" />
-                  <p>{UserDummy.detailTreasure.treasure3}개</p>
+                  <p>{userMyData?.detailTreasure.treasure3}개</p>
                 </S.Treasure>
                 <S.Treasure>
                   <img src={Treasure4} alt="보물4" />
-                  <p>{UserDummy.detailTreasure.treasure4}개</p>
+                  <p>{userMyData?.detailTreasure.treasure4}개</p>
                 </S.Treasure>
               </S.UserTreasureTotalWrapper>
             </S.UserMoneyInfoContainer>
@@ -236,7 +269,7 @@ const MyPageMain = () => {
                   <Button className="cancel-btn" onClick={handleLogoutModalClose}>
                     취소
                   </Button>
-                  <Button className="logout-btn" onClick={handleLoginClicked}>
+                  <Button className="logout-btn" onClick={handleLogoutClicked}>
                     확인
                   </Button>
                 </S.BtnWrapper>
