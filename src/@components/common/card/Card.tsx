@@ -27,8 +27,6 @@ const Card = (props: CardProps) => {
     }
   }
 
-  console.log("isClicked", isClicked);
-
   return (
     <CardWrapper isClicked={isClicked} onClick={onClick} onMouseEnter={onMouseEnter} onMouseOut={onMouseOut}>
       {checkAccount()}

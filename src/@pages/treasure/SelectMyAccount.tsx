@@ -11,7 +11,6 @@ const SelectMyAccount = () => {
 
   const [hoverId, setHoverId] = useState<number>(-1);
   const [clickId, setClickId] = useState<number>(-1);
-  // const newAccountId: number[] = [];
 
   const navigate = useNavigate();
 
