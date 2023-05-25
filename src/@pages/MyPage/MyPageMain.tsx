@@ -10,6 +10,7 @@ import Treasure1 from "@/assets/icon/miniTreasure1.svg";
 import Treasure2 from "@/assets/icon/miniTreasure2.svg";
 import Treasure3 from "@/assets/icon/miniTreasure3.svg";
 import Treasure4 from "@/assets/icon/miniTreasure4.svg";
+import { Mutation, useMutation } from "react-query";
 
 const MyPageMain = () => {
   const navigate = useNavigate();
@@ -46,10 +47,7 @@ const MyPageMain = () => {
 
   //logout 할때 할 함수
   const handleLoginClicked = useCallback(() => {
-    /**
-     * 로그아웃 API 요청
-     * 결과로 status = 200이 오면 세션스토리지에 회원정보 지우고 랜딩페이지로 가기
-     * */
+    Mutation.logout();
     console.log("로그아웃 버튼눌림");
   }, []);
 
@@ -73,6 +71,17 @@ const MyPageMain = () => {
     { title: "적금", value: percentSavings, color: "#98caff" },
     { title: "보물", value: percentTreasure, color: "#f8bd57" },
   ]);
+
+  const {mutate: logout} = useMutation({
+    onSuccess: (response) => {
+      navigate("/landing");
+    },
+    onError: (error) => {
+      //console.log(error);
+    }
+  });
+
+
   function selectRank() {
     if (totalMoney < 10000) {
       return <S.Ranking6Icon />;
