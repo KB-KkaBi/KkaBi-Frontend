@@ -1,5 +1,6 @@
 import { Button, PaperLayout } from "@/@components";
 import Card from "@/@components/common/card/Card";
+import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import { getMyAccount } from "@/api/treasure";
 import { useState } from "react";
 import { useQuery } from "react-query";
@@ -23,12 +24,15 @@ const SelectMyAccount = () => {
   }
 
   function selectDepositAccount() {
-    clickId !== -1 && navigate("/", { state: clickId });
+    clickId !== -1 && navigate("./select-treasure", { state: clickId });
   }
 
   return (
     <SelectMyAccountWrapper>
       <PaperLayout>
+        <BackButtonWrapper>
+          <BackArrowIcon fillColor="#5F564C" />
+        </BackButtonWrapper>
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
@@ -136,4 +140,9 @@ const AccountTitle = styled.p<{ $isEven: boolean }>`
 
   align-items: center;
   ${({ theme }) => theme.fonts.log}
+`;
+
+const BackButtonWrapper = styled.section`
+  position: absolute;
+  margin: 1% 0 0 3%;
 `;

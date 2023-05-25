@@ -22,7 +22,7 @@ const SelectTreasure = () => {
   const navigate = useNavigate();
 
   function moveToSelectCnt() {
-    navigate("./select-amount", { state: selectTreasure });
+    navigate("../select-amount", { state: selectTreasure });
   }
 
   const { data: treasureData, isError, error } = useQuery(["treasuerInfo"], getTreasure);
