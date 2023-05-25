@@ -10,14 +10,6 @@ import { ThemeContext } from "styled-components";
 import MemoizedAnswerSelector from "./AnswerSelector";
 import * as S from "./style";
 
-type QuizInfo = {
-  quizId: number;
-  problem: string;
-  answer: string;
-  array: string;
-  quizLevel: number;
-};
-
 function shuffle(array: string[]) {
   return array?.sort(() => Math.random() - 0.5);
 }
