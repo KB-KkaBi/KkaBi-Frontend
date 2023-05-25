@@ -2,9 +2,11 @@ import { Button, PaperLayout } from "@/@components";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import { getTreasure } from "@/api/treasure";
 import { TreasureDataTypes } from "@/core/treasuresData";
+import { investData } from "@/recoil/Invest";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import { styled } from "styled-components";
 import TreasureCard from "./TreasureCard";
 import TreasureCardContent from "./TreasureCardContent";
@@ -17,11 +19,16 @@ const SelectTreasure = () => {
     interestRate: 0,
     price: 0,
   });
+  const setInvestmentData = useSetRecoilState(investData);
   const [hoverId, setHoverId] = useState(-1);
 
   const navigate = useNavigate();
 
   function moveToSelectCnt() {
+    setInvestmentData(({ treasureId, ...data }) => ({
+      ...data,
+      treasureId: selectTreasure?.treasureId || 0,
+    }));
     navigate("./select-amount", { state: selectTreasure });
   }
 

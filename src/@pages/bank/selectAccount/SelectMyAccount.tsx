@@ -13,12 +13,12 @@ const SelectMyAccount = () => {
 
   const navigate = useNavigate();
 
-  const {data: myAccountData} = useQuery(["myAccount"], getMyAccount);
+  const { data: myAccountData } = useQuery(["myAccount"], getMyAccount);
 
   function checkExistAccount() {
-    myAccountData.map(( accountId:number ) => {
-      if (!newAccountId.includes(accountId)) {
-        newAccountId.push(accountId);
+    myAccountData?.map((accountId: number) => {
+      if (!newAccountId?.includes(accountId)) {
+        newAccountId?.push(accountId);
       }
     });
     setExistAccountId(newAccountId);
@@ -38,36 +38,36 @@ const SelectMyAccount = () => {
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
-            {myAccountData?.map(( accountId:number ) => (
-              <>
+            {myAccountData?.map((accountId: number) => (
+              <div key={accountId}>
                 {accountId % 2 !== 0 ? (
                   <>
                     {existAccountId.includes(accountId) ? (
                       <AccountTitle $isEven={false}>
-                        {myAccountData.filter((acc:MyAccount) => acc?.accountId === accountId)[0]?.name}
+                        {myAccountData.filter((acc: MyAccount) => acc?.accountId === accountId)[0]?.name}
                       </AccountTitle>
                     ) : (
                       <AccountTitle $isEven={false}></AccountTitle>
                     )}
-                    <CardWrapper key={accountId} $isExist={existAccountId.includes(accountId)}>
+                    <CardWrapper $isExist={existAccountId.includes(accountId)}>
                       <Card account={accountId} />
                     </CardWrapper>
                   </>
                 ) : (
                   <>
-                    <CardWrapper key={accountId} $isExist={existAccountId.includes(accountId)}>
+                    <CardWrapper $isExist={existAccountId.includes(accountId)}>
                       <Card account={accountId} />
                     </CardWrapper>
                     {existAccountId.includes(accountId) ? (
                       <AccountTitle $isEven={true}>
-                        {myAccountData.filter((acc:MyAccount) => acc?.accountId === accountId)[0]?.name}
+                        {myAccountData.filter((acc: MyAccount) => acc?.accountId === accountId)[0]?.name}
                       </AccountTitle>
                     ) : (
                       <AccountTitle $isEven={false}></AccountTitle>
                     )}
                   </>
                 )}
-              </>
+              </div>
             ))}
           </CardContainer>
         </CardBox>

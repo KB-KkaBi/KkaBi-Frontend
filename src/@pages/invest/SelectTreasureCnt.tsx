@@ -1,8 +1,10 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import Input from "@/@components/common/textField/CommonTextField";
 import { level } from "@/core/treasureLevel";
+import { investData } from "@/recoil/Invest";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import * as S from "./style";
 
 const SelectTreasureCnt = () => {
@@ -11,6 +13,7 @@ const SelectTreasureCnt = () => {
   const [cnt, setCnt] = useState(0);
   const [open, setOpen] = useState(false);
   const [isHundred, setIsHundred] = useState(false);
+  const setInvestmentData = useSetRecoilState(investData);
   const navigate = useNavigate();
 
   function checkTreasure() {
@@ -46,6 +49,10 @@ const SelectTreasureCnt = () => {
   }
 
   function moveToQuiz() {
+    setInvestmentData(({ count, ...data }) => ({
+      ...data,
+      count: cnt,
+    }));
     navigate("../quiz");
   }
 
