@@ -36,5 +36,6 @@ export const CommonStyledInput = styled(TextField)`
     /* 추가적인 스타일 조정 */
     ${(props) => props.theme.fonts.text}
     font-size: 2rem; /* 원하는 글씨 크기로 조정 */
+    height: 3rem;
   }
 `;
