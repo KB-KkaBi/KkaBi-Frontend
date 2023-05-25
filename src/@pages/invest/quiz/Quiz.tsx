@@ -28,7 +28,7 @@ const Quiz = () => {
   const { data: quizData } = useQuery(["quizInfo", treasureId], () => getQuizList(treasureId));
   const randomQuiz = Array.isArray(quizData) ? quizData[Math.floor(Math.random() * quizData.length)] : "";
   const selectedArray = useRecoilValue(selectedButtonArray);
-  const buttonArray = useMemo(() => shuffle(randomQuiz?.array?.split(", ")), []);
+  const buttonArray = useMemo(() => shuffle(randomQuiz?.array?.split(", ")), [randomQuiz]);
   const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
