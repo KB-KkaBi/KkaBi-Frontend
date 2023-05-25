@@ -17,11 +17,13 @@ export async function getTreasure() {
 export async function getMyAccount() {
   const data = await axios.get(`/api/get-account-all`, { withCredentials: true });
 
+  console.log(data.data);
   return data.data;
 }
 
 export async function getAccountInfo() {
   const data = await axios.get(`/api/account-info`, { withCredentials: true });
 
+  console.log(data.data);
   return data.data;
 }
