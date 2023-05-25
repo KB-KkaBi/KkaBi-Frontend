@@ -1,7 +1,9 @@
 import { Button, PaperLayout } from "@/@components";
 import Card from "@/@components/common/card/Card";
-import { ACCOUNTS_DATA, REAL_ACCOUNTS } from "@/core/accountsData";
+import { getMyAccount } from "@/api/account";
+import { MyAccount } from "@/core/myAccountData";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
@@ -11,8 +13,10 @@ const SelectMyAccount = () => {
 
   const navigate = useNavigate();
 
+  const {data: myAccountData} = useQuery(["myAccount"], getMyAccount);
+
   function checkExistAccount() {
-    REAL_ACCOUNTS.map(({ accountId }) => {
+    myAccountData.map(( accountId:number ) => {
       if (!newAccountId.includes(accountId)) {
         newAccountId.push(accountId);
       }
@@ -34,13 +38,13 @@ const SelectMyAccount = () => {
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
-            {ACCOUNTS_DATA.map(({ accountId }) => (
+            {myAccountData?.map(( accountId:number ) => (
               <>
                 {accountId % 2 !== 0 ? (
                   <>
                     {existAccountId.includes(accountId) ? (
                       <AccountTitle $isEven={false}>
-                        {REAL_ACCOUNTS.filter((acc) => acc?.accountId === accountId)[0]?.name}
+                        {myAccountData.filter((acc:MyAccount) => acc?.accountId === accountId)[0]?.name}
                       </AccountTitle>
                     ) : (
                       <AccountTitle $isEven={false}></AccountTitle>
@@ -56,7 +60,7 @@ const SelectMyAccount = () => {
                     </CardWrapper>
                     {existAccountId.includes(accountId) ? (
                       <AccountTitle $isEven={true}>
-                        {REAL_ACCOUNTS.filter((acc) => acc?.accountId === accountId)[0]?.name}
+                        {myAccountData.filter((acc:MyAccount) => acc?.accountId === accountId)[0]?.name}
                       </AccountTitle>
                     ) : (
                       <AccountTitle $isEven={false}></AccountTitle>
