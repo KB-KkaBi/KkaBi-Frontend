@@ -22,7 +22,7 @@ const RankList = () => {
     <>
       <PaperLayout
         handleClick={() => {
-          navigate("../MyPageMain");
+          navigate("..");
         }}>
         <S.RankListRootContainer>
           <S.TitleWrapper>
