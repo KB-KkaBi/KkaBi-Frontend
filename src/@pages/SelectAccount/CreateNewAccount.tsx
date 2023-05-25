@@ -23,10 +23,6 @@ const CreateNewAccount = () => {
 
   const navigate = useNavigate();
 
-  function moveToSelectCnt(){
-    navigate("./name", {state: createNewAccount});
-  }
-
   const {data: accountData} = useQuery(["accountInfo"], getAccountInfo);
 
   function clickAccountCare(accountInfoId: number, accountType: string, interestRate: number, information: string, dueDate: number) {
@@ -38,7 +34,7 @@ const CreateNewAccount = () => {
   }
 
   function moveToCreateAccountName() {
-    navigate("../create-new-account-name");
+    navigate("../create-new-account-name", {state: createNewAccount.accountInfoId});
   }
 
   return (
