@@ -2,14 +2,17 @@ import { Button, PaperLayout } from "@/@components";
 import Card from "@/@components/common/card/Card";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import { getMyAccount } from "@/api/treasure";
+import { investInfo } from "@/recoil/Invest";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
 const SelectMyAccount = () => {
   const { data: myAccount } = useQuery(["myAccount"], getMyAccount);
 
+  const [investData, setInvestData] = useRecoilState(investInfo);
   const [hoverId, setHoverId] = useState<number>(-1);
   const [clickId, setClickId] = useState<number>(-1);
 
@@ -24,15 +27,19 @@ const SelectMyAccount = () => {
   }
 
   function selectDepositAccount() {
-    clickId !== -1 && navigate("./select-treasure", { state: clickId });
+    if (clickId !== -1) {
+      setInvestData((prev) => ({ ...prev, accountId: clickId }));
+      navigate("./select-treasure");
+      console.debug(investData);
+    }
   }
 
   return (
-    <SelectMyAccountWrapper>
-      <PaperLayout>
-        <BackButtonWrapper>
-          <BackArrowIcon fillColor="#5F564C" />
-        </BackButtonWrapper>
+    <PaperLayout>
+      <BackButtonWrapper>
+        <BackArrowIcon fillColor="#5F564C" />
+      </BackButtonWrapper>
+      <SelectMyAccountWrapper>
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
@@ -79,8 +86,8 @@ const SelectMyAccount = () => {
         <ButtonWrapper>
           <Button onClick={selectDepositAccount}>확인</Button>
         </ButtonWrapper>
-      </PaperLayout>
-    </SelectMyAccountWrapper>
+      </SelectMyAccountWrapper>
+    </PaperLayout>
   );
 };
 
@@ -121,13 +128,18 @@ const Title = styled.h1`
 
 const SelectMyAccountWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  height: 100vh;
 `;
 
 const ButtonWrapper = styled.section`
   display: flex;
   justify-content: center;
+
+  margin-top: 2rem;
 `;
 
 const AccountTitle = styled.p<{ $isEven: boolean }>`
