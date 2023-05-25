@@ -81,7 +81,7 @@ const CreateNewAccount = () => {
                         type={accountType}
                         infor={information}/>
                     ) : (
-                      <S.BlankCard></S.BlankCard>
+                      <S.BlankCard/>
                     )}
                   </S.FlexBox>
                 )}

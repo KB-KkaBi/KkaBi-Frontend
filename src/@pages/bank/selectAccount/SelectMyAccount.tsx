@@ -38,7 +38,7 @@ const SelectMyAccount = () => {
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
-            {myAccountData.map(( accountId:number ) => (
+            {myAccountData?.map(( accountId:number ) => (
               <>
                 {accountId % 2 !== 0 ? (
                   <>
