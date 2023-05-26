@@ -5,7 +5,7 @@ export interface InvestDTO {
   accountId: number;
   treasureId: number;
   count: number;
-  answer: string;
+  myAnswer: string;
 }
 
 export const investInfo = atom<InvestDTO>({
@@ -15,6 +15,6 @@ export const investInfo = atom<InvestDTO>({
     treasureId: 0,
     count: 0,
     quizId: 0,
-    answer: "",
+    myAnswer: "",
   },
 });

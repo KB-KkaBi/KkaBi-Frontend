@@ -56,6 +56,7 @@ const Quiz = () => {
 
   const resetButtonArray = useResetRecoilState(selectedButtonArray);
   const resetIndexArray = useResetRecoilState(selectedButtonIndex);
+  // const [investData, setInvestData] = useRecoilState(investInfo);
 
   const handleReset = useCallback(() => {
     resetButtonArray();
