@@ -1,9 +1,11 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
 import { registerEmail, registerPassword, registerPasswordConfirm } from "@/recoil/Register";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { useMutation } from "react-query";
+import { postCheckEmail } from "@/api/register";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -56,39 +58,34 @@ const Register = () => {
     setPasswordConfirm(e.target.value);
   }, []);
 
-  useEffect(() => {
-    console.log("email : ", email);
-    console.log("password : ", password);
-    console.log("passwordConfirm : ", passwordConfirm);
-    //console.log("character : ", selectedCharacter);
-    //console.log("nickname : ", nickName);
-  }, [email, password, passwordConfirm]);
-
+  const { mutate: emailCheckPost } = useMutation(postCheckEmail, {
+    onSuccess: (response) => {
+      navigate("/register/profile");
+    },
+    onError: (error) => {
+      handleEmailModalOpen();
+    },
+  });
   //이메일 중복 검사할때 사용할 함수
-  const handleEmailConfirmClicked = useCallback(() => {
+  const handleEmailConfirmClicked = () => {
     /**
      * 이메일을 전송한다.
      * 결과로 status = 200이 오면 캐릭터 선택으로 넘어가기
      * 이메일이 중복이면 모달 띄워서 중복된 아이디가 존재한다고 알려주기
      * */
-    if (!isEmail) {
-      handleEmailModalOpen();
+    if (password) {
+      emailCheckPost({ email: email });
     } else {
+      handlePasswordModalOpen();
     }
-
-    console.log("이메일 중복체크 함수 들어옴");
-  }, [email]);
+  };
 
   return (
     <PaperLayout
       handleClick={() => {
         navigate("/");
       }}>
-      <SignUpContainer
-        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          handleEmailConfirmClicked();
-        }}>
+      <SignUpContainer>
         <EmailInputWrapper>
           <p>EMAIL</p>
           <TextField
@@ -113,7 +110,7 @@ const Register = () => {
             helperText={password !== passwordConfirm && passwordConfirm !== "" && "비밀번호가 일치하지 않습니다."}
           />
         </PasswordConfirmInputWrapper>
-        <Button type="submit" disabled={password !== passwordConfirm || !isEmail}>
+        <Button type="button" disabled={password !== passwordConfirm || !isEmail} onClick={handleEmailConfirmClicked}>
           확인
         </Button>
         <Modal open={emailModalOpen} onClose={handleEmailModalClose}>
@@ -125,7 +122,7 @@ const Register = () => {
         <Modal open={passwordModalOpen} onClose={handlePasswordModalClose}>
           <ModalWrapper>
             <p className="text">비밀번호를 입력해주세요</p>
-            <Button onClick={handleEmailModalClose}>확인</Button>
+            <Button onClick={handlePasswordModalClose}>확인</Button>
           </ModalWrapper>
         </Modal>
       </SignUpContainer>
@@ -135,7 +132,7 @@ const Register = () => {
 
 export default Register;
 
-export const SignUpContainer = styled.form`
+export const SignUpContainer = styled.section`
   display: flex;
   flex-direction: column;
   height: 100%;
