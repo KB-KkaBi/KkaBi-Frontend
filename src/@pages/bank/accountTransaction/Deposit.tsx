@@ -4,20 +4,39 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as S from "./style";
 import { bankLog } from "@/recoil/bank";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { postAccountLog } from "@/api/account";
+import { useMutation } from "react-query";
 
 const Deposit = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [amount, setAmount] = useState("");
+  const [reason, setReason] = useState("");
+  const [amount, setAmount] = useState(0);
   const bankLogs=useRecoilValue(bankLog);
 
+  const {mutate : createAccountLog} = useMutation(postAccountLog,{
+    onSuccess:() => {
+
+      setOpen(true);
+    },
+    onError: (error) =>{
+      console.log(error);
+    }
+  });
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(e.target.value);
+    setAmount(Number(e.target.value));
   };
 
-  const handleOpen = () => setOpen(true);
+  const handleReasonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setReason(e.target.value);
+  };
+
+  const handleOpen = () => {
+    createAccountLog({accountId: bankLogs.accountId, accountLogMoney: bankLogs.accountLogMoney + amount, transactionAmount: amount, transactionReason: reason, transactionType: "입금"})
+  }
+
   const handleClose = () => {
     setOpen(false);
     navigate("../", { replace: true });
@@ -34,7 +53,9 @@ const Deposit = () => {
             endAdornment: <S.Won color={!!amount ? "#000" : "#aaaaaa"}>\</S.Won>,
           }}></TextField>
         <S.Guide>예금 사유를 작성해주세요</S.Guide>
-        <TextField placeholder="ex. 용돈"></TextField>
+        <TextField
+         placeholder="ex. 용돈"
+         onChange={handleReasonChange}></TextField>
         <Button onClick={handleOpen}>확인</Button>
       </S.TransactionContent>
       <Modal open={open}>

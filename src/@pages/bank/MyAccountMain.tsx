@@ -4,15 +4,19 @@ import { useNavigate } from "react-router";
 import * as S from "./style";
 import { useRecoilValue } from "recoil";
 import { bankLog } from "@/recoil/bank";
+import { useQuery } from "react-query";
+import { getMyOneAccount } from "@/api/account";
 
 const MyAccountMain = () => {
   const navigate = useNavigate();
   const bankLogs=useRecoilValue(bankLog);
 
+  const {data:money}=useQuery(["accountLogMoney"],()=>getMyOneAccount(bankLogs.accountId))
+
   return (
     <BankLayout>
       <S.TextContainer>
-        <S.Won>\ {bankLogs?.accountLogMoney}</S.Won>
+        <S.Won>\ {money}</S.Won>
         <S.Guide>어떤 업무를 진행하시겠어요?</S.Guide>
       </S.TextContainer>
       <S.BottomButtonContainer>
