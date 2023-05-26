@@ -22,11 +22,13 @@ const SelectTreasure = () => {
   });
   const [hoverId, setHoverId] = useState(-1);
   const [investData, setInvestData] = useRecoilState(investInfo);
+  // const resetInvestData = useResetRecoilState(investInfo);
   const [accountMoney, setAccountMoney] = useState<number>();
   const navigate = useNavigate();
   console.debug(investData);
 
   useEffect(() => {
+    // resetInvestData();
     state ? setAccountMoney(state) : setAccountMoney(0);
   }, []);
 
