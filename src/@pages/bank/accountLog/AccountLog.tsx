@@ -1,8 +1,11 @@
 import { TransactionLogLayout } from "@/@components";
-import { getTotalAccountLog } from "@/api/accountLog";
+import { getAccountLogPagenation, getTotalAccountLog } from "@/api/accountLog";
 import { LeftArrow, RightArrow } from "@/assets";
+import { bankLog } from "@/recoil/bank";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import * as S from "./style";
 
 export type AccountLogData = {
@@ -15,6 +18,7 @@ export type AccountLogData = {
 };
 
 const AccountLog = () => {
+  const [page, setPage] = useState<number>(0);
   const accountInfo = {
     name: "깨비 미래 적금",
   };
@@ -24,9 +28,18 @@ const AccountLog = () => {
   //   { accountLogId: 3, date: "2023-5-20", withdraw: 5000, detail: "군것질", balance: 6000 },
   // ];
   const navigate = useNavigate();
+  const accountId = useRecoilValue(bankLog).accountId;
 
-  const { data: accountLogList } = useQuery(["getTotalAccountLog"], getTotalAccountLog);
-  console.log(accountLogList);
+  const { data: accountLogList } = useQuery(["getTotalAccountLog"], () => getTotalAccountLog(3));
+  // console.log(accountLogList);
+
+  const { data: accoutLogPagenation } = useQuery(["pagention"], () => getAccountLogPagenation(3, page));
+  // console.log(accoutLogPagenation);
+
+  function checkTotalPage() {
+    const totalPage = Math.floor(accountLogList?.length / 10);
+    return accountLogList?.length % 10 === 0 ? totalPage : totalPage + 1;
+  }
 
   return (
     <TransactionLogLayout handleClick={() => navigate("../")}>
@@ -34,7 +47,7 @@ const AccountLog = () => {
         <S.ArrowWrapper>
           <S.ArrowBox>
             <LeftArrow />
-            1/2
+            {page} / {checkTotalPage()}
             <RightArrow />
           </S.ArrowBox>
         </S.ArrowWrapper>

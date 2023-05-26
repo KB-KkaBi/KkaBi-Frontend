@@ -1,15 +1,15 @@
 import axios from "axios";
 
-export async function getTotalAccountLog() {
-  const data = await axios.post(`/api/account-total-log`, { withCredentials: true });
+export async function getTotalAccountLog(accountId: number) {
+  const data = await axios.get(`/api/account-total-log?accountId=${accountId}`, { withCredentials: true });
 
-  console.log(data);
-  return data;
+  return data.data;
 }
 
-export async function getAccountLogPagenation(page: number) {
-  const data = await axios.post(`/api/account-total-log?size=10&page=${page}`, { withCredentials: true });
+export async function getAccountLogPagenation(accountId: number, page: number) {
+  const data = await axios.get(`/api/account-log?accountId=${accountId}&size=10&page=${page}`, {
+    withCredentials: true,
+  });
 
-  console.log(data);
-  return data;
+  return data.data.content;
 }
