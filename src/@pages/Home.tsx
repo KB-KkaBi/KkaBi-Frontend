@@ -30,20 +30,22 @@ const Home = () => {
   }
 
   const [detailMoney, setDetailMoney] = useState<any>([]);
+  const [totalMoney, setTotalMoney] = useState(0);
   const { data: userInfoData } = useQuery<UserInfoDataTypes>(["userHomeInfo"], getUserInfo, {
     onSuccess: (response) => {
       setDetailMoney(response.detailMoney);
+      setTotalMoney(
+        response.detailMoney.totalDeposit + response.detailMoney.totalSavings + response.detailMoney.totalTreasure,
+      );
     },
   });
-
-  const totalMoney = detailMoney?.totalDeposit + detailMoney?.totalSavings + detailMoney?.totalTreasure;
 
   return (
     <>
       <MyInfo
         characterName={userInfoData?.character || ""}
         nickName={userInfoData?.nickname || ""}
-        totalMoney={totalMoney || 0}
+        totalMoney={totalMoney}
         onClick={moveToMyPage}
       />
       <ImgContainer>
