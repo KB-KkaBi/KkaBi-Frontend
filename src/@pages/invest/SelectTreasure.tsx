@@ -25,10 +25,13 @@ const SelectTreasure = () => {
   const navigate = useNavigate();
 
   function moveToSelectCnt() {
-    setInvestmentData(({ treasureId, ...data }) => ({
-      ...data,
-      treasureId: selectTreasure?.treasureId || 0,
-    }));
+    setInvestmentData(({ treasureId, ...data }) => {
+      const newData = {
+        ...data,
+        treasureId: selectTreasure.treasureId || 1,
+      };
+      return newData;
+    });
     navigate("./select-amount", { state: selectTreasure });
   }
 

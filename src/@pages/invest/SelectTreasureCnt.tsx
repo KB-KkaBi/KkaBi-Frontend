@@ -49,10 +49,13 @@ const SelectTreasureCnt = () => {
   }
 
   function moveToQuiz() {
-    setInvestmentData(({ count, ...data }) => ({
-      ...data,
-      count: cnt,
-    }));
+    setInvestmentData(({ count, ...data }) => {
+      const newData = {
+        ...data,
+        count: cnt || 0,
+      };
+      return newData;
+    });
     navigate("../quiz");
   }
 
