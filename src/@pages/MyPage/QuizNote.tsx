@@ -1,48 +1,27 @@
 import CommonQuizNoteLayout from "@/@components/common/layout/CommonQuizNoteLayout";
+import { getQuizLog } from "@/api/mypage";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import QuizLogDetailContainer from "./QuizLogDetailContainer";
 import * as S from "./styles/quiznoteStyle";
 
+export type QuizInfo = {
+  quizId?: number;
+  problem?: string;
+  answer?: string;
+  hint?: string;
+  treasureInfo?: any;
+};
+
 export type QuizLogData = {
-  quizLogId: number;
-  question: string;
-  answer: string;
-  level: string;
+  quizLogId?: number;
+  quizInfo?: QuizInfo;
 };
 
 const QuizWrongNote = () => {
   const navigate = useNavigate();
+  const { data: quizLogList } = useQuery(["quizLog"], () => getQuizLog(0, 5));
 
-  const quizLogList: QuizLogData[] = [
-    {
-      quizLogId: 1,
-      question:
-        "주식회사의 자본을 구성하는 단위이며, 사원인 주주가 주식회사에 출자한 일정한 지분 또는 이를 나타내는 증권이란 무엇일까요?",
-      answer: "주식",
-      level: "3",
-    },
-    {
-      quizLogId: 2,
-      question:
-        "주식회사의 자본을 구성하는 단위이며, 사원인 주주가 주식회사에 출자한 일정한 지분 또는 이를 나타내는 증권이란 무엇일까요?",
-      answer: "주식",
-      level: "3",
-    },
-    {
-      quizLogId: 3,
-      question:
-        "주식회사의 자본을 구성하는 단위이며, 사원인 주주가 주식회사에 출자한 일정한 지분 또는 이를 나타내는 증권이란 무엇일까요?",
-      answer: "주식",
-      level: "3",
-    },
-    {
-      quizLogId: 4,
-      question:
-        "주식회사의 자본을 구성하는 단위이며, 사원인 주주가 주식회사에 출자한 일정한 지분 또는 이를 나타내는 증권이란 무엇일까요?",
-      answer: "주식",
-      level: "3",
-    },
-  ];
   return (
     <CommonQuizNoteLayout
       handleClick={() => {
@@ -56,8 +35,8 @@ const QuizWrongNote = () => {
         <S.QuizLevel>난이도</S.QuizLevel>
       </S.QuizNoteSubtitle>
       <S.QuizNoteLogContainer>
-        {quizLogList.map((log) => {
-          return <QuizLogDetailContainer log={log} key={log.quizLogId} />;
+        {quizLogList?.content?.map((log: QuizLogData) => {
+          return <QuizLogDetailContainer quizInfo={log.quizInfo} quizLogId={log.quizLogId} key={log.quizLogId} />;
         })}
       </S.QuizNoteLogContainer>
     </CommonQuizNoteLayout>
