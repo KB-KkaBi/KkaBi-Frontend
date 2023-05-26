@@ -11,7 +11,6 @@ import styled from "styled-components";
 
 const SelectMyAccount = () => {
   const { data: myAccount } = useQuery(["myAccount"], getMyAccount);
-
   const [investData, setInvestData] = useRecoilState(investInfo);
   const [hoverId, setHoverId] = useState<number>(-1);
   const [clickId, setClickId] = useState<number>(-1);

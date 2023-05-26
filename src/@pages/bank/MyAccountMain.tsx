@@ -9,9 +9,8 @@ import { getMyOneAccount } from "@/api/account";
 
 const MyAccountMain = () => {
   const navigate = useNavigate();
-  const bankLogs=useRecoilValue(bankLog);
-
-  const {data:money}=useQuery(["accountLogMoney"],()=>getMyOneAccount(bankLogs.accountId))
+  const bankLogs = useRecoilValue(bankLog);
+  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs.accountId));
 
   return (
     <BankLayout>
