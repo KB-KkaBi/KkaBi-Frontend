@@ -22,6 +22,7 @@ const Quiz = () => {
   const [success, setSuccess] = useState(); // 답 제출 시 정답 여부
   const [total, setTotal] = useState(); // 답 제출 시 결과로 만들어진 보물 개수
   const { data: quizArray } = useQuery(["quizInfo", investData.treasureId], () => getQuizList(investData.treasureId));
+  const [myAnswer, setMyAnswer] = useState<string>();
 
   useEffect(() => {
     if (Array.isArray(quizArray)) {
@@ -65,7 +66,7 @@ const Quiz = () => {
   const { mutate: investPost } = useMutation(
     (investData: InvestDTO) => {
       const { accountId, ...investPostData } = investData;
-      return postQuizAnswer(investPostData);
+      return postQuizAnswer({ ...investPostData, answer: myAnswer || "" });
     },
     {
       onSuccess: (response) => {
@@ -77,6 +78,8 @@ const Quiz = () => {
       },
     },
   );
+
+  useEffect(() => setMyAnswer(hangul.assemble(selectedArray)), [selectedArray]);
 
   const handleSubmit = () => {
     const ans = hangul.assemble(selectedArray);

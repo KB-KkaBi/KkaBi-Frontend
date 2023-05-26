@@ -8,6 +8,7 @@ export const getQuizList = async (treasureId: number) => {
 };
 
 export async function postQuizAnswer(investData: InvestDataTypes) {
+  console.debug("postQuiz:", investData);
   const data = await axios.post(`/api/invest`, investData, { withCredentials: true });
   console.debug(data);
   return data;
