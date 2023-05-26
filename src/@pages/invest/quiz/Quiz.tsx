@@ -64,6 +64,7 @@ const Quiz = () => {
   const { mutate: investPost } = useMutation(
     () => {
       const { accountId, ...investPostData } = investData;
+      console.debug(investData);
       return postQuizAnswer(investPostData);
     },
     {
@@ -76,10 +77,15 @@ const Quiz = () => {
       },
     },
   );
+
   const handleSubmit = () => {
-    setInvestData(({ answer, ...data }) => ({ ...data, answer: hangul.assemble(selectedArray) }));
+    const ans = hangul.assemble(selectedArray);
+    setInvestData((data) => {
+      const newData = { ...data, answer: ans };
+      console.debug(newData);
+      return newData;
+    });
     investPost();
-    console.debug("invest post, ", investPost);
   };
 
   return (
