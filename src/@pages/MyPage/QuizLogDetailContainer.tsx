@@ -1,17 +1,13 @@
 import { QuizLogData } from "./QuizNote";
 import * as S from "./styles/quiznoteStyle";
 
-type Props = {
-  log: QuizLogData;
-};
-
-const QuizLogDetailContainer = ({ log }: Props) => {
+const QuizLogDetailContainer = ({ quizInfo, quizLogId }: QuizLogData) => {
   return (
     <S.QuizLogDetail>
-      <S.QuizDetailNum>{log.quizLogId}</S.QuizDetailNum>
-      <S.QuizDetailQuestion>{log.question}</S.QuizDetailQuestion>
-      <S.QuizDetailAnswer>{log.answer}</S.QuizDetailAnswer>
-      <S.QuizDetailLevel>{log.level}</S.QuizDetailLevel>
+      <S.QuizDetailNum>{quizLogId}</S.QuizDetailNum>
+      <S.QuizDetailQuestion>{quizInfo?.problem}</S.QuizDetailQuestion>
+      <S.QuizDetailAnswer>{quizInfo?.answer}</S.QuizDetailAnswer>
+      <S.QuizDetailLevel>{quizInfo?.treasureInfo?.treasureId || 0}</S.QuizDetailLevel>
     </S.QuizLogDetail>
   );
 };
