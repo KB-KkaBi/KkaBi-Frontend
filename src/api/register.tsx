@@ -26,6 +26,9 @@ export async function postCheckEmail(email: EmailType) {
 export async function postRegister(user: UserType) {
   const data = await axios.post(`/api/register`, user, { withCredentials: true });
 
-  console.log(data);
+  // export async function postCheckEmail(email: EmailType) {
+  //   const data = await axios.post(`/api/check-email`, email);
+
+  // console.log(data);
   return data;
 }

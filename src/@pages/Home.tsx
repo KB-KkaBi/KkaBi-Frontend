@@ -1,12 +1,12 @@
-import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
-import { styled } from "styled-components";
-import Background from "../assets/image/homeBackground.png";
-import MyInfo from "../@components/Home/MyInfo/MyInfo";
-import { useNavigate } from "react-router-dom";
 import Character from "@/@components/Home/Character/Character";
-import { useQuery } from "react-query";
 import { getUserInfo } from "@/api/user";
+import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
 import { UserInfoDataTypes } from "@/core/userInfoData";
+import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
+import MyInfo from "../@components/Home/MyInfo/MyInfo";
+import Background from "../assets/image/homeBackground.png";
 
 const Home = () => {
   const navigate = useNavigate();

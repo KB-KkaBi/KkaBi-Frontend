@@ -1,11 +1,11 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import * as S from "./styles/loginStyle";
-import { useMutation } from "react-query";
 import { postLogin } from "@/api/login";
-import { useRecoilState } from "recoil";
 import { userSequence } from "@/recoil/User";
+import React, { useCallback, useEffect, useState } from "react";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import * as S from "./styles/loginStyle";
 
 const Login = () => {
   const navigate = useNavigate();

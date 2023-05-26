@@ -2,40 +2,45 @@ import { Button, PaperLayout } from "@/@components";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import { getTreasure } from "@/api/treasure";
 import { TreasureDataTypes } from "@/core/treasuresData";
-import { investData } from "@/recoil/Invest";
-import { useState } from "react";
+import { investInfo } from "@/recoil/Invest";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
 import TreasureCard from "./TreasureCard";
 import TreasureCardContent from "./TreasureCardContent";
 import * as S from "./style";
 
 const SelectTreasure = () => {
+  const { state } = useLocation();
   const [selectTreasure, setSelectTreasure] = useState({
     treasureId: 0,
     treasureName: "",
     interestRate: 0,
     price: 0,
   });
-  const setInvestmentData = useSetRecoilState(investData);
   const [hoverId, setHoverId] = useState(-1);
-
+  const [investData, setInvestData] = useRecoilState(investInfo);
+  const [accountMoney, setAccountMoney] = useState<number>();
   const navigate = useNavigate();
+  console.debug(investData);
+
+  useEffect(() => {
+    state ? setAccountMoney(state) : setAccountMoney(0);
+  }, []);
 
   function moveToSelectCnt() {
-    setInvestmentData(({ treasureId, ...data }) => {
-      const newData = {
-        ...data,
-        treasureId: selectTreasure.treasureId || 1,
-      };
-      return newData;
-    });
-    navigate("./select-amount", { state: selectTreasure });
+    setInvestData((prev) => ({ ...prev, treasureId: selectTreasure.treasureId }));
+    navigate("../select-amount", { state: { selectTreasure: selectTreasure, accountMoney: accountMoney } });
+    console.debug(investData);
   }
 
-  const { data: treasureData } = useQuery(["treasuerInfo"], getTreasure);
+  const { data: treasureData, isError, error } = useQuery(["treasuerInfo"], getTreasure);
+
+  if (isError) {
+    console.debug({ error });
+  }
 
   //클릭한 보물 저장
   function clickTreasureCare(treasureId: number, treasureName: string, interestRate: number, price: number) {
@@ -65,10 +70,9 @@ const SelectTreasure = () => {
                       <S.BlankCard></S.BlankCard>
                     )}
                     <TreasureCard
-                      key={treasureId}
                       treasure={treasureId}
                       onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
-                      isClicked={checkIsHoverOfClick(treasureId)}
+                      $isClicked={checkIsHoverOfClick(treasureId)}
                       onMouseEnter={() => setHoverId(treasureId)}
                       onMouseOut={() => setHoverId(-1)}
                     />
@@ -76,10 +80,9 @@ const SelectTreasure = () => {
                 ) : (
                   <S.FlexBox>
                     <TreasureCard
-                      key={treasureId}
                       treasure={treasureId}
                       onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
-                      isClicked={checkIsHoverOfClick(treasureId)}
+                      $isClicked={checkIsHoverOfClick(treasureId)}
                       onMouseEnter={() => setHoverId(treasureId)}
                       onMouseOut={() => setHoverId(-1)}
                     />

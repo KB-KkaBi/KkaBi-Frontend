@@ -1,5 +1,4 @@
 import { Button, PaperLayout } from "@/@components";
-import Card from "@/@components/common/card/Card";
 import { getMyAccount } from "@/api/account";
 import { MyAccount } from "@/core/myAccountData";
 import { useEffect, useState } from "react";
@@ -17,13 +16,14 @@ const SelectMyAccount = () => {
 
   function checkExistAccount() {
     myAccountData?.map((accountId: number) => {
-      if (!newAccountId?.includes(accountId)) {
-        newAccountId?.push(accountId);
+      if (!newAccountId.includes(accountId)) {
+        newAccountId.push(accountId);
       }
     });
     setExistAccountId(newAccountId);
   }
 
+  myAccountData && console.log(myAccountData);
   function moveToBank() {
     navigate("../my-account");
   }
@@ -38,37 +38,38 @@ const SelectMyAccount = () => {
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
-            {myAccountData?.map((accountId: number) => (
-              <div key={accountId}>
-                {accountId % 2 !== 0 ? (
-                  <>
-                    {existAccountId.includes(accountId) ? (
-                      <AccountTitle $isEven={false}>
-                        {myAccountData.filter((acc: MyAccount) => acc?.accountId === accountId)[0]?.name}
-                      </AccountTitle>
-                    ) : (
-                      <AccountTitle $isEven={false}></AccountTitle>
-                    )}
-                    <CardWrapper $isExist={existAccountId.includes(accountId)}>
-                      <Card account={accountId} />
-                    </CardWrapper>
-                  </>
-                ) : (
-                  <>
-                    <CardWrapper $isExist={existAccountId.includes(accountId)}>
-                      <Card account={accountId} />
-                    </CardWrapper>
-                    {existAccountId.includes(accountId) ? (
-                      <AccountTitle $isEven={true}>
-                        {myAccountData.filter((acc: MyAccount) => acc?.accountId === accountId)[0]?.name}
-                      </AccountTitle>
-                    ) : (
-                      <AccountTitle $isEven={false}></AccountTitle>
-                    )}
-                  </>
-                )}
-              </div>
-            ))}
+            {myAccountData &&
+              myAccountData?.map((accountId: number) => (
+                <>
+                  {accountId % 2 !== 0 ? (
+                    <>
+                      {existAccountId.includes(accountId) ? (
+                        <AccountTitle $isEven={false}>
+                          {myAccountData.filter((acc: MyAccount) => acc?.accountId === accountId)[0]?.name}
+                        </AccountTitle>
+                      ) : (
+                        <AccountTitle $isEven={false}></AccountTitle>
+                      )}
+                      <CardWrapper key={accountId} $isExist={existAccountId.includes(accountId)}>
+                        {/* <Card account={accountId} /> */}
+                      </CardWrapper>
+                    </>
+                  ) : (
+                    <>
+                      <CardWrapper key={accountId} $isExist={existAccountId.includes(accountId)}>
+                        {/* <Card account={accountId} /> */}
+                      </CardWrapper>
+                      {existAccountId.includes(accountId) ? (
+                        <AccountTitle $isEven={true}>
+                          {myAccountData.filter((acc: MyAccount) => acc?.accountId === accountId)[0]?.name}
+                        </AccountTitle>
+                      ) : (
+                        <AccountTitle $isEven={false}></AccountTitle>
+                      )}
+                    </>
+                  )}
+                </>
+              ))}
           </CardContainer>
         </CardBox>
         <ButtonWrapper>

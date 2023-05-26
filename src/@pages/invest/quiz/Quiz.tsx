@@ -1,6 +1,6 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import { getQuizList, postQuizAnswer } from "@/api/invest";
-import { investData } from "@/recoil/Invest";
+import { investInfo } from "@/recoil/Invest";
 import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
 import { useCallback, useContext, useEffect, useState } from "react";
@@ -16,7 +16,7 @@ function shuffle(array: string[]): string[] {
 }
 
 const Quiz = () => {
-  const [investmentData, setInvestmentData] = useRecoilState(investData);
+  const [investmentData, setInvestmentData] = useRecoilState(investInfo);
   const [quizData, setQuizData] = useState({ problem: "" }); // 화면에 표시할 퀴즈의 정보
   const [buttonArray, setButtonArray] = useState<string[]>();
   const [success, setSuccess] = useState(); // 답 제출 시 정답 여부
@@ -58,6 +58,7 @@ const Quiz = () => {
 
   const resetButtonArray = useResetRecoilState(selectedButtonArray);
   const resetIndexArray = useResetRecoilState(selectedButtonIndex);
+  const [investData, setInvestData] = useRecoilState(investInfo);
 
   const handleReset = useCallback(() => {
     resetButtonArray();
