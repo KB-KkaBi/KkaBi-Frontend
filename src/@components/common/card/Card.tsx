@@ -3,10 +3,14 @@ import * as S from "./style";
 
 interface CardProps {
   account: number;
+  $isClicked: boolean;
+  onClick: () => void;
+  onMouseEnter: () => void;
+  onMouseOut: () => void;
 }
 
 const Card = (props: CardProps) => {
-  const { account } = props;
+  const { account, $isClicked, onClick, onMouseEnter, onMouseOut } = props;
 
   function checkAccount() {
     switch (account) {
@@ -23,12 +27,16 @@ const Card = (props: CardProps) => {
     }
   }
 
-  return <CardWrapper>{checkAccount()}</CardWrapper>;
+  return (
+    <CardWrapper $isClicked={$isClicked} onClick={onClick} onMouseEnter={onMouseEnter} onMouseOut={onMouseOut}>
+      {checkAccount()}
+    </CardWrapper>
+  );
 };
 
 export default Card;
 
-const CardWrapper = styled.article`
+const CardWrapper = styled.article<{ $isClicked: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,6 +49,9 @@ const CardWrapper = styled.article`
   border-radius: 3rem;
 
   cursor: pointer;
+
+  border: ${({ $isClicked }) => $isClicked && 1}px solid ${({ theme }) => theme.colors.main};
+  box-shadow: 0rem 0rem ${({ $isClicked }) => $isClicked && 2}rem ${({ theme }) => theme.colors.main};
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.main};
