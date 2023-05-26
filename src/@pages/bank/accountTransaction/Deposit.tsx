@@ -3,11 +3,15 @@ import { Modal, PaperLayout, TextField } from "@/@components/common/";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as S from "./style";
+import { bankLog } from "@/recoil/bank";
+import { useRecoilValue } from "recoil";
 
 const Deposit = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = useState("");
+  const bankLogs=useRecoilValue(bankLog);
+
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(e.target.value);

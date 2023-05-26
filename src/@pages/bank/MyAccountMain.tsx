@@ -7,10 +7,8 @@ import { bankLog } from "@/recoil/bank";
 
 const MyAccountMain = () => {
   const navigate = useNavigate();
-  const bankLogs=useRecoilValue(bankLog)
+  const bankLogs=useRecoilValue(bankLog);
 
-  console.log(bankLogs)
-  // const accountMoney = 11000;
   return (
     <BankLayout>
       <S.TextContainer>
