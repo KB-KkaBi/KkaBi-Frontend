@@ -35,6 +35,8 @@ const SelectMyAccount = () => {
     }
   }
 
+  console.debug(investData);
+
   function chooseAccount(id: number, money: number) {
     setClickId(id);
     setAccountMoney(money);

@@ -24,9 +24,10 @@ const SelectTreasure = () => {
   const [investData, setInvestData] = useRecoilState(investInfo);
   const [accountMoney, setAccountMoney] = useState<number>();
   const navigate = useNavigate();
+  console.debug(investData);
 
   useEffect(() => {
-    state ? setAccountMoney(0) : setAccountMoney(state);
+    state ? setAccountMoney(state) : setAccountMoney(0);
   }, []);
 
   function moveToSelectCnt() {
@@ -38,7 +39,7 @@ const SelectTreasure = () => {
   const { data: treasureData, isError, error } = useQuery(["treasuerInfo"], getTreasure);
 
   if (isError) {
-    console.log({ error });
+    console.debug({ error });
   }
 
   //클릭한 보물 저장

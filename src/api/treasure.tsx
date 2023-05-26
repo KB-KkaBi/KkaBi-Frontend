@@ -8,6 +8,7 @@ export async function getTreasure() {
 }
 
 export async function postInvestLog(treasureData: any) {
+  console.log(treasureData);
   const data = await axios.post(`/api/account-log`, treasureData);
 
   console.log(data.data);
