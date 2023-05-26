@@ -1,6 +1,7 @@
 import { TransactionLogLayout } from "@/@components";
+import { getTotalAccountLog } from "@/api/accountLog";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import LogDetailContainer from "./LogDetailContainer";
 import * as S from "./style";
 
 export type AccountLogData = {
@@ -16,12 +17,15 @@ const AccountLog = () => {
   const accountInfo = {
     name: "깨비 미래 적금",
   };
-  const accountLogList: AccountLogData[] = [
-    { accountLogId: 1, date: "2023-5-14", deposit: 10000, detail: "엄마한테 용돈 받음", balance: 10000 },
-    { accountLogId: 2, date: "2023-5-15", deposit: 1000, detail: "설거지", balance: 11000 },
-    { accountLogId: 3, date: "2023-5-20", withdraw: 5000, detail: "군것질", balance: 6000 },
-  ];
+  // const accountLogList: AccountLogData[] = [
+  //   { accountLogId: 1, date: "2023-5-14", deposit: 10000, detail: "엄마한테 용돈 받음", balance: 10000 },
+  //   { accountLogId: 2, date: "2023-5-15", deposit: 1000, detail: "설거지", balance: 11000 },
+  //   { accountLogId: 3, date: "2023-5-20", withdraw: 5000, detail: "군것질", balance: 6000 },
+  // ];
   const navigate = useNavigate();
+
+  const { data: accountLogList } = useQuery(["getTotalAccountLog"], getTotalAccountLog);
+  console.log(accountLogList);
 
   return (
     <TransactionLogLayout handleClick={() => navigate("../")}>
@@ -35,9 +39,9 @@ const AccountLog = () => {
           <S.Balance>잔액</S.Balance>
         </S.TransactionSubTitle>
         <S.TransactionLogsContainer>
-          {accountLogList.map((log) => {
+          {/* {accountLogList?.map((log) => {
             return <LogDetailContainer log={log} key={log.accountLogId} />;
-          })}
+          })} */}
         </S.TransactionLogsContainer>
       </>
     </TransactionLogLayout>
