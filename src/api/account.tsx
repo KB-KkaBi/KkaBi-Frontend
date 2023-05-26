@@ -1,14 +1,15 @@
 import axios from "axios";
 
 export async function getAccountInfo() {
-  const data = await axios.get(`${import.meta.env.VITE_BASE_URL}/account-info`);
+  const data = await axios.get(`/api/account-info`, { withCredentials: true });
+  // console.log(data.data)
   return data.data;
 }
 
 export async function getMyAccount() {
-   console.log("sdsfdsdsf")
-  const data = await axios.get(`/get-account-all`, {withCredentials: true});
-  console.log(data.data);
+  const data = await axios.get(`/api/get-account-all`, { withCredentials: true });
+
+  // console.log(data.data);
   return data.data;
 }
 

@@ -1,9 +1,9 @@
-import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
-import { styled } from "styled-components";
-import Background from "../assets/image/homeBackground.png";
-import MyInfo from "../@components/Home/MyInfo/MyInfo";
-import { useNavigate } from "react-router-dom";
 import Character from "@/@components/Home/Character/Character";
+import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
+import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
+import MyInfo from "../@components/Home/MyInfo/MyInfo";
+import Background from "../assets/image/homeBackground.png";
 
 const Home = () => {
   const navigate = useNavigate();
