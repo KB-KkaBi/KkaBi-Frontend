@@ -16,21 +16,19 @@ function shuffle(array: string[]): string[] {
 }
 
 const Quiz = () => {
-  const [investmentData, setInvestmentData] = useRecoilState(investInfo);
+  const [investData, setInvestData] = useRecoilState(investInfo);
   const [quizData, setQuizData] = useState({ problem: "" }); // 화면에 표시할 퀴즈의 정보
   const [buttonArray, setButtonArray] = useState<string[]>();
   const [success, setSuccess] = useState(); // 답 제출 시 정답 여부
   const [total, setTotal] = useState(); // 답 제출 시 결과로 만들어진 보물 개수
-  const { data: quizArray } = useQuery(["quizInfo", investmentData.treasureId], () =>
-    getQuizList(investmentData.treasureId),
-  );
+  const { data: quizArray } = useQuery(["quizInfo", investData.treasureId], () => getQuizList(investData.treasureId));
 
   useEffect(() => {
     if (Array.isArray(quizArray)) {
       const randomQuiz = Array.isArray(quizArray) ? quizArray[Math.floor(Math.random() * quizArray.length)] : undefined;
       if (randomQuiz) {
         setQuizData(randomQuiz);
-        setInvestmentData(({ quizId, ...data }) => {
+        setInvestData(({ quizId, ...data }) => {
           const newData = {
             ...data,
             quizId: randomQuiz.quizId || 0,
@@ -58,23 +56,28 @@ const Quiz = () => {
 
   const resetButtonArray = useResetRecoilState(selectedButtonArray);
   const resetIndexArray = useResetRecoilState(selectedButtonIndex);
-  const [investData, setInvestData] = useRecoilState(investInfo);
 
   const handleReset = useCallback(() => {
     resetButtonArray();
     resetIndexArray();
   }, []);
-  const { mutate: investPost } = useMutation(() => postQuizAnswer(investmentData), {
-    onSuccess: (response) => {
-      console.debug(response);
-      setSuccess(response.data?.success);
-      setTotal(response.data?.total);
-      handleOpen();
-      handleReset();
+  const { mutate: investPost } = useMutation(
+    () => {
+      const { accountId, ...investPostData } = investData;
+      return postQuizAnswer(investPostData);
     },
-  });
+    {
+      onSuccess: (response) => {
+        console.debug(response);
+        setSuccess(response.data?.success);
+        setTotal(response.data?.total);
+        handleOpen();
+        handleReset();
+      },
+    },
+  );
   const handleSubmit = () => {
-    setInvestmentData(({ answer, ...data }) => ({ ...data, answer: hangul.assemble(selectedArray) }));
+    setInvestData(({ answer, ...data }) => ({ ...data, answer: hangul.assemble(selectedArray) }));
     investPost();
     console.debug("invest post, ", investPost);
   };
@@ -100,7 +103,7 @@ const Quiz = () => {
         <S.ModalContent>
           <div>{success ? "정답" : "오답"}입니다</div>
           <div>
-            투자한 <S.TreasureCount $color={themeContext?.colors.darkYellow}>{investmentData.count}</S.TreasureCount>
+            투자한 <S.TreasureCount $color={themeContext?.colors.darkYellow}>{investData.count}</S.TreasureCount>
             개의 반지가
             <br />
             <S.TreasureCount $color={success ? "#FC1616" : "#162DFC"}>{total}</S.TreasureCount>개가 되었습니다
