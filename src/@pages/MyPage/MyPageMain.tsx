@@ -3,6 +3,7 @@ import { STAR_FRIENDS } from "@/core/starFriends";
 import React, { useCallback, useEffect, useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import { useNavigate } from "react-router-dom";
+import PieChartImg from "../../assets/image/piechart.png";
 import { calculatePercentage, getTotalMoney } from "./libs/factory";
 import * as S from "./styles/mypageStyle";
 
@@ -13,104 +14,97 @@ import Treasure4 from "@/assets/icon/miniTreasure4.svg";
 import { Mutation, useMutation, useQuery } from "react-query";
 import { UserInfoDataTypes } from "@/core/userInfoData";
 import { getUserInfo } from "@/api/user";
+import { userSequence } from "@/recoil/User";
+import { useRecoilState } from "recoil";
 import { postLogout } from "@/api/logout";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import {userSequence} from "@/recoil/User";
 
 const MyPageMain = () => {
   const navigate = useNavigate();
-  /**
-   * 원래는 이 페이지 부르기 전 get 요청해서 유저정보 값(닉네임, 캐릭터, 금액들) 가져옴
-   */
-  // const UserDummy = {
-  //   nickname: "승구",
-  //   character: "루나키키",
-  //   detailMoney: {
-  //     totalDeposit: 1000, //예금
-  //     totalSavings: 7000, //적금
-  //     totalTreasure: 7600, // 전체 보물 자산 구한 값
-  //   },
-
-  //   detailTreasure: {
-  //     treasure1: 103,
-  //     treasure2: 90,
-  //     treasure3: 40,
-  //     treasure4: 12,
-  //   },
- // };
-
   const [profileEditopen, setProfileEditOpen] = React.useState(false);
   const handleProfileEditModalOpen = () => setProfileEditOpen(true);
   const handleProfileEditModalClose = () => setProfileEditOpen(false);
 
-
   /**
    * 로그아웃관련
    */
+
   const [logoutModalOpen, setLogoutModalOpen] = React.useState(false);
-  const [userSeq, setUserSeq] = useRecoilState(userSequence)
+  const [userSeq, setUserSeq] = useRecoilState(userSequence);
   const handleLogoutModalOpen = () => setLogoutModalOpen(true);
   const handleLogoutModalClose = () => setLogoutModalOpen(false);
 
-
-
-
-  const [pieData, setPieData] = useState([
-    { title: "예금", value: 0, color: "#f4b7b5" },
-    { title: "적금", value: 0, color: "#98caff" },
-    { title: "보물", value: 0, color: "#f8bd57" },
-  ]);
-
-   
   //logout 할때 할 함수
   const handleLogoutClicked = useCallback(() => {
     logout();
     console.log("로그아웃 버튼눌림");
+    console.log("userSeq = ", userSeq);
   }, []);
 
-  const {mutate: logout} = useMutation(postLogout,{
+  const { mutate: logout } = useMutation(postLogout, {
     onSuccess: (response) => {
       setUserSeq(-123); // 리코일 userseq값 초기화시키기
       navigate("/landing");
-      
-
-      
     },
     onError: (error) => {
       console.log(error);
-    }
+    },
   });
- 
+
+  const [pieData, setPieData] = useState([
+    { title: "예금", value: 20, color: "#f4b7b5" },
+    { title: "적금", value: 30, color: "#98caff" },
+    { title: "보물", value: 50, color: "#f8bd57" },
+  ]);
+
   /**
    * 유저 정보가지고 오기
    */
   const [totalMoney, setTotalMoney] = useState(0);
+  const [detailMoney, setDetailMoney] = useState<any>([]);
+  const [detailTreasure, setDetailTreasure] = useState<any>([]);
   /**
-  * pie chart 데이터
-  */
-  const [percentDeposit, setPercentDeposit] = useState(
-    calculatePercentage(0, totalMoney)
-  );
-  const [percentSavings, setPercentSavings] = useState(
-    calculatePercentage(0, totalMoney)
-  );
-  const [percentTreasure, setPercentTreasure] = useState(
-    calculatePercentage(0, totalMoney)
-  );
+   * pie chart 데이터
+   */
+  const [percentDeposit, setPercentDeposit] = useState(0);
+  const [percentSavings, setPercentSavings] = useState(0);
+  const [percentTreasure, setPercentTreasure] = useState(0);
 
   const { data: userMyData } = useQuery<UserInfoDataTypes>(["userMyInfo"], getUserInfo, {
-    onSuccess: (res) => {
-      setTotalMoney(getTotalMoney(userMyData!));
-      setPercentDeposit(calculatePercentage(userMyData?.detailMoney.totalDeposit || 0, totalMoney));
-      setPercentSavings(calculatePercentage(userMyData?.detailMoney.totalSavings || 0, totalMoney));
-      setPercentTreasure(calculatePercentage(userMyData?.detailMoney.totalTreasure || 0, totalMoney));
-      setPieData([
-        { title: "예금", value: percentDeposit, color: "#f4b7b5" },
-        { title: "적금", value: percentSavings, color: "#98caff" },
-        { title: "보물", value: percentTreasure, color: "#f8bd57" },
-      ]);
-    }
+    onSuccess: (response) => {
+      setTotalMoney(getTotalMoney(response!));
+      setDetailMoney(response.detailMoney);
+      setDetailTreasure(response.detailTreasure);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
   });
+
+  useEffect(() => {
+    setPercentDeposit(calculatePercentage(detailMoney.totalDeposit || 0, totalMoney));
+    setPercentSavings(calculatePercentage(detailMoney.totalSavings || 0, totalMoney));
+    setPercentTreasure(calculatePercentage(detailMoney.totalTreasure || 0, totalMoney));
+    setPieData([
+      {
+        title: "예금",
+        value: percentDeposit,
+        color: "#f4b7b5",
+      },
+      {
+        title: "적금",
+        value: percentSavings,
+        color: "#98caff",
+      },
+      {
+        title: "보물",
+        value: percentTreasure,
+        color: "#f8bd57",
+      },
+    ]);
+  }, [totalMoney, detailMoney, detailTreasure, percentDeposit, percentSavings, percentTreasure]);
+
+  console.log("detailMoney", detailMoney);
+  console.log("pieData : ", pieData);
 
   function selectRank() {
     if (totalMoney < 10000) {
@@ -145,27 +139,6 @@ const MyPageMain = () => {
         return <S.BigProfileAgoImg />;
     }
   }
-  useEffect(() => {
-    // console.log(percentDeposit);
-    // console.log(percentSavings);
-    // console.log(percentTreasure);
-
-    //User정보 가지고 오자마자 바로 함수 발동해서 값 넣기
-    setTotalMoney(getTotalMoney(userMyData!));
-
-    setPercentDeposit(calculatePercentage(userMyData?.detailMoney.totalDeposit || 0, totalMoney));
-    setPercentSavings(calculatePercentage(userMyData?.detailMoney.totalSavings || 0, totalMoney));
-    setPercentTreasure(calculatePercentage(userMyData?.detailMoney.totalTreasure || 0, totalMoney));
-
-    setPieData([
-      { title: "예금", value: percentDeposit, color: "#f4b7b5" },
-      { title: "적금", value: percentSavings, color: "#98caff" },
-      { title: "보물", value: percentTreasure, color: "#f8bd57" },
-    ]);
-
-  console.log("user~~", userSeq);
-    
-  }, [userMyData, userSeq]);
 
   return (
     <>
@@ -214,19 +187,24 @@ const MyPageMain = () => {
               </S.UserTreasureTotalWrapper>
             </S.UserMoneyInfoContainer>
             <S.PieChartContainer>
-              <PieChart
-                data={pieData}
-                //label={({ dataEntry }) => dataEntry.value + `%\n\n` + dataEntry.title}
-                label={({ dataEntry }) => {
-                  const fullLines = dataEntry.title + " " + dataEntry.value + "%";
-                  return fullLines;
-                }}
-                labelPosition={50}
-                animate
-                labelStyle={{
-                  fontSize: "0.8rem",
-                }}
-              />
+              {percentDeposit == 0 && percentSavings == 0 && percentTreasure == 0 ? (
+                <>
+                  <img className="piechartWrapper" src={PieChartImg} alt="piechart" />
+                </>
+              ) : (
+                <PieChart
+                  data={pieData}
+                  label={({ dataEntry }) => {
+                    const fullLines = dataEntry.title + " " + dataEntry.value + "%";
+                    return fullLines;
+                  }}
+                  labelPosition={50}
+                  animate
+                  labelStyle={{
+                    fontSize: "0.8rem",
+                  }}
+                />
+              )}
             </S.PieChartContainer>
           </S.UserInfoContainer>
           <S.ButtonContainer>
