@@ -6,7 +6,7 @@ import { investInfo } from "@/recoil/Invest";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
 import TreasureCard from "./TreasureCard";
 import TreasureCardContent from "./TreasureCardContent";
@@ -22,13 +22,11 @@ const SelectTreasure = () => {
   });
   const [hoverId, setHoverId] = useState(-1);
   const [investData, setInvestData] = useRecoilState(investInfo);
-  const resetInvestData = useResetRecoilState(investInfo);
   const [accountMoney, setAccountMoney] = useState<number>();
   const navigate = useNavigate();
   console.debug(investData);
 
   useEffect(() => {
-    resetInvestData();
     state ? setAccountMoney(state) : setAccountMoney(0);
   }, []);
 
