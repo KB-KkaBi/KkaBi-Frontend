@@ -65,3 +65,24 @@ export const Balance = styled.div`
 export const Won = styled.p`
   ${(props) => props.theme.fonts.won}
 `;
+
+export const ArrowBox = styled.article`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 21rem;
+
+  color: ${({ theme }) => theme.colors.deepBlue};
+  ${({ theme }) => theme.fonts.button};
+`;
+
+export const ArrowWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 1.5rem;
+
+  width: 100%;
+`;

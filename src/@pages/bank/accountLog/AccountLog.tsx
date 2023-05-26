@@ -1,5 +1,6 @@
 import { TransactionLogLayout } from "@/@components";
 import { getTotalAccountLog } from "@/api/accountLog";
+import { LeftArrow, RightArrow } from "@/assets";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import * as S from "./style";
@@ -30,6 +31,13 @@ const AccountLog = () => {
   return (
     <TransactionLogLayout handleClick={() => navigate("../")}>
       <>
+        <S.ArrowWrapper>
+          <S.ArrowBox>
+            <LeftArrow />
+            1/2
+            <RightArrow />
+          </S.ArrowBox>
+        </S.ArrowWrapper>
         <S.TransactionTitle>{accountInfo.name}</S.TransactionTitle>
         <S.TransactionSubTitle>
           <S.TransactionDate>날짜</S.TransactionDate>
