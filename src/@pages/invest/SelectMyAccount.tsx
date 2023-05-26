@@ -15,6 +15,7 @@ const SelectMyAccount = () => {
   const [investData, setInvestData] = useRecoilState(investInfo);
   const [hoverId, setHoverId] = useState<number>(-1);
   const [clickId, setClickId] = useState<number>(-1);
+  const [accountMoney, setAccountMoney] = useState<number>(0);
 
   const navigate = useNavigate();
 
@@ -29,9 +30,16 @@ const SelectMyAccount = () => {
   function selectDepositAccount() {
     if (clickId !== -1) {
       setInvestData((prev) => ({ ...prev, accountId: clickId }));
-      navigate("./select-treasure");
+      navigate("./select-treasure", { state: accountMoney });
       console.debug(investData);
     }
+  }
+
+  console.debug(investData);
+
+  function chooseAccount(id: number, money: number) {
+    setClickId(id);
+    setAccountMoney(money);
   }
 
   return (
@@ -55,7 +63,7 @@ const SelectMyAccount = () => {
                             key={account.accountId}
                             account={account.accountId}
                             $isClicked={checkIsHoverOfClick(account.accountId)}
-                            onClick={() => setClickId(account.accountId)}
+                            onClick={() => chooseAccount(account.accountId, account.accountMoney)}
                             onMouseEnter={() => setHoverId(account.accountId)}
                             onMouseOut={() => setHoverId(-1)}
                           />
@@ -68,7 +76,7 @@ const SelectMyAccount = () => {
                             key={account.accountId}
                             account={account.accountId}
                             $isClicked={checkIsHoverOfClick(account.accountId)}
-                            onClick={() => setClickId(account.accountId)}
+                            onClick={() => chooseAccount(account.accountId, account.accountMoney)}
                             onMouseEnter={() => setHoverId(account.accountId)}
                             onMouseOut={() => setHoverId(-1)}
                           />

@@ -1,7 +1,6 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import Input from "@/@components/common/textField/CommonTextField";
 import { postNewAccount } from "@/api/account";
-import { error } from "console";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -14,20 +13,20 @@ const CreateNewAccountName = () => {
   const [accountName, setAccountName] = useState("");
   const navigate = useNavigate();
 
-  const {mutate : createNewAccount} = useMutation(postNewAccount,{
-    onSuccess:() => {
+  const { mutate: createNewAccount } = useMutation(postNewAccount, {
+    onSuccess: () => {
       setOpen(true);
     },
-    onError: (error) =>{
-      console.log(error);
-    }
+    onError: (error) => {
+      console.debug(error);
+    },
   });
 
-  function confirmNewAccount(){
-    createNewAccount({accountInfoId: state, accountName: accountName})
+  function confirmNewAccount() {
+    createNewAccount({ accountInfoId: state, accountName: accountName });
   }
 
-  function checkAccountName(e: React.ChangeEvent<HTMLInputElement>){
+  function checkAccountName(e: React.ChangeEvent<HTMLInputElement>) {
     setAccountName(e.target.value);
   }
 

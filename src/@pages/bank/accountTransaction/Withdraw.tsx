@@ -13,7 +13,7 @@ const Withdraw = () => {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
   const [reason, setReason] = useState("");
-  const [amount, setAmount] = useState<number>();
+  const [amount, setAmount] = useState<number>(0);
   const bankLogs=useRecoilValue(bankLog);
 
   const {mutate : createAccountLog} = useMutation(postAccountLog,{
@@ -43,7 +43,7 @@ const Withdraw = () => {
 
   const errorClose = () => {
     setError(false);
-    setAmount("");
+    setAmount(0);
     setReason("");
   }
 
@@ -68,7 +68,9 @@ const Withdraw = () => {
       <Modal open={open}>
         <>
           <S.Guide>출금되었습니다</S.Guide>
-          <Button onClick={handleClose}>확인</Button>
+          <Button onClick={handleClose} disabled={!amount || !reason}>
+            확인
+          </Button>
         </>
       </Modal>
       <Modal open={error}>

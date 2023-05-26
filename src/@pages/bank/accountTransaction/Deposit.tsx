@@ -11,6 +11,7 @@ import { useMutation } from "react-query";
 const Deposit = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+
   const [reason, setReason] = useState("");
   const [amount, setAmount] = useState(0);
   const bankLogs=useRecoilValue(bankLog);
@@ -27,6 +28,7 @@ const Deposit = () => {
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
+
   };
 
   const handleReasonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +36,7 @@ const Deposit = () => {
   };
 
   const handleOpen = () => {
-    createAccountLog({accountId: bankLogs.accountId, accountLogMoney: bankLogs.accountLogMoney + amount, transactionAmount: amount, transactionReason: reason, transactionType: "입금"})
+    createAccountLog({accountId: bankLogs.accountId, accountLogMoney: bankLogs.accountLogMoney + amount, transactionAmount: amount, transactionReason: reason, transactionType: "출금"})
   }
 
   const handleClose = () => {
@@ -49,14 +51,17 @@ const Deposit = () => {
         <TextField
           type="number"
           onChange={handleAmountChange}
+          value={amount}
           InputProps={{
             endAdornment: <S.Won color={!!amount ? "#000" : "#aaaaaa"}>\</S.Won>,
           }}></TextField>
         <S.Guide>예금 사유를 작성해주세요</S.Guide>
         <TextField
+          value={reason}
          placeholder="ex. 용돈"
          onChange={handleReasonChange}></TextField>
-        <Button onClick={handleOpen}>확인</Button>
+        <Button onClick={handleOpen} disabled={!amount || !reason}>확인</Button>
+
       </S.TransactionContent>
       <Modal open={open}>
         <>

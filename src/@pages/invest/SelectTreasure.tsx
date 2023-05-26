@@ -3,9 +3,9 @@ import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import { getTreasure } from "@/api/treasure";
 import { TreasureDataTypes } from "@/core/treasuresData";
 import { investInfo } from "@/recoil/Invest";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
 import TreasureCard from "./TreasureCard";
@@ -13,6 +13,7 @@ import TreasureCardContent from "./TreasureCardContent";
 import * as S from "./style";
 
 const SelectTreasure = () => {
+  const { state } = useLocation();
   const [selectTreasure, setSelectTreasure] = useState({
     treasureId: 0,
     treasureName: "",
@@ -21,19 +22,24 @@ const SelectTreasure = () => {
   });
   const [hoverId, setHoverId] = useState(-1);
   const [investData, setInvestData] = useRecoilState(investInfo);
-
+  const [accountMoney, setAccountMoney] = useState<number>();
   const navigate = useNavigate();
+  console.debug(investData);
+
+  useEffect(() => {
+    state ? setAccountMoney(state) : setAccountMoney(0);
+  }, []);
 
   function moveToSelectCnt() {
     setInvestData((prev) => ({ ...prev, treasureId: selectTreasure.treasureId }));
-    navigate("../select-amount", { state: selectTreasure });
+    navigate("../select-amount", { state: { selectTreasure: selectTreasure, accountMoney: accountMoney } });
     console.debug(investData);
   }
 
   const { data: treasureData, isError, error } = useQuery(["treasuerInfo"], getTreasure);
 
   if (isError) {
-    console.log({ error });
+    console.debug({ error });
   }
 
   //클릭한 보물 저장
