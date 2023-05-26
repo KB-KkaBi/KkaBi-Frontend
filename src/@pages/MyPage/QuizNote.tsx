@@ -10,12 +10,12 @@ export type QuizInfo = {
   problem?: string;
   answer?: string;
   hint?: string;
+  treasureInfo?: any;
 };
 
 export type QuizLogData = {
   quizLogId?: number;
   quizInfo?: QuizInfo;
-  treasureInfo?: any;
 };
 
 const QuizWrongNote = () => {
@@ -36,14 +36,7 @@ const QuizWrongNote = () => {
       </S.QuizNoteSubtitle>
       <S.QuizNoteLogContainer>
         {quizLogList?.content?.map((log: QuizLogData) => {
-          return (
-            <QuizLogDetailContainer
-              quizInfo={log.quizInfo}
-              quizLogId={log.quizLogId}
-              treasureInfo={log.treasureInfo}
-              key={log.quizLogId}
-            />
-          );
+          return <QuizLogDetailContainer quizInfo={log.quizInfo} quizLogId={log.quizLogId} key={log.quizLogId} />;
         })}
       </S.QuizNoteLogContainer>
     </CommonQuizNoteLayout>
