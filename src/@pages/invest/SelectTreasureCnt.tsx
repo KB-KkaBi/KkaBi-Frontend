@@ -1,9 +1,11 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import Input from "@/@components/common/textField/CommonTextField";
+import { postInvestLog } from "@/api/treasure";
 import { level } from "@/core/treasureLevel";
 import { investInfo } from "@/recoil/Invest";
 import React, { useState } from "react";
+import { useMutation } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
@@ -13,6 +15,7 @@ const SelectTreasureCnt = () => {
   const { state } = useLocation();
   const { treasureId, treasureName, interestRate, price } = state.selectTreasure;
   const [accountMoney, setAccountMoney] = useState(state.accountMoney);
+  console.log(state);
   const [cnt, setCnt] = useState(0);
   const [open, setOpen] = useState(false);
   const [isHundred, setIsHundred] = useState(false);
@@ -20,6 +23,16 @@ const SelectTreasureCnt = () => {
   const [investData, setInvestData] = useRecoilState(investInfo);
   const [investLog, setInvestLog] = useState({});
   const [isLessMoney, setIsLessMoney] = useState(false);
+
+  const { mutate: postLog } = useMutation(postInvestLog, {
+    onSuccess: () => {
+      console.log("포스트 성공");
+      navigate("../quiz");
+    },
+    onError: (error) => {
+      console.debug(error);
+    },
+  });
 
   function checkTreasure() {
     switch (treasureId) {
@@ -56,7 +69,7 @@ const SelectTreasureCnt = () => {
   function moveToQuiz() {
     setInvestData((prev) => ({ ...prev, count: cnt }));
     // 이미 있는 돈에서 투자할 만큼 빠져도 -가 안 나는지
-    console.log("accountMoney" + accountMoney && accountMoney);
+    console.log("accountMoney" + accountMoney);
     console.log("cnt" + cnt);
     console.log("price" + price);
     console.log(accountMoney - cnt * price);
@@ -70,12 +83,16 @@ const SelectTreasureCnt = () => {
           transactionReason: "투자",
         });
       console.debug(investLog);
-      navigate("../quiz");
+      postLog(investLog);
     } else {
       setOpen(open);
       setIsLessMoney(true);
     }
   }
+
+  // useEffect(() => {
+  //   investLog && postLog(investLog);
+  // }, [investLog]);
 
   function modal() {
     // 100개의 단위로 입력한 경우

@@ -3,7 +3,7 @@ import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import { getTreasure } from "@/api/treasure";
 import { TreasureDataTypes } from "@/core/treasuresData";
 import { investInfo } from "@/recoil/Invest";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -22,12 +22,16 @@ const SelectTreasure = () => {
   });
   const [hoverId, setHoverId] = useState(-1);
   const [investData, setInvestData] = useRecoilState(investInfo);
-
+  const [accountMoney, setAccountMoney] = useState<number>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    state ? setAccountMoney(0) : setAccountMoney(state);
+  }, []);
 
   function moveToSelectCnt() {
     setInvestData((prev) => ({ ...prev, treasureId: selectTreasure.treasureId }));
-    navigate("../select-amount", { state: { selectTreasure: selectTreasure, accountMoney: state } });
+    navigate("../select-amount", { state: { selectTreasure: selectTreasure, accountMoney: accountMoney } });
     console.debug(investData);
   }
 
