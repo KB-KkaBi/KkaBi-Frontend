@@ -7,7 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import MyInfo from "../@components/Home/MyInfo/MyInfo";
 import Background from "../assets/image/homeBackground.png";
+import { useState } from "react";
 
+type DetailMoney = {
+  totalDeposit?: number;
+  totalSavings?: number;
+  totalTreasure?: number;
+};
 const Home = () => {
   const navigate = useNavigate();
 
@@ -23,19 +29,21 @@ const Home = () => {
     navigate("/mypage");
   }
 
-  const { data: userInfoData } = useQuery<UserInfoDataTypes>(["userHomeInfo"], getUserInfo);
+  const [detailMoney, setDetailMoney] = useState<any>([]);
+  const { data: userInfoData } = useQuery<UserInfoDataTypes>(["userHomeInfo"], getUserInfo, {
+    onSuccess: (response) => {
+      setDetailMoney(response.detailMoney);
+    },
+  });
 
-  const totalMoney =
-    userInfoData?.detailMoney.totalDeposit! +
-    userInfoData?.detailMoney.totalSavings! +
-    userInfoData?.detailMoney.totalTreasure!;
+  const totalMoney = detailMoney?.totalDeposit + detailMoney?.totalSavings + detailMoney?.totalTreasure;
 
   return (
     <>
       <MyInfo
         characterName={userInfoData?.character || ""}
         nickName={userInfoData?.nickname || ""}
-        totalMoney={totalMoney}
+        totalMoney={totalMoney || 0}
         onClick={moveToMyPage}
       />
       <ImgContainer>

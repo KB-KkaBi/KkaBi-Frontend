@@ -47,7 +47,7 @@ const MyInfo = (props: MyInfoProps) => {
         </St.UserInfoWrapper>
         <St.MoneyWrapper>
           <St.Won>₩</St.Won>
-          <St.Money>{totalMoney}</St.Money>
+          <St.Money>{totalMoney.toLocaleString()}</St.Money>
         </St.MoneyWrapper>
       </St.TextWrapper>
     </St.MyInfoWrapper>
