@@ -11,9 +11,8 @@ import * as S from "./style";
 
 const SelectTreasureCnt = () => {
   const { state } = useLocation();
-  console.log(state);
   const { treasureId, treasureName, interestRate, price } = state.selectTreasure;
-  const { accountMoney } = state.accountMoney;
+  const [accountMoney, setAccountMoney] = useState(state.accountMoney);
   const [cnt, setCnt] = useState(0);
   const [open, setOpen] = useState(false);
   const [isHundred, setIsHundred] = useState(false);
@@ -57,14 +56,18 @@ const SelectTreasureCnt = () => {
   function moveToQuiz() {
     setInvestData((prev) => ({ ...prev, count: cnt }));
     // 이미 있는 돈에서 투자할 만큼 빠져도 -가 안 나는지
+    console.log("accountMoney" + accountMoney && accountMoney);
+    console.log("cnt" + cnt);
+    console.log("price" + price);
+    console.log(accountMoney - cnt * price);
     if (accountMoney - cnt * price >= 0) {
       investData &&
         setInvestLog({
           accountId: investData?.accountId,
           accountLogMoney: accountMoney - cnt * price,
           transactionAmount: -cnt * price,
-          transactionReason: "투자",
           transactionType: "투자",
+          transactionReason: "투자",
         });
       console.debug(investLog);
       navigate("../quiz");
@@ -129,33 +132,6 @@ const SelectTreasureCnt = () => {
   return (
     <>
       {modal()}
-      {/* {isHundred ? (
-        <Modal open={open} onClose={handleClose}>
-          <S.ModalContent>
-            <S.TextWrapper>
-              <p>100개 단위로</p>
-              <p>입력해주세요</p>
-            </S.TextWrapper>
-            <Button onClick={handleClose}>확인</Button>
-          </S.ModalContent>
-        </Modal>
-      ) : (
-        <Modal open={open} onClose={handleClose}>
-          <S.ModalContent>
-            <S.TextWrapper>
-              <div>
-                <p>{treasureName}</p>
-                <p>{cnt}개를</p>
-              </div>
-              <p>투자하시겠습니까?</p>
-            </S.TextWrapper>
-            <S.ButtonWrapper>
-              <Button onClick={handleClose}>취소</Button>
-              <Button onClick={moveToQuiz}>확인</Button>
-            </S.ButtonWrapper>
-          </S.ModalContent>
-        </Modal>
-      )} */}
       <PaperLayout>
         <BackButtonWrapper>
           <BackArrowIcon fillColor="#5F564C" />
