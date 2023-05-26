@@ -5,7 +5,9 @@ type LogDetailProps = {
   log: AccountLogData;
 };
 
-function LogDetailContainer({ log }: LogDetailProps) {
+function LogDetailContainer(props: LogDetailProps) {
+  const { log } = props;
+
   return (
     <S.LogDetail>
       <S.TransactionDate>{log.date}</S.TransactionDate>

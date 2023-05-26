@@ -13,3 +13,9 @@ export async function getAccountLogPagenation(accountId: number, page: number) {
 
   return data.data.content;
 }
+
+export async function getAccountName(accountId: number) {
+  const data = await axios.get(`/api/bank?accountId=${accountId}`, { withCredentials: true });
+
+  return data.data.accountName;
+}
