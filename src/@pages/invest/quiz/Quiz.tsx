@@ -1,6 +1,6 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import { getQuizList, postQuizAnswer } from "@/api/invest";
-import { investInfo } from "@/recoil/Invest";
+import { InvestDTO, investInfo } from "@/recoil/Invest";
 import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
 import { useCallback, useContext, useEffect, useState } from "react";
@@ -63,7 +63,7 @@ const Quiz = () => {
     resetIndexArray();
   }, []);
   const { mutate: investPost } = useMutation(
-    () => {
+    (investData: InvestDTO) => {
       const { accountId, ...investPostData } = investData;
       return postQuizAnswer(investPostData);
     },
@@ -77,10 +77,15 @@ const Quiz = () => {
       },
     },
   );
+
   const handleSubmit = () => {
-    setInvestData(({ answer, ...data }) => ({ ...data, answer: hangul.assemble(selectedArray) }));
-    investPost();
-    console.debug("invest post, ", investPost);
+    const ans = hangul.assemble(selectedArray);
+    setInvestData((data) => {
+      const newData = { ...data, answer: ans };
+      console.debug(newData);
+      return newData;
+    });
+    investPost(investData);
   };
 
   return (
