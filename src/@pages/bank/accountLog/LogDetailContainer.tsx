@@ -40,12 +40,8 @@ function LogDetailContainer(props: any) {
       </S.DepositAmount>
       <S.TransactionDetail>{log.transactionReason}</S.TransactionDetail>
       <S.Balance>
-        {/* {log.balance && ( */}
-        <>
-          <S.Won>\&nbsp;</S.Won>
-          {log.accountLogMoney}
-        </>
-        {/* )} */}
+        <S.Won>\&nbsp;</S.Won>
+        {log.accountLogMoney}
       </S.Balance>
     </S.LogDetail>
   );
