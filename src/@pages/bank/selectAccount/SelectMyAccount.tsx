@@ -26,8 +26,8 @@ const SelectMyAccount = () => {
 
   function checkExistAccount() {
     myAccountData?.map((accountData: any) => {
-      if (!newAccountId.includes(accountData?.accountInfo?.accountInfoId)) {
-        newAccountId.push(accountData?.accountInfo?.accountInfoId);
+      if (!newAccountId?.includes(accountData?.accountInfo?.accountInfoId)) {
+        newAccountId?.push(accountData?.accountInfo?.accountInfoId);
       }
     });
     setExistAccountId(newAccountId);
