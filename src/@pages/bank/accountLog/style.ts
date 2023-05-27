@@ -75,6 +75,8 @@ export const ArrowBox = styled.article`
 
   color: ${({ theme }) => theme.colors.deepBlue};
   ${({ theme }) => theme.fonts.button};
+
+  cursor: pointer;
 `;
 
 export const ArrowWrapper = styled.section`
