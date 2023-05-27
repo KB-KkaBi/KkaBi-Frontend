@@ -12,9 +12,10 @@ import {
   Rank6,
 } from "@/assets";
 import { styled } from "styled-components";
+import active from "../../../assets/icon/homeMyActiveIc.svg";
 import paper from "../../../assets/icon/homeMyInfoIc.svg";
 
-export const MyInfoWrapper = styled.section`
+export const MyInfoWrapper = styled.section<{ isHover: boolean }>`
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -23,15 +24,17 @@ export const MyInfoWrapper = styled.section`
   //width: 40rem;
   height: 21rem;
 
-  margin: 4rem;
+  margin: 2rem;
   padding: 3.2rem;
 
-  background-image: url(${paper});
+  background-image: url(${({ isHover }) => (isHover ? active : paper)});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   ${({ theme }) => theme.fonts.text}
   z-index: 2;
+
+  cursor: pointer;
 `;
 export const Money = styled.p`
   ${({ theme }) => theme.fonts.log}

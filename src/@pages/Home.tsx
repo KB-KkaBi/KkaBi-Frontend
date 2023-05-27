@@ -1,6 +1,6 @@
 import Character from "@/@components/Home/Character/Character";
 import { getUserInfo } from "@/api/user";
-import { HomeKkaBiBankIc, MainPageTreasureIc } from "@/assets";
+import { HomeBankActiveIc, HomeBankIc, HomeTreasureActiveIc, MainPageTreasureIc } from "@/assets";
 import { UserInfoDataTypes } from "@/core/userInfoData";
 import { useState } from "react";
 import { useQuery } from "react-query";
@@ -39,6 +39,8 @@ const Home = () => {
       );
     },
   });
+  const [bankHover, setBankHover] = useState(false);
+  const [treasureHover, setTreasureHover] = useState(false);
 
   return (
     <>
@@ -50,9 +52,16 @@ const Home = () => {
       />
       <ImgContainer>
         <ImgWrapper>
-          <MainPageTreasureIc onClick={moveToTreasure} />
+          <Icon
+            onClick={moveToTreasure}
+            onMouseEnter={() => setTreasureHover(true)}
+            onMouseOut={() => setTreasureHover(false)}>
+            {treasureHover ? <HomeTreasureActiveIc /> : <MainPageTreasureIc onClick={moveToTreasure} />}
+          </Icon>
           <Character characterName={userInfoData?.character || ""} />
-          <HomeKkaBiBankIc onClick={moveToBank} />
+          <Icon onClick={moveToBank} onMouseEnter={() => setBankHover(true)} onMouseLeave={() => setBankHover(false)}>
+            {bankHover ? <HomeBankActiveIc /> : <HomeBankIc />}
+          </Icon>
         </ImgWrapper>
       </ImgContainer>
       <BackgroundImg src={Background} alt="배경화면" />
@@ -84,4 +93,9 @@ const ImgWrapper = styled.section`
   bottom: 15rem;
 
   width: 140rem;
+`;
+
+const Icon = styled.section`
+  cursor: pointer;
+  margin-bottom: -10rem;
 `;
