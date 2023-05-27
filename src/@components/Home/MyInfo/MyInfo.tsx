@@ -1,4 +1,5 @@
 import { STAR_FRIENDS } from "@/core/starFriends";
+import { useState } from "react";
 import { styled } from "styled-components";
 import * as St from "./style";
 
@@ -11,6 +12,7 @@ interface MyInfoProps {
 
 const MyInfo = (props: MyInfoProps) => {
   const { characterName, nickName, totalMoney, onClick } = props;
+  const [my, setMy] = useState(false);
 
   function miniProfile() {
     switch (characterName) {
@@ -39,7 +41,7 @@ const MyInfo = (props: MyInfoProps) => {
   }
 
   return (
-    <St.MyInfoWrapper onClick={onClick}>
+    <St.MyInfoWrapper onClick={onClick} onMouseEnter={() => setMy(true)} onMouseLeave={() => setMy(false)} isHover={my}>
       {miniProfile()}
       <St.TextWrapper>
         <St.UserInfoWrapper>
@@ -59,6 +61,7 @@ export default MyInfo;
 
 const Text = styled.p`
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
-  width: 5rem;
+  width: 15rem;
 `;
