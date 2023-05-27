@@ -60,7 +60,7 @@ const SelectMyAccount = () => {
                         <CardWrapper key={account.accountInfoId} $isExist={true}>
                           <Card
                             key={account.accountId}
-                            account={account.accountId}
+                            account={account.accountInfo.accountInfoId}
                             $isClicked={checkIsHoverOfClick(account.accountId)}
                             onClick={() => chooseAccount(account.accountId, account.accountMoney)}
                             onMouseEnter={() => setHoverId(account.accountId)}
@@ -73,7 +73,7 @@ const SelectMyAccount = () => {
                         <CardWrapper key={account.accountInfoId} $isExist={true}>
                           <Card
                             key={account.accountId}
-                            account={account.accountId}
+                            account={account.accountInfo.accountInfoId}
                             $isClicked={checkIsHoverOfClick(account.accountId)}
                             onClick={() => chooseAccount(account.accountId, account.accountMoney)}
                             onMouseEnter={() => setHoverId(account.accountId)}
