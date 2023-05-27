@@ -34,7 +34,7 @@ const MyInfo = (props: MyInfoProps) => {
     else if (totalMoney >= 25000) return <St.Rank3Ic />;
     else if (totalMoney >= 20000) return <St.Rank4Ic />;
     else if (totalMoney >= 15000) return <St.Rank5Ic />;
-    else if (totalMoney >= 10000) return <St.Rank6Ic />;
+    else if (totalMoney >= 0) return <St.Rank6Ic />;
   }
 
   return (

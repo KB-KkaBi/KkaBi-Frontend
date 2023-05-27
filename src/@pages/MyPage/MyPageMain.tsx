@@ -117,7 +117,7 @@ const MyPageMain = () => {
 
   function selectRank() {
     if (totalMoney < 0) return <></>;
-    else if (totalMoney >= 10000 && totalMoney < 15000) {
+    else if (totalMoney >= 0 && totalMoney < 15000) {
       return <S.Ranking6Icon />;
     } else if (totalMoney >= 15000 && totalMoney < 20000) {
       return <S.Ranking5Icon />;

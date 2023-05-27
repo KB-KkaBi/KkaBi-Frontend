@@ -11,7 +11,7 @@ import * as S from "./styles/ranklistStyle";
 const RankList = () => {
   const navigate = useNavigate();
   const RankInfoList = [
-    { id: 1, price: 10000, imgUrl: rank6 },
+    { id: 1, price: 0, imgUrl: rank6 },
     { id: 2, price: 15000, imgUrl: rank5 },
     { id: 3, price: 20000, imgUrl: rank4 },
     { id: 4, price: 25000, imgUrl: rank3 },
