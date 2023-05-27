@@ -2,7 +2,7 @@ import { Button, PaperLayout } from "@/@components";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import { getMyAccount } from "@/api/account";
 import { MyAccount } from "@/core/myAccountData";
-import { bankLog } from "@/recoil/bank";
+import { bankLog, clickedId } from "@/recoil/bank";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const SelectMyAccount = () => {
   const [existAccountId, setExistAccountId] = useState<number[]>([]);
   const newAccountId: number[] = [];
   const [hoverId, setHoverId] = useState<number>(-1);
-  const [clickId, setClickId] = useState<number>(-1);
+  const [clickId, setClickId] = useRecoilState<number>(clickedId);
   const [accountMoney, setAccountMoney] = useState<number>(0);
   const [myAccountId, setMyAccountId] = useState<number>(-1);
   const navigate = useNavigate();
