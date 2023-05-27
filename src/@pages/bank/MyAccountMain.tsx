@@ -15,7 +15,7 @@ const MyAccountMain = () => {
   return (
     <BankLayout>
       <S.TextContainer>
-        <S.Won>\ {money.toLocaleString()}</S.Won>
+        <S.Won>\ {money?.toLocaleString()}</S.Won>
         <S.Guide>어떤 업무를 진행하시겠어요?</S.Guide>
       </S.TextContainer>
       <S.BottomButtonContainer>

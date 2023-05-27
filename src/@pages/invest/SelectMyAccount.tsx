@@ -138,7 +138,8 @@ const SelectMyAccountWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const ButtonWrapper = styled.section`

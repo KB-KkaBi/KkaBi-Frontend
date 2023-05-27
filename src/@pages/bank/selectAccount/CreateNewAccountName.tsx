@@ -1,10 +1,12 @@
 import { Button, Modal, PaperLayout } from "@/@components";
+import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import Input from "@/@components/common/textField/CommonTextField";
 import { postNewAccount } from "@/api/account";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import { BackButtonWrapper } from "./CreateNewAccount";
 
 const CreateNewAccountName = () => {
   const { state } = useLocation();
@@ -50,6 +52,9 @@ const CreateNewAccountName = () => {
         </ModalContent>
       </Modal>
       <PaperLayout>
+        <BackButtonWrapper>
+          <BackArrowIcon fillColor="#5F564C" />
+        </BackButtonWrapper>
         <CreateNewAccountNameWrapper>
           <Title>계좌 이름</Title>
           <Input placeholder="계좌 이름을 입력해주세요" onChange={checkAccountName}></Input>
