@@ -1,5 +1,6 @@
 import { atom } from "recoil";
 
+
 export const bankLog = atom({
   key: "bankLog",
   default: {
@@ -10,3 +11,4 @@ export const bankLog = atom({
     transactionType: ``,
   },
 });
+

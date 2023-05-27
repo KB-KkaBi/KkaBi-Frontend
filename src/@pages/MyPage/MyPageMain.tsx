@@ -3,7 +3,6 @@ import { STAR_FRIENDS } from "@/core/starFriends";
 import React, { useCallback, useEffect, useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import { useNavigate } from "react-router-dom";
-import PieChartImg from "../../assets/image/piechart.png";
 import { calculatePercentage, getTotalMoney } from "./libs/factory";
 import * as S from "./styles/mypageStyle";
 
@@ -11,7 +10,7 @@ import Treasure1 from "@/assets/icon/miniTreasure1.svg";
 import Treasure2 from "@/assets/icon/miniTreasure2.svg";
 import Treasure3 from "@/assets/icon/miniTreasure3.svg";
 import Treasure4 from "@/assets/icon/miniTreasure4.svg";
-import { Mutation, useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { UserInfoDataTypes } from "@/core/userInfoData";
 import { getUserInfo } from "@/api/user";
 import { userSequence } from "@/recoil/User";
@@ -50,16 +49,12 @@ const MyPageMain = () => {
     },
   });
 
-  const [pieData, setPieData] = useState([
-    { title: "예금", value: 20, color: "#f4b7b5" },
-    { title: "적금", value: 30, color: "#98caff" },
-    { title: "보물", value: 50, color: "#f8bd57" },
-  ]);
+  const [pieData, setPieData] = useState<any[]>([]);
 
   /**
    * 유저 정보가지고 오기
    */
-  const [totalMoney, setTotalMoney] = useState(0);
+  const [totalMoney, setTotalMoney] = useState<number>(0);
   const [detailMoney, setDetailMoney] = useState<any>([]);
   const [detailTreasure, setDetailTreasure] = useState<any>([]);
   /**
@@ -69,9 +64,9 @@ const MyPageMain = () => {
   const [percentSavings, setPercentSavings] = useState(0);
   const [percentTreasure, setPercentTreasure] = useState(0);
 
-  const { data: userMyData } = useQuery<UserInfoDataTypes>(["userMyInfo"], getUserInfo, {
+  const { data: userMyData, isSuccess } = useQuery<UserInfoDataTypes>(["userMyInfo"], getUserInfo, {
     onSuccess: (response) => {
-      setTotalMoney(getTotalMoney(response!));
+      setTotalMoney(getTotalMoney(response));
       setDetailMoney(response.detailMoney);
       setDetailTreasure(response.detailTreasure);
     },
@@ -81,35 +76,48 @@ const MyPageMain = () => {
   });
 
   useEffect(() => {
-    setPercentDeposit(calculatePercentage(detailMoney.totalDeposit || 0, totalMoney));
-    setPercentSavings(calculatePercentage(detailMoney.totalSavings || 0, totalMoney));
-    setPercentTreasure(calculatePercentage(detailMoney.totalTreasure || 0, totalMoney));
-    setPieData([
-      {
-        title: "예금",
-        value: percentDeposit,
-        color: "#f4b7b5",
-      },
-      {
-        title: "적금",
-        value: percentSavings,
-        color: "#98caff",
-      },
-      {
-        title: "보물",
-        value: percentTreasure,
-        color: "#f8bd57",
-      },
-    ]);
-  }, [totalMoney, detailMoney, detailTreasure, percentDeposit, percentSavings, percentTreasure]);
+    setPieData([]);
+    if (detailMoney.totalDeposit > 0) {
+      setPercentDeposit(calculatePercentage(detailMoney.totalDeposit, totalMoney));
+      setPieData(([...data]) => [
+        ...data,
+        {
+          title: "예금",
+          value: percentDeposit,
+          color: "#f4b7b5",
+        },
+      ]);
+    }
+    if (detailMoney.totalSavings > 0) {
+      setPercentSavings(calculatePercentage(detailMoney.totalSavings || 0, totalMoney));
+      setPieData(([...data]) => [
+        ...data,
+        {
+          title: "적금",
+          value: percentSavings,
+          color: "#98caff",
+        },
+      ]);
+    }
+    if (detailMoney.totalTreasure > 0) {
+      setPercentTreasure(calculatePercentage(detailMoney.totalTreasure || 0, totalMoney));
+      setPieData(([...data]) => [
+        ...data,
+        {
+          title: "보물",
+          value: percentTreasure,
+          color: "#f8bd57",
+        },
+      ]);
+    }
+  }, [detailMoney, detailTreasure, percentDeposit, percentSavings, percentTreasure]);
 
   console.log("detailMoney", detailMoney);
   console.log("pieData : ", pieData);
 
   function selectRank() {
-    if (totalMoney < 10000) {
-      return <S.Ranking6Icon />;
-    } else if (totalMoney >= 10000 && totalMoney < 15000) {
+    if (totalMoney < 0) return <></>;
+    else if (totalMoney >= 10000 && totalMoney < 15000) {
       return <S.Ranking6Icon />;
     } else if (totalMoney >= 15000 && totalMoney < 20000) {
       return <S.Ranking5Icon />;
@@ -135,7 +143,7 @@ const MyPageMain = () => {
         return <S.BigProfileKollyImg />;
       case STAR_FRIENDS.LAMU:
         return <S.BigProfileLamuImg />;
-      default:
+      case STAR_FRIENDS.AGO:
         return <S.BigProfileAgoImg />;
     }
   }
@@ -157,8 +165,7 @@ const MyPageMain = () => {
             </S.RankListWrapper>
           </S.UserNickNameContainer>
           <S.UserInfoContainer>
-            <S.UserProfileContainer>{selectCharacter(userMyData?.character || "루나키키")}</S.UserProfileContainer>
-
+            <S.UserProfileContainer>{selectCharacter(userMyData?.character || "")}</S.UserProfileContainer>
             <S.UserMoneyInfoContainer>
               <S.UserMoneyTotalWrapper>
                 <p className="text"> 총 자산 </p>
@@ -187,11 +194,7 @@ const MyPageMain = () => {
               </S.UserTreasureTotalWrapper>
             </S.UserMoneyInfoContainer>
             <S.PieChartContainer>
-              {percentDeposit == 0 && percentSavings == 0 && percentTreasure == 0 ? (
-                <>
-                  <img className="piechartWrapper" src={PieChartImg} alt="piechart" />
-                </>
-              ) : (
+              {pieData && (
                 <PieChart
                   data={pieData}
                   label={({ dataEntry }) => {
@@ -199,7 +202,6 @@ const MyPageMain = () => {
                     return fullLines;
                   }}
                   labelPosition={50}
-                  animate
                   labelStyle={{
                     fontSize: "0.8rem",
                   }}

@@ -17,7 +17,7 @@ interface UserType {
 export async function postCheckEmail(email: EmailType) {
   const data = await axios.post(`/api/check-email`, email, { withCredentials: true });
 
-  console.log(data);
+  // console.log(data);
   return data;
 }
 /**
