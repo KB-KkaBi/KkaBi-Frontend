@@ -1,40 +1,51 @@
 import { AccountLogData } from "./AccountLog";
 import * as S from "./style";
 
-type LogDetailProps = {
+interface LogDetailProps {
   log: AccountLogData;
-};
+  // accountLogId: number;
+  // accountLogDate: string;
+  // accountLogMoney: number;
+  // transactionType: string;
+  // transactionReason: string;
+  // transactionAmount: string;
+}
 
-function LogDetailContainer(props: LogDetailProps) {
+function LogDetailContainer(props: any) {
   const { log } = props;
+
+  console.log(log);
+  function isDeposit(transactionType: string) {
+    return transactionType === "입금";
+  }
 
   return (
     <S.LogDetail>
-      <S.TransactionDate>{log.date}</S.TransactionDate>
+      <S.TransactionDate>{log.accountLogDate}</S.TransactionDate>
       <S.WithdrawAmount>
-        {log.withdraw && (
+        {!isDeposit(log.transactionType) && (
           <>
             <S.Won>\&nbsp;</S.Won>
-            {log.withdraw}
+            {log.transactionAmount}
           </>
         )}
       </S.WithdrawAmount>
       <S.DepositAmount>
-        {log.deposit && (
+        {isDeposit(log.transactionType) && (
           <>
             <S.Won>\&nbsp;</S.Won>
-            {log.deposit}
+            {Math.abs(log.transactionAmount)}
           </>
         )}
       </S.DepositAmount>
-      <S.TransactionDetail>{log.detail}</S.TransactionDetail>
+      <S.TransactionDetail>{log.transactionReason}</S.TransactionDetail>
       <S.Balance>
-        {log.balance && (
-          <>
-            <S.Won>\&nbsp;</S.Won>
-            {log.balance}
-          </>
-        )}
+        {/* {log.balance && ( */}
+        <>
+          <S.Won>\&nbsp;</S.Won>
+          {log.accountLogMoney}
+        </>
+        {/* )} */}
       </S.Balance>
     </S.LogDetail>
   );

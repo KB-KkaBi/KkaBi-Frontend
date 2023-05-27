@@ -29,6 +29,7 @@ const AccountLog = () => {
   // 페이지네이션
   const { data: accoutLogPagenation } = useQuery(["pagention"], () => getAccountLogPagenation(3, page));
 
+  // console.log(accoutLogPagenation);
   function checkTotalPage() {
     const totalPage = Math.floor(accountLogList?.length / 10);
     return accountLogList?.length % 10 === 0 ? totalPage : totalPage + 1;
