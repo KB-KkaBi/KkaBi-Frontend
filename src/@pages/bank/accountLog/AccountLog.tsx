@@ -23,11 +23,11 @@ const AccountLog = () => {
   const navigate = useNavigate();
   const accountId = useRecoilValue(bankLog).accountId;
 
-  const { data: accountName } = useQuery(["accountName"], () => getAccountName(3));
+  const { data: accountName } = useQuery(["accountName"], () => getAccountName(accountId));
   // 전체 불러오기
-  const { data: accountLogList } = useQuery(["getTotalAccountLog"], () => getTotalAccountLog(3));
+  const { data: accountLogList } = useQuery(["getTotalAccountLog"], () => getTotalAccountLog(accountId));
   // 페이지네이션
-  const { data: accoutLogPagenation } = useQuery(["pagention", page], () => getAccountLogPagenation(3, page));
+  const { data: accoutLogPagenation } = useQuery(["pagention", page], () => getAccountLogPagenation(accountId, page));
 
   // console.log(accoutLogPagenation);
   function checkTotalPage() {
