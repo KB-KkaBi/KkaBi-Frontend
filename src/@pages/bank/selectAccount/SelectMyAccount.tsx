@@ -60,8 +60,8 @@ const SelectMyAccount = () => {
   }
 
   return (
-    <SelectMyAccountWrapper>
-      <PaperLayout>
+    <PaperLayout>
+      <SelectMyAccountWrapper>
         <BackButtonWrapper>
           <BackArrowIcon fillColor="#5F564C" />
         </BackButtonWrapper>
@@ -127,8 +127,8 @@ const SelectMyAccount = () => {
         <ButtonWrapper>
           <Button onClick={moveToBank}>확인</Button>
         </ButtonWrapper>
-      </PaperLayout>
-    </SelectMyAccountWrapper>
+      </SelectMyAccountWrapper>
+    </PaperLayout>
   );
 };
 
@@ -171,6 +171,9 @@ const SelectMyAccountWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 100%;
 `;
 
 const ButtonWrapper = styled.section`

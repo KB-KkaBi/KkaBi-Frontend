@@ -16,6 +16,7 @@ export { ReactComponent as CharacterKolly } from "./icon/characterKolly.svg";
 export { ReactComponent as CharacterLamu } from "./icon/characterLamu.svg";
 export { ReactComponent as Crown } from "./icon/crown.svg";
 export { ReactComponent as Diamond } from "./icon/diamond.svg";
+export { ReactComponent as HomeBankIc } from "./icon/homeBankIc.svg";
 export { ReactComponent as HomeKkaBiBankIc } from "./icon/homeKkaBiBankIc.svg";
 export { ReactComponent as HomeMyActiveIc } from "./icon/homeMyActiveIc.svg";
 export { ReactComponent as HomeMyInfoIc } from "./icon/homeMyInfoIc.svg";
