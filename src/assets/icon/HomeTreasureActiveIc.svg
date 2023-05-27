@@ -1,9 +1,9 @@
 <svg width="471" height="528" viewBox="0 0 471 528" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g clip-path="url(#clip0_1080_34)">
-<rect x="-212" y="-284" width="1920" height="1080" fill="url(#pattern0)"/>
+<rect x="-212" y="-284" width="1920" height="1080" fill="url(#treasure0)"/>
 </g>
 <defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<pattern id="treasure0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_1080_34" transform="scale(0.000520833 0.000925926)"/>
 </pattern>
 <clipPath id="clip0_1080_34">
