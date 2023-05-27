@@ -21,12 +21,12 @@ function LogDetailContainer(props: any) {
 
   return (
     <S.LogDetail>
-      <S.TransactionDate>{log.accountLogDate}</S.TransactionDate>
+      <S.TransactionDate>{log.accountLogDate.slice(0, 10)}</S.TransactionDate>
       <S.WithdrawAmount>
         {!isDeposit(log.transactionType) && (
           <>
             <S.Won>\&nbsp;</S.Won>
-            {log.transactionAmount}
+            {Math.abs(log.transactionAmount)}
           </>
         )}
       </S.WithdrawAmount>
@@ -34,7 +34,7 @@ function LogDetailContainer(props: any) {
         {isDeposit(log.transactionType) && (
           <>
             <S.Won>\&nbsp;</S.Won>
-            {Math.abs(log.transactionAmount)}
+            {log.transactionAmount}
           </>
         )}
       </S.DepositAmount>
