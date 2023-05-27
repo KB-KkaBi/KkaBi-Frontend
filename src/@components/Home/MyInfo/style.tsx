@@ -15,7 +15,7 @@ import { styled } from "styled-components";
 import active from "../../../assets/icon/homeMyActiveIc.svg";
 import paper from "../../../assets/icon/homeMyInfoIc.svg";
 
-export const MyInfoWrapper = styled.section<{ isHover: boolean }>`
+export const MyInfoWrapper = styled.section<{ $isHover: boolean }>`
   position: absolute;
   display: flex;
   justify-content: space-between;
@@ -27,7 +27,7 @@ export const MyInfoWrapper = styled.section<{ isHover: boolean }>`
   margin: 2rem;
   padding: 3.2rem;
 
-  background-image: url(${({ isHover }) => (isHover ? active : paper)});
+  background-image: url(${({ $isHover }) => ($isHover ? active : paper)});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

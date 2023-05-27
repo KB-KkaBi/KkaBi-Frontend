@@ -41,7 +41,11 @@ const MyInfo = (props: MyInfoProps) => {
   }
 
   return (
-    <St.MyInfoWrapper onClick={onClick} onMouseEnter={() => setMy(true)} onMouseLeave={() => setMy(false)} isHover={my}>
+    <St.MyInfoWrapper
+      onClick={onClick}
+      onMouseEnter={() => setMy(true)}
+      onMouseLeave={() => setMy(false)}
+      $isHover={my}>
       {miniProfile()}
       <St.TextWrapper>
         <St.UserInfoWrapper>
