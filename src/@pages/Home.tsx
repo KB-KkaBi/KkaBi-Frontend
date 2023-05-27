@@ -92,10 +92,10 @@ const ImgWrapper = styled.section`
   position: absolute;
   bottom: 15rem;
 
-  width: 140rem;
+  width: 165rem;
 `;
 
 const Icon = styled.section`
   cursor: pointer;
-  margin-bottom: -10rem;
+  margin-bottom: 0rem;
 `;

@@ -42,7 +42,7 @@ const Deposit = () => {
       accountLogMoney: money + Number(amount),
       transactionAmount: Number(amount),
       transactionReason: reason,
-      transactionType: "출금",
+      transactionType: "입금",
     });
   };
 
