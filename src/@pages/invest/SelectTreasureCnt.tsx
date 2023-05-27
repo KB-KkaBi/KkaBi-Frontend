@@ -95,6 +95,7 @@ const SelectTreasureCnt = () => {
       setIsLessMoney(true);
     }
   }
+  console.debug(investData);
 
   useEffect(() => {
     investLog.transactionType && postLog(investLog);
