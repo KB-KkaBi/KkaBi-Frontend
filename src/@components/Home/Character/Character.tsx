@@ -1,4 +1,5 @@
 import { STAR_FRIENDS } from "@/core/starFriends";
+import { styled } from "styled-components";
 import * as St from "./style";
 
 interface CharacterProps {
@@ -25,7 +26,14 @@ const Character = (props: CharacterProps) => {
     }
   }
 
-  return <St.CharacterWrapper>{characterImg()}</St.CharacterWrapper>;
+  return <CharacterWrapper>{characterImg()}</CharacterWrapper>;
 };
 
 export default Character;
+
+const CharacterWrapper = styled.section`
+  display: flex;
+  align-items: flex-end;
+
+  /* margin-top: 30rem; */
+`;

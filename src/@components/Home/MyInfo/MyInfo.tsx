@@ -1,4 +1,5 @@
 import { STAR_FRIENDS } from "@/core/starFriends";
+import { styled } from "styled-components";
 import * as St from "./style";
 
 interface MyInfoProps {
@@ -42,7 +43,7 @@ const MyInfo = (props: MyInfoProps) => {
       {miniProfile()}
       <St.TextWrapper>
         <St.UserInfoWrapper>
-          <p>{nickName}</p>
+          <Text>{nickName}</Text>
           {rank()}
         </St.UserInfoWrapper>
         <St.MoneyWrapper>
@@ -55,3 +56,9 @@ const MyInfo = (props: MyInfoProps) => {
 };
 
 export default MyInfo;
+
+const Text = styled.p`
+  display: flex;
+  justify-content: flex-end;
+  width: 5rem;
+`;

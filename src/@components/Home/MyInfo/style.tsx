@@ -1,7 +1,7 @@
 import {
-  MiniProfileKiKi,
   MiniProfileAgo,
   MiniProfileBB,
+  MiniProfileKiKi,
   MiniProfileKolly,
   MiniProfileLamu,
   Rank1,
