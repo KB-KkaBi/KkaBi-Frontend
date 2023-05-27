@@ -6,16 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { calculatePercentage, getTotalMoney } from "./libs/factory";
 import * as S from "./styles/mypageStyle";
 
+import { postLogout } from "@/api/logout";
+import { getUserInfo } from "@/api/user";
 import Treasure1 from "@/assets/icon/miniTreasure1.svg";
 import Treasure2 from "@/assets/icon/miniTreasure2.svg";
 import Treasure3 from "@/assets/icon/miniTreasure3.svg";
 import Treasure4 from "@/assets/icon/miniTreasure4.svg";
-import { useMutation, useQuery } from "react-query";
 import { UserInfoDataTypes } from "@/core/userInfoData";
-import { getUserInfo } from "@/api/user";
 import { userSequence } from "@/recoil/User";
+import { useMutation, useQuery } from "react-query";
 import { useRecoilState } from "recoil";
-import { postLogout } from "@/api/logout";
 
 const MyPageMain = () => {
   const navigate = useNavigate();
@@ -236,7 +236,7 @@ const MyPageMain = () => {
               onClick={() => {
                 navigate("../quiznote");
               }}>
-              퀴즈 오답노트
+              퀴즈 복습노트
             </Button>
             <Button className="btn" onClick={handleLogoutModalOpen}>
               로그아웃
