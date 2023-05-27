@@ -1,10 +1,9 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
+import { updatePassword } from "@/api/mypage";
 import React, { useCallback, useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styles/editpasswordStyle";
-import { useMutation } from "react-query";
-import { updatePassword } from "@/api/mypage";
-
 
 const EditPassword = () => {
   const navigate = useNavigate();
@@ -12,12 +11,14 @@ const EditPassword = () => {
   const [newPassword, setNewPassword] = useState(""); // 새 비밀번호
   const [newPasswordConfirm, setNewPasswordConfirm] = useState(""); // 새 비밀번호 확인
   const [open, setOpen] = useState(false); //Modal Open
+  const [errorOpen, setErrorOpen] = useState(false);
 
   const handleModalOpen = useCallback(() => {
     setOpen(true);
   }, []);
   const handleModalClose = useCallback(() => {
     setOpen(false);
+    setErrorOpen(false);
   }, []);
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,28 +31,32 @@ const EditPassword = () => {
     setNewPasswordConfirm(e.target.value);
   };
 
-  const {mutate: updatePost} = useMutation(updatePassword, {
+  const { mutate: updatePost } = useMutation(updatePassword, {
     onSuccess: (response) => {
       navigate("/mypage");
     },
     onError: (error) => {
       //console.log(error);
-      
+
       handleModalOpen();
-    }
+    },
   });
 
   /**
-     * 기존 비밀번호와 새 비밀번호를 전송한다.
-     * 결과로 status = 200이 오면 마이페이지로 가기
-     * 변경이 안되면 에러 모달 띄어주고 다시 마이페이지로 가기
-     * 변경이 되면 마이 페이지로 가기
-     *
-     * */
+   * 기존 비밀번호와 새 비밀번호를 전송한다.
+   * 결과로 status = 200이 오면 마이페이지로 가기
+   * 변경이 안되면 에러 모달 띄어주고 다시 마이페이지로 가기
+   * 변경이 되면 마이 페이지로 가기
+   *
+   * */
   //login 할때 할 함수
   const handlePasswordEditClicked = () => {
-    updatePost({currentPw: password, newPw: newPassword})
-  }
+    if (password !== newPassword) {
+      updatePost({ currentPw: password, newPw: newPassword });
+    } else {
+      setErrorOpen(true);
+    }
+  };
   return (
     <>
       <PaperLayout
@@ -83,12 +88,23 @@ const EditPassword = () => {
               }
             />
           </S.NewPasswordConfirmInputWrapper>
-          <Button color="primary" type="submit" onClick={handlePasswordEditClicked} disabled={newPassword !== newPasswordConfirm}>
+          <Button
+            color="primary"
+            type="submit"
+            onClick={handlePasswordEditClicked}
+            disabled={newPassword !== newPasswordConfirm}>
             확인
           </Button>
           <Modal open={open} onClose={handleModalClose}>
             <S.ModalWrapper>
               <p className="text">비밀번호가 일치하지 않습니다</p>
+              <Button onClick={handleModalClose}>확인</Button>
+            </S.ModalWrapper>
+          </Modal>
+          <Modal open={errorOpen} onClose={handleModalClose}>
+            <S.ModalWrapper>
+              <p>현재 비밀번호와</p>
+              <p className="text">새 비밀번호가 일치합니다</p>
               <Button onClick={handleModalClose}>확인</Button>
             </S.ModalWrapper>
           </Modal>

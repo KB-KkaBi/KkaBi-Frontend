@@ -2,30 +2,30 @@ import { CharacterAgo, CharacterBB, CharacterKiKi, CharacterKolly, CharacterLamu
 import { styled } from "styled-components";
 
 export const CharacterWrapper = styled.article`
-  margin-left: 3rem;
+  /* margin-left: 3rem; */
 `;
 
 export const CharacterAgoImg = styled(CharacterAgo)`
-  width: 70rem;
-  height: 80rem;
+  width: 50rem;
+  height: 50rem;
 `;
 
 export const CharacterBBImg = styled(CharacterBB)`
-  width: 70rem;
-  height: 80rem;
+  width: 50rem;
+  height: 50rem;
 `;
 
 export const CharacterKiKiImg = styled(CharacterKiKi)`
-  width: 60rem;
-  height: 70rem;
+  width: 50rem;
+  height: 50rem;
 `;
 
 export const CharacterKollyImg = styled(CharacterKolly)`
-  width: 70rem;
-  height: 80rem;
+  width: 50rem;
+  height: 50rem;
 `;
 
 export const CharacterLamuImg = styled(CharacterLamu)`
-  width: 70rem;
-  height: 80rem;
+  width: 50rem;
+  height: 50rem;
 `;

@@ -1,3 +1,5 @@
+export { ReactComponent as HomeBankActiveIc } from "./icon/HomeBankActiveIc.svg";
+export { ReactComponent as HomeTreasureActiveIc } from "./icon/HomeTreasureActiveIc.svg";
 export { ReactComponent as Account1 } from "./icon/account1.svg";
 export { ReactComponent as Account2 } from "./icon/account2.svg";
 export { ReactComponent as Account3 } from "./icon/account3.svg";
@@ -15,10 +17,12 @@ export { ReactComponent as CharacterLamu } from "./icon/characterLamu.svg";
 export { ReactComponent as Crown } from "./icon/crown.svg";
 export { ReactComponent as Diamond } from "./icon/diamond.svg";
 export { ReactComponent as HomeKkaBiBankIc } from "./icon/homeKkaBiBankIc.svg";
+export { ReactComponent as HomeMyActiveIc } from "./icon/homeMyActiveIc.svg";
 export { ReactComponent as HomeMyInfoIc } from "./icon/homeMyInfoIc.svg";
 export { ReactComponent as HomeTreasureIc } from "./icon/homeTreasureIc.svg";
 export { ReactComponent as LandingLogoIc } from "./icon/landingLogoIc.svg";
 export { ReactComponent as LeftArrow } from "./icon/leftArrow.svg";
+export { ReactComponent as MainPageTreasureIc } from "./icon/mainPageTreasureIc.svg";
 export { ReactComponent as MiniProfileAgo } from "./icon/miniProfileAgo.svg";
 export { ReactComponent as MiniProfileBB } from "./icon/miniProfileBB.svg";
 export { ReactComponent as MiniProfileKiKi } from "./icon/miniProfileKiKi.svg";

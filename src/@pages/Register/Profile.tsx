@@ -1,7 +1,7 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
-import React, { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
 import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import ago from "../../assets/icon/characterAgo.svg";
@@ -10,9 +10,10 @@ import kiki from "../../assets/icon/characterKiki.svg";
 import kolly from "../../assets/icon/characterKolly.svg";
 import lamu from "../../assets/icon/characterLamu.svg";
 
-import { registerEmail, registerNickname, registerPassword, registerSelectedCharacter } from "@/recoil/Register";
-import { useRecoilState, useRecoilValue } from "recoil";
 import { postRegister } from "@/api/register";
+import { registerEmail, registerPassword, registerSelectedCharacter } from "@/recoil/Register";
+import { userNickname } from "@/recoil/User";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Profile = () => {
 
   const [isSuccess, setIsSuccess] = useState(false); // 회원가입 성공여부
   const [selectedCharacter, setSelectedCharacter] = useRecoilState(registerSelectedCharacter); // 사용자가 선택한 캐릭터 이름
-  const [nickName, setNickName] = useRecoilState(registerNickname);
+  const [nickName, setNickName] = useRecoilState(userNickname);
 
   const [modalOpen, setModalOpen] = useState(false); //Register Success Modal Open
 
@@ -39,6 +40,10 @@ const Profile = () => {
 
   const handleNickNameInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setNickName(e.target.value);
+  }, []);
+
+  useEffect(() => {
+    setSelectedCharacter("");
   }, []);
 
   //테스트하기
@@ -114,7 +119,7 @@ const Profile = () => {
         </CharacterTextContainer>
         <NickNameWrapper>
           <p>NickName</p>
-          <TextField placeholder="닉네임을 입력해주세요" value={nickName} onChange={handleNickNameInput} />
+          <TextField placeholder="닉네임을 입력해주세요" onChange={handleNickNameInput} />
         </NickNameWrapper>
         <Button disabled={!nickName} onClick={handleRegisterlicked}>
           확인

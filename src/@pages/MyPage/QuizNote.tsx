@@ -27,7 +27,7 @@ const QuizWrongNote = () => {
       handleClick={() => {
         navigate("/mypage");
       }}>
-      <S.QuizNoteTitle>퀴즈 오답노트</S.QuizNoteTitle>
+      <S.QuizNoteTitle>퀴즈 복습노트</S.QuizNoteTitle>
       <S.QuizNoteSubtitle>
         <S.QuizNumber>번호</S.QuizNumber>
         <S.QuizQuestion>문제</S.QuizQuestion>

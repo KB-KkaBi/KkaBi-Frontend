@@ -1,13 +1,13 @@
 import Character from "@/@components/Home/Character/Character";
 import { getUserInfo } from "@/api/user";
-import { HomeKkaBiBankIc, HomeTreasureIc } from "@/assets";
+import { HomeKkaBiBankIc, MainPageTreasureIc } from "@/assets";
 import { UserInfoDataTypes } from "@/core/userInfoData";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import MyInfo from "../@components/Home/MyInfo/MyInfo";
 import Background from "../assets/image/homeBackground.png";
-import { useState } from "react";
 
 type DetailMoney = {
   totalDeposit?: number;
@@ -50,7 +50,7 @@ const Home = () => {
       />
       <ImgContainer>
         <ImgWrapper>
-          <HomeTreasureIc onClick={moveToTreasure} />
+          <MainPageTreasureIc onClick={moveToTreasure} />
           <Character characterName={userInfoData?.character || ""} />
           <HomeKkaBiBankIc onClick={moveToBank} />
         </ImgWrapper>

@@ -1,5 +1,7 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
 
+const { persistAtom } = recoilPersist();
 
 export const bankLog = atom({
   key: "bankLog",
@@ -10,5 +12,5 @@ export const bankLog = atom({
     transactionReason: ``,
     transactionType: ``,
   },
+  effects_UNSTABLE: [persistAtom],
 });
-

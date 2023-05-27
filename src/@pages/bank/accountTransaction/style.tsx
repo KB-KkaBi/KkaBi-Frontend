@@ -5,7 +5,10 @@ export const TransactionContent = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding-top: 20.5rem;
+
+  width: 100%;
+  height: 100%;
+  /* padding-top: 20.5rem; */
   p {
     margin-bottom: 0.2rem;
   }

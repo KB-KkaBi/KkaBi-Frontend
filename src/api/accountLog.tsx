@@ -7,7 +7,7 @@ export async function getTotalAccountLog(accountId: number) {
 }
 
 export async function getAccountLogPagenation(accountId: number, page: number) {
-  const data = await axios.get(`/api/account-log?accountId=${accountId}&size=8&page=${page}`, {
+  const data = await axios.get(`/api/account-log?accountId=${accountId}&size=10&page=${page}`, {
     withCredentials: true,
   });
 

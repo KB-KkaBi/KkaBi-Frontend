@@ -1,11 +1,11 @@
 import { Button, Modal, PaperLayout, TextField } from "@/@components";
+import { postCheckEmail } from "@/api/register";
 import { registerEmail, registerPassword, registerPasswordConfirm } from "@/recoil/Register";
 import React, { useCallback, useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { useMutation } from "react-query";
-import { postCheckEmail } from "@/api/register";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -93,7 +93,7 @@ const Register = () => {
             type="text"
             onChange={handleEmailInput}
             error={!isEmail && email !== ""}
-            helperText={!isEmail && "이메일 형식이 아니에요"}
+            helperText={!isEmail && email !== "" && "이메일 형식이 아니에요"}
           />
         </EmailInputWrapper>
         <PasswordInputWrapper>
