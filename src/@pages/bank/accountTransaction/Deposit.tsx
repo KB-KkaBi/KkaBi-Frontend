@@ -42,7 +42,7 @@ const Deposit = () => {
       accountLogMoney: money + Number(amount),
       transactionAmount: Number(amount),
       transactionReason: reason,
-      transactionType: "출금",
+      transactionType: "입금",
     });
   };
 
@@ -54,7 +54,7 @@ const Deposit = () => {
   return (
     <PaperLayout handleClick={() => navigate("../")}>
       <S.TransactionContent>
-        <S.Guide>얼마를 예금할까요?</S.Guide>
+        <S.Guide>얼마를 입금할까요?</S.Guide>
         <TextField
           type="number"
           onChange={handleAmountChange}
@@ -62,7 +62,7 @@ const Deposit = () => {
           InputProps={{
             endAdornment: <S.Won color={!!amount ? "#000" : "#aaaaaa"}>\</S.Won>,
           }}></TextField>
-        <S.Guide>예금 사유를 작성해주세요</S.Guide>
+        <S.Guide>입금 사유를 작성해주세요</S.Guide>
         <TextField value={reason} placeholder="ex. 용돈" onChange={handleReasonChange}></TextField>
         <Button onClick={handleOpen} disabled={!amount || !reason}>
           확인
@@ -70,7 +70,7 @@ const Deposit = () => {
       </S.TransactionContent>
       <Modal open={open}>
         <>
-          <S.Guide>예금되었습니다</S.Guide>
+          <S.Guide>입금되었습니다</S.Guide>
           <Button onClick={handleClose}>확인</Button>
         </>
       </Modal>

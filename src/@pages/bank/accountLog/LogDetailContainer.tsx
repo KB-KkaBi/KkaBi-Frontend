@@ -23,15 +23,15 @@ function LogDetailContainer(props: any) {
     <S.LogDetail>
       <S.TransactionDate>{log?.accountLogDate.slice(0, 10)}</S.TransactionDate>
       <S.WithdrawAmount>
-        {isDeposit(log?.transactionType) && (
+        {!isDeposit(log?.transactionType) && (
           <>
             <S.Won>\&nbsp;</S.Won>
-            {log?.transactionAmount?.toLocaleString()}
+            {Math.abs(log?.transactionAmount)?.toLocaleString()}
           </>
         )}
       </S.WithdrawAmount>
       <S.DepositAmount>
-        {!isDeposit(log?.transactionType) && (
+        {isDeposit(log?.transactionType) && (
           <>
             <S.Won>\&nbsp;</S.Won>
             {Math.abs(log?.transactionAmount)?.toLocaleString()}

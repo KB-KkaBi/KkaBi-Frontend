@@ -41,7 +41,7 @@ const MyPageMain = () => {
 
   const { mutate: logout } = useMutation(postLogout, {
     onSuccess: (response) => {
-      setUserSeq(-123); // 리코일 userseq값 초기화시키기
+      setUserSeq(0); // 리코일 userseq값 초기화시키기
       navigate("/landing");
     },
     onError: (error) => {
