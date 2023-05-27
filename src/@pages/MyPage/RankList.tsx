@@ -26,7 +26,7 @@ const RankList = () => {
         }}>
         <S.RankListRootContainer>
           <S.TitleWrapper>
-            <p className="text">랭킹</p>
+            <p className="text">뱃지</p>
           </S.TitleWrapper>
           <S.RankInfoContainer>
             {RankInfoList.map((item) => {
