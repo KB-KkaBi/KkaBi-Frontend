@@ -1,4 +1,3 @@
-import { EmailType } from "@/api/register";
 import { atom } from "recoil";
 
 export const registerEmail = atom({
@@ -18,7 +17,7 @@ export const registerPasswordConfirm = atom({
 
 export const registerSelectedCharacter = atom({
   key: "selectedCharacter",
-  default: "루나키키",
+  default: "",
 });
 
 export const registerNickname = atom({

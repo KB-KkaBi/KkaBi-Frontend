@@ -1,14 +1,14 @@
 import { Button, PaperLayout } from "@/@components";
-import Card from "@/@components/common/card/Card";
+import { BackArrowIcon } from "@/@components/common/icon/Icons";
 import { getAccountInfo, getMyAccount } from "@/api/account";
 import { MyAccount } from "@/core/myAccountData";
+import { bankLog } from "@/recoil/bank";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import { styled } from "styled-components";
 import AccountCard from "./AccountCard";
-import { useRecoilState } from "recoil";
-import { bankLog } from "@/recoil/bank";
 
 const SelectMyAccount = () => {
   const [existAccountId, setExistAccountId] = useState<number[]>([]);
@@ -46,9 +46,9 @@ const SelectMyAccount = () => {
   function moveToBank() {
     console.debug("myAccountId" + myAccountId);
     console.debug("accountMoney" + accountMoney);
-    setBankLogs((prev) => ({ ...prev, accountId: myAccountId, accountLogMoney: accountMoney }));
+    setBankLogs((prev: any) => ({ ...prev, accountId: myAccountId, accountLogMoney: accountMoney }));
 
-    navigate("../my-account");
+    navigate("../my-account", { state: clickId });
   }
 
   useEffect(() => {
@@ -62,6 +62,9 @@ const SelectMyAccount = () => {
   return (
     <SelectMyAccountWrapper>
       <PaperLayout>
+        <BackButtonWrapper>
+          <BackArrowIcon fillColor="#5F564C" />
+        </BackButtonWrapper>
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
@@ -189,4 +192,9 @@ const AccountTitle = styled.p<{ $isEven: boolean }>`
 
 const AccountWrapper = styled.div`
   display: flex;
+`;
+
+const BackButtonWrapper = styled.section`
+  position: absolute;
+  margin: 1% 0 0 3%;
 `;

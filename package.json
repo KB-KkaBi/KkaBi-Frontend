@@ -24,6 +24,7 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.11.1",
     "recoil": "^0.7.7",
+    "recoil-persist": "^4.2.0",
     "styled-components": "^6.0.0-rc.1",
     "vite-plugin-svgr": "^3.2.0"
   },

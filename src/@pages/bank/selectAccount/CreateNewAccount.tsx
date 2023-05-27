@@ -1,14 +1,14 @@
 import { Button, PaperLayout } from "@/@components";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
-import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
-import * as S from "./style";
-import AccountCardContent from "./AccountCardContent";
-import AccountCard from "./AccountCard";
-import { useState } from "react";
-import { useQuery } from "react-query";
 import { getAccountInfo } from "@/api/account";
 import { AccountTypes } from "@/core/accountsData";
+import { useState } from "react";
+import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
+import AccountCard from "./AccountCard";
+import AccountCardContent from "./AccountCardContent";
+import * as S from "./style";
 
 const CreateNewAccount = () => {
   const [createNewAccount, setCreatenewAccount] = useState({
@@ -17,16 +17,28 @@ const CreateNewAccount = () => {
     interestRate: 0,
     information: "",
     dueDate: 0,
-  })
+  });
 
   const [hoverId, setHoverId] = useState(-1);
 
   const navigate = useNavigate();
 
-  const {data: accountData} = useQuery(["accountInfo"], getAccountInfo);
+  const { data: accountData } = useQuery(["accountInfo"], getAccountInfo);
 
-  function clickAccountCare(accountInfoId: number, accountType: string, interestRate: number, information: string, dueDate: number) {
-    setCreatenewAccount({ accountInfoId: accountInfoId, accountType: accountType, interestRate: interestRate, information: information, dueDate: dueDate});
+  function clickAccountCare(
+    accountInfoId: number,
+    accountType: string,
+    interestRate: number,
+    information: string,
+    dueDate: number,
+  ) {
+    setCreatenewAccount({
+      accountInfoId: accountInfoId,
+      accountType: accountType,
+      interestRate: interestRate,
+      information: information,
+      dueDate: dueDate,
+    });
   }
 
   function checkIsHoverOfClick(id: number) {
@@ -34,54 +46,56 @@ const CreateNewAccount = () => {
   }
 
   function moveToCreateAccountName() {
-    navigate("../create-new-account-name", {state: createNewAccount.accountInfoId});
+    navigate("../create-new-account-name", { state: createNewAccount.accountInfoId });
   }
 
   return (
-    <CreateNewAccountWrapper>
-      <PaperLayout>
-        <BackButtonWrapper>
-          <BackArrowIcon fillColor="#5F564C" />
-        </BackButtonWrapper>
+    <PaperLayout>
+      <BackButtonWrapper>
+        <BackArrowIcon fillColor="#5F564C" />
+      </BackButtonWrapper>
+      <CreateNewAccountWrapper>
         <Title>계좌를 선택해주세요</Title>
         <CardContainer>
           <CardWrapper>
-            {accountData?.map(({ accountInfoId, accountType, information, interestRate, dueDate } : AccountTypes) => (
+            {accountData?.map(({ accountInfoId, accountType, information, interestRate, dueDate }: AccountTypes) => (
               <div key={accountInfoId}>
                 {accountInfoId % 2 !== 0 ? (
                   <S.FlexBox>
                     {checkIsHoverOfClick(accountInfoId) ? (
-                      <AccountCardContent id={accountInfoId} type={accountType} infor={information}/>
+                      <AccountCardContent id={accountInfoId} type={accountType} infor={information} />
                     ) : (
                       <S.BlankCard></S.BlankCard>
                     )}
-                    
+
                     <AccountCard
                       key={accountInfoId}
                       account={accountInfoId}
-                      onClick={()=>clickAccountCare(accountInfoId, accountType, interestRate, information, dueDate)}
-                      isClicked={(checkIsHoverOfClick(accountInfoId))}
+                      onClick={() => clickAccountCare(accountInfoId, accountType, interestRate, information, dueDate)}
+                      isClicked={checkIsHoverOfClick(accountInfoId)}
                       onMouseEnter={() => setHoverId(accountInfoId)}
-                      onMouseOut={() => setHoverId(-1)}/>
+                      onMouseOut={() => setHoverId(-1)}
+                    />
                   </S.FlexBox>
                 ) : (
                   <S.FlexBox>
                     <AccountCard
                       key={accountInfoId}
                       account={accountInfoId}
-                      onClick={()=>clickAccountCare(accountInfoId, accountType, interestRate, information, dueDate)}
-                      isClicked={(checkIsHoverOfClick(accountInfoId))}
+                      onClick={() => clickAccountCare(accountInfoId, accountType, interestRate, information, dueDate)}
+                      isClicked={checkIsHoverOfClick(accountInfoId)}
                       onMouseEnter={() => setHoverId(accountInfoId)}
                       onMouseOut={() => setHoverId(-1)}
                     />
                     {checkIsHoverOfClick(accountInfoId) ? (
-                      <AccountCardContent 
+                      <AccountCardContent
                         key={accountInfoId}
                         id={accountInfoId}
                         type={accountType}
-                        infor={information}/>
+                        infor={information}
+                      />
                     ) : (
-                      <S.BlankCard/>
+                      <S.BlankCard />
                     )}
                   </S.FlexBox>
                 )}
@@ -92,8 +106,8 @@ const CreateNewAccount = () => {
         <ButtonWrapper>
           <Button onClick={moveToCreateAccountName}>확인</Button>
         </ButtonWrapper>
-      </PaperLayout>
-    </CreateNewAccountWrapper>
+      </CreateNewAccountWrapper>
+    </PaperLayout>
   );
 };
 
@@ -109,6 +123,9 @@ const CreateNewAccountWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 100%;
 `;
 
 const CardWrapper = styled.section`
@@ -134,7 +151,7 @@ const ButtonWrapper = styled.div`
   margin-top: 1rem;
 `;
 
-const BackButtonWrapper = styled.section`
+export const BackButtonWrapper = styled.section`
   position: absolute;
   margin: 1% 0 0 3%;
 `;
