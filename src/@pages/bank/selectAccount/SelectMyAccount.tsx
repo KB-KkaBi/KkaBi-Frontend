@@ -61,10 +61,10 @@ const SelectMyAccount = () => {
 
   return (
     <PaperLayout>
+      <BackButtonWrapper>
+        <BackArrowIcon fillColor="#5F564C" />
+      </BackButtonWrapper>
       <SelectMyAccountWrapper>
-        <BackButtonWrapper>
-          <BackArrowIcon fillColor="#5F564C" />
-        </BackButtonWrapper>
         <Title>계좌를 선택해주세요</Title>
         <CardBox>
           <CardContainer>
@@ -169,6 +169,7 @@ const Title = styled.h1`
 
 const SelectMyAccountWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
