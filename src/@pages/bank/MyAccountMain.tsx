@@ -4,13 +4,20 @@ import { getMyOneAccount } from "@/api/account";
 import { bankLog } from "@/recoil/bank";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import * as S from "./style";
 
 const MyAccountMain = () => {
+  const { state } = useLocation();
+
   const navigate = useNavigate();
   const bankLogs = useRecoilValue(bankLog);
   const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs.accountId));
+
+  function checkIsDeposit() {
+    return state === 3 || state === 4;
+  }
 
   return (
     <BankLayout>
@@ -20,7 +27,7 @@ const MyAccountMain = () => {
       </S.TextContainer>
       <S.BottomButtonContainer>
         <Button onClick={() => navigate("./deposit")}>입금</Button>
-        <Button onClick={() => navigate("./withdraw")}>출금</Button>
+        {checkIsDeposit() && <Button onClick={() => navigate("./withdraw")}>출금</Button>}
         <Button onClick={() => navigate("./account-log")}>내역확인</Button>
       </S.BottomButtonContainer>
     </BankLayout>
