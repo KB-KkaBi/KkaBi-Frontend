@@ -57,55 +57,62 @@ const SelectTreasure = () => {
         <BackButtonWrapper>
           <BackArrowIcon fillColor="#5F564C" />
         </BackButtonWrapper>
-        <Title>보물을 선택해주세요</Title>
-        <CardContainer>
-          <CardWrapper>
-            {treasureData?.map(({ treasureId, treasureName, interestRate, price }: TreasureDataTypes) => (
-              <div key={treasureId}>
-                {treasureId % 2 !== 0 ? (
-                  <S.FlexBox>
-                    {checkIsHoverOfClick(treasureId) ? (
-                      <TreasureCardContent id={treasureId} name={treasureName} interest={interestRate} price={price} />
-                    ) : (
-                      <S.BlankCard></S.BlankCard>
-                    )}
-                    <TreasureCard
-                      treasure={treasureId}
-                      onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
-                      $isClicked={checkIsHoverOfClick(treasureId)}
-                      onMouseEnter={() => setHoverId(treasureId)}
-                      onMouseOut={() => setHoverId(-1)}
-                    />
-                  </S.FlexBox>
-                ) : (
-                  <S.FlexBox>
-                    <TreasureCard
-                      treasure={treasureId}
-                      onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
-                      $isClicked={checkIsHoverOfClick(treasureId)}
-                      onMouseEnter={() => setHoverId(treasureId)}
-                      onMouseOut={() => setHoverId(-1)}
-                    />
-                    {checkIsHoverOfClick(treasureId) ? (
-                      <TreasureCardContent
-                        key={treasureId}
-                        id={treasureId}
-                        name={treasureName}
-                        interest={interestRate}
-                        price={price}
+        <TotalContainer>
+          <Title>보물을 선택해주세요</Title>
+          <CardContainer>
+            <CardWrapper>
+              {treasureData?.map(({ treasureId, treasureName, interestRate, price }: TreasureDataTypes) => (
+                <div key={treasureId}>
+                  {treasureId % 2 !== 0 ? (
+                    <S.FlexBox>
+                      {checkIsHoverOfClick(treasureId) ? (
+                        <TreasureCardContent
+                          id={treasureId}
+                          name={treasureName}
+                          interest={interestRate}
+                          price={price}
+                        />
+                      ) : (
+                        <S.BlankCard></S.BlankCard>
+                      )}
+                      <TreasureCard
+                        treasure={treasureId}
+                        onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
+                        $isClicked={checkIsHoverOfClick(treasureId)}
+                        onMouseEnter={() => setHoverId(treasureId)}
+                        onMouseOut={() => setHoverId(-1)}
                       />
-                    ) : (
-                      <S.BlankCard></S.BlankCard>
-                    )}
-                  </S.FlexBox>
-                )}
-              </div>
-            ))}
-          </CardWrapper>
-        </CardContainer>
-        <ButtonWrapper>
-          <Button onClick={moveToSelectCnt}>확인</Button>
-        </ButtonWrapper>
+                    </S.FlexBox>
+                  ) : (
+                    <S.FlexBox>
+                      <TreasureCard
+                        treasure={treasureId}
+                        onClick={() => clickTreasureCare(treasureId, treasureName, interestRate, price)}
+                        $isClicked={checkIsHoverOfClick(treasureId)}
+                        onMouseEnter={() => setHoverId(treasureId)}
+                        onMouseOut={() => setHoverId(-1)}
+                      />
+                      {checkIsHoverOfClick(treasureId) ? (
+                        <TreasureCardContent
+                          key={treasureId}
+                          id={treasureId}
+                          name={treasureName}
+                          interest={interestRate}
+                          price={price}
+                        />
+                      ) : (
+                        <S.BlankCard></S.BlankCard>
+                      )}
+                    </S.FlexBox>
+                  )}
+                </div>
+              ))}
+            </CardWrapper>
+          </CardContainer>
+          <ButtonWrapper>
+            <Button onClick={moveToSelectCnt}>확인</Button>
+          </ButtonWrapper>
+        </TotalContainer>
       </PaperLayout>
     </>
   );
@@ -123,6 +130,18 @@ const CardContainer = styled.div`
   justify-content: center;
 
   margin: 1rem 0;
+  /* 
+  width: 100%;
+  height: 100%; */
+`;
+
+const TotalContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CardWrapper = styled.section`

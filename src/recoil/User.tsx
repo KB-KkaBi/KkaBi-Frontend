@@ -11,5 +11,6 @@ export const userNickname = atom({
 
 export const userSequence = atom({
   key: "userSequence",
-  default: -123,
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
 });
