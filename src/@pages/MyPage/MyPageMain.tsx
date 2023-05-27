@@ -64,7 +64,7 @@ const MyPageMain = () => {
   const [percentSavings, setPercentSavings] = useState(0);
   const [percentTreasure, setPercentTreasure] = useState(0);
 
-  const { data: userMyData } = useQuery<UserInfoDataTypes>(["userMyInfo"], getUserInfo, {
+  const { data: userMyData, isSuccess } = useQuery<UserInfoDataTypes>(["userMyInfo"], getUserInfo, {
     onSuccess: (response) => {
       setTotalMoney(getTotalMoney(response));
       setDetailMoney(response.detailMoney);
@@ -194,18 +194,19 @@ const MyPageMain = () => {
               </S.UserTreasureTotalWrapper>
             </S.UserMoneyInfoContainer>
             <S.PieChartContainer>
-              <PieChart
-                data={pieData}
-                label={({ dataEntry }) => {
-                  const fullLines = dataEntry.title + " " + dataEntry.value + "%";
-                  return fullLines;
-                }}
-                labelPosition={50}
-                animate
-                labelStyle={{
-                  fontSize: "0.8rem",
-                }}
-              />
+              {pieData && (
+                <PieChart
+                  data={pieData}
+                  label={({ dataEntry }) => {
+                    const fullLines = dataEntry.title + " " + dataEntry.value + "%";
+                    return fullLines;
+                  }}
+                  labelPosition={50}
+                  labelStyle={{
+                    fontSize: "0.8rem",
+                  }}
+                />
+              )}
             </S.PieChartContainer>
           </S.UserInfoContainer>
           <S.ButtonContainer>
