@@ -8,6 +8,7 @@ const colors = {
   darkPink: "#F8C5C2",
   darkYellow: "#FBC86A",
   darkBlue: "#A7D5FF",
+  deepBlue: "#6EB1E1",
 };
 
 const fonts = {

@@ -20,15 +20,16 @@ export const MyInfoWrapper = styled.section`
   justify-content: space-between;
   align-items: center;
 
-  width: 32rem;
-  height: 17rem;
+  //width: 40rem;
+  height: 21rem;
 
   margin: 4rem;
   padding: 3.2rem;
 
   background-image: url(${paper});
+  background-size: contain;
   background-repeat: no-repeat;
-
+  background-position: center;
   ${({ theme }) => theme.fonts.text}
   z-index: 2;
 `;
