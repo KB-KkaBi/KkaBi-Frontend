@@ -50,7 +50,7 @@ export const UserMoneyInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 38rem;
+  width: 45rem;
   margin-left: 1rem;
   margin-right: 5rem;
 `;
