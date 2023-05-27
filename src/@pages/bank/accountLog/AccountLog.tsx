@@ -19,7 +19,7 @@ export type AccountLogData = {
 };
 
 const AccountLog = () => {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
   const navigate = useNavigate();
   const accountId = useRecoilValue(bankLog).accountId;
 
@@ -27,7 +27,7 @@ const AccountLog = () => {
   // 전체 불러오기
   const { data: accountLogList } = useQuery(["getTotalAccountLog"], () => getTotalAccountLog(3));
   // 페이지네이션
-  const { data: accoutLogPagenation } = useQuery(["pagention"], () => getAccountLogPagenation(3, page));
+  const { data: accoutLogPagenation } = useQuery(["pagention", page], () => getAccountLogPagenation(3, page));
 
   // console.log(accoutLogPagenation);
   function checkTotalPage() {
@@ -35,14 +35,20 @@ const AccountLog = () => {
     return accountLogList?.length % 10 === 0 ? totalPage : totalPage + 1;
   }
 
+  function changePage(num: number) {
+    if (page + num + 1 !== 0 && page + num !== checkTotalPage()) {
+      setPage(page + num);
+    }
+  }
+
   return (
     <TransactionLogLayout handleClick={() => navigate("../")}>
       <>
         <S.ArrowWrapper>
           <S.ArrowBox>
-            <LeftArrow />
-            {page} / {checkTotalPage()}
-            <RightArrow />
+            <LeftArrow onClick={() => changePage(-1)} />
+            {page + 1} / {checkTotalPage()}
+            <RightArrow onClick={() => changePage(1)} />
           </S.ArrowBox>
         </S.ArrowWrapper>
         <S.TransactionTitle>{accountName}</S.TransactionTitle>
