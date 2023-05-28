@@ -47,7 +47,8 @@ const ButtonWrapper = styled.section`
   display: flex;
   justify-content: space-evenly;
 
-  margin: 55rem 0 6rem 0;
+  position: absolute;
+  bottom: 5%;
 
   width: 84rem;
 `;
