@@ -62,11 +62,12 @@ const Profile = () => {
   ];
 
   const { mutate: registerPost } = useMutation(postRegister, {
-    onSuccess: (response) => {
+    onSuccess: () => {
       setIsSuccess(true);
       handleModalOpen();
     },
     onError: (error) => {
+      console.debug(error);
       handleModalOpen();
     },
   });

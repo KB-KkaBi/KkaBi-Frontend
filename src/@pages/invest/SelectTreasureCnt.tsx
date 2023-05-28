@@ -14,7 +14,7 @@ import * as S from "./style";
 const SelectTreasureCnt = () => {
   const { state } = useLocation();
   const { treasureId, treasureName, interestRate, price } = state.selectTreasure;
-  const [accountMoney, setAccountMoney] = useState(state.accountMoney);
+  const accountMoney = state.accountMoney;
   const [cnt, setCnt] = useState(0);
   const [open, setOpen] = useState(false);
   const [isHundred, setIsHundred] = useState(false);

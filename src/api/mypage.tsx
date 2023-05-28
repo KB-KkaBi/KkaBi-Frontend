@@ -1,12 +1,20 @@
 import axios from "axios";
 
-export async function getQuizLog(pageNumber: number, pageSize: number) {
+export async function getTotalQuizLog() {
+  const data = await axios.get(`/api/quiz-log`, {
+    withCredentials: true,
+  });
+
+  return data?.data;
+}
+
+export async function getQuizLogPagnation(pageNumber: number, pageSize: number) {
   const data = await axios.get(`/api/quiz-log?page=${pageNumber}&size=${pageSize}`, {
     withCredentials: true,
   });
 
   console.debug(data.data);
-  return data.data;
+  return data?.data;
 }
 interface nicknameType {
   nickname: string;
