@@ -16,9 +16,10 @@ const Deposit = () => {
   const [reason, setReason] = useState("");
   const [amount, setAmount] = useState("");
   const bankLogs = useRecoilValue(bankLog);
-  const [maxMoney, setMaxMoney] = useState(100000000000000);
+  const [maxMoney, setMaxMoney] = useState(1000000);
   const [errorOpen, setErrorOpen] = useState(false);
 
+  console.log(maxMoney);
   const { mutate: createAccountLog } = useMutation(postAccountLog, {
     onSuccess: () => {
       setOpen(true);
