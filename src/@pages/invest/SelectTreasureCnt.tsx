@@ -14,7 +14,7 @@ import * as S from "./style";
 const SelectTreasureCnt = () => {
   const { state } = useLocation();
   const { treasureId, treasureName, interestRate, price } = state.selectTreasure;
-  const [accountMoney, setAccountMoney] = useState(state.accountMoney);
+  const accountMoney = state.accountMoney;
   const [cnt, setCnt] = useState(0);
   const [open, setOpen] = useState(false);
   const [isHundred, setIsHundred] = useState(false);
@@ -158,7 +158,7 @@ const SelectTreasureCnt = () => {
       {modal()}
       <PaperLayout>
         <BackButtonWrapper>
-          <BackArrowIcon fillColor="#5F564C" />
+          <BackArrowIcon fillColor="#5F564C" onClick={() => navigate("../select-treasure")} />
         </BackButtonWrapper>
         <S.SelectTreasureCntWrapper>
           <S.SelectedTitle>{treasureName}</S.SelectedTitle>
@@ -166,7 +166,7 @@ const SelectTreasureCnt = () => {
             <S.TreasureWrapper $isClicked={true}>{checkTreasure()}</S.TreasureWrapper>
             <S.TreasureContentWrapper>
               <p>1개 {price}원</p>
-              <p>수익율 {interestRate * 100}%</p>
+              <p>수익율 {Math.floor(interestRate * 100)}%</p>
               <p>난이도 {level(treasureId)} </p>
             </S.TreasureContentWrapper>
           </S.FlexBox>

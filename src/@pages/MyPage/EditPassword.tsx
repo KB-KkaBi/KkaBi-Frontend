@@ -32,12 +32,11 @@ const EditPassword = () => {
   };
 
   const { mutate: updatePost } = useMutation(updatePassword, {
-    onSuccess: (response) => {
+    onSuccess: () => {
       navigate("/mypage");
     },
     onError: (error) => {
-      //console.log(error);
-
+      console.debug(error);
       handleModalOpen();
     },
   });

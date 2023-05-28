@@ -1,12 +1,12 @@
 import { Button } from "@/@components";
 import { Modal, PaperLayout, TextField } from "@/@components/common/";
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import * as S from "./style";
-import { useRecoilValue } from "recoil";
-import { useMutation, useQuery } from "react-query";
 import { getMyOneAccount, postAccountLog } from "@/api/account";
 import { bankLog } from "@/recoil/bank";
+import { useState } from "react";
+import { useMutation, useQuery } from "react-query";
+import { useNavigate } from "react-router";
+import { useRecoilValue } from "recoil";
+import * as S from "./style";
 
 const Withdraw = () => {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ const Withdraw = () => {
       setOpen(true);
     },
     onError: (error) => {
+      console.debug(error);
       setError(true);
     },
   });

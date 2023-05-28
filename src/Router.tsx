@@ -1,7 +1,31 @@
 import * as P from "@/@pages";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userSequence } from "./recoil/User";
+
+// 로그인 여부를 체크하는 함수
+// const isLoggedIn = () => {
+//
+//   let userLoggedIn = false;
+
+//   if (userSeq > 0) {
+//     userLoggedIn = true; // 예시로 true로 설정합니다.
+//   } else {
+//     userLoggedIn = false; // 예시로 true로 설정합니다.
+//   }
+
+//   return userLoggedIn;
+// };
 
 const Router = () => {
+  const userSeq = useRecoilValue(userSequence);
+
+  function isLoggedIn() {
+    console.debug("Router : ", userSeq);
+
+    return userSeq > 0;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -12,10 +36,16 @@ const Router = () => {
           <Route index element={<P.Register />} />
           <Route path="profile" element={<P.Profile />} />
         </Route>
-        <Route path="/home" element={<P.Home />} />
-        <Route path="/mypage/*" element={<P.Mypage />} />
-        <Route path="/bank/*" element={<P.Bank />} />
-        <Route path="/invest/*" element={<P.Invest />} />
+        {isLoggedIn() ? (
+          <>
+            <Route path="/home" element={<P.Home />} />
+            <Route path="/mypage/*" element={<P.Mypage />} />
+            <Route path="/bank/*" element={<P.Bank />} />
+            <Route path="/invest/*" element={<P.Invest />} />
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/landing" replace />} />
+        )}
       </Routes>
     </BrowserRouter>
   );

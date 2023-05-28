@@ -24,12 +24,11 @@ const EditNickname = () => {
   }, []);
 
   const { mutate: changePost } = useMutation(updateNickname, {
-    onSuccess: (response) => {
+    onSuccess: () => {
       navigate("/mypage");
     },
     onError: (error) => {
-      //console.log(error);
-
+      console.debug(error);
       handleModalOpen();
     },
   });

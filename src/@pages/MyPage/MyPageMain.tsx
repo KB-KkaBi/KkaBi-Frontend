@@ -40,12 +40,12 @@ const MyPageMain = () => {
   }, []);
 
   const { mutate: logout } = useMutation(postLogout, {
-    onSuccess: (response) => {
-      setUserSeq(-123); // 리코일 userseq값 초기화시키기
+    onSuccess: () => {
+      setUserSeq(0); // 리코일 userseq값 초기화시키기
       navigate("/landing");
     },
     onError: (error) => {
-      console.log(error);
+      console.debug(error);
     },
   });
 
@@ -66,6 +66,7 @@ const MyPageMain = () => {
 
   const { data: userMyData, isSuccess } = useQuery<UserInfoDataTypes>(["userMyInfo"], getUserInfo, {
     onSuccess: (response) => {
+      console.debug(isSuccess);
       setTotalMoney(getTotalMoney(response));
       setDetailMoney(response.detailMoney);
       setDetailTreasure(response.detailTreasure);

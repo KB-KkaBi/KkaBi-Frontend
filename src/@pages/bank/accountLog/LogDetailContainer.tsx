@@ -1,15 +1,14 @@
-import { AccountLogData } from "./AccountLog";
 import * as S from "./style";
 
-interface LogDetailProps {
-  log: AccountLogData;
-  // accountLogId: number;
-  // accountLogDate: string;
-  // accountLogMoney: number;
-  // transactionType: string;
-  // transactionReason: string;
-  // transactionAmount: string;
-}
+// interface LogDetailProps {
+//   log: AccountLogData;
+//   // accountLogId: number;
+//   // accountLogDate: string;
+//   // accountLogMoney: number;
+//   // transactionType: string;
+//   // transactionReason: string;
+//   // transactionAmount: string;
+// }
 
 function LogDetailContainer(props: any) {
   const { log } = props;
@@ -23,15 +22,15 @@ function LogDetailContainer(props: any) {
     <S.LogDetail>
       <S.TransactionDate>{log?.accountLogDate.slice(0, 10)}</S.TransactionDate>
       <S.WithdrawAmount>
-        {isDeposit(log?.transactionType) && (
+        {!isDeposit(log?.transactionType) && (
           <>
             <S.Won>\&nbsp;</S.Won>
-            {log?.transactionAmount?.toLocaleString()}
+            {Math.abs(log?.transactionAmount)?.toLocaleString()}
           </>
         )}
       </S.WithdrawAmount>
       <S.DepositAmount>
-        {!isDeposit(log?.transactionType) && (
+        {isDeposit(log?.transactionType) && (
           <>
             <S.Won>\&nbsp;</S.Won>
             {Math.abs(log?.transactionAmount)?.toLocaleString()}

@@ -53,7 +53,7 @@ const CreateNewAccountName = () => {
       </Modal>
       <PaperLayout>
         <BackButtonWrapper>
-          <BackArrowIcon fillColor="#5F564C" />
+          <BackArrowIcon fillColor="#5F564C" onClick={() => navigate("../create-new-account")} />
         </BackButtonWrapper>
         <CreateNewAccountNameWrapper>
           <Title>계좌 이름</Title>

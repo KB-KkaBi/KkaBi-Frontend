@@ -59,10 +59,10 @@ const Register = () => {
   }, []);
 
   const { mutate: emailCheckPost } = useMutation(postCheckEmail, {
-    onSuccess: (response) => {
+    onSuccess: () => {
       navigate("/register/profile");
     },
-    onError: (error) => {
+    onError: () => {
       handleEmailModalOpen();
     },
   });

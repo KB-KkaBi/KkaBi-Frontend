@@ -39,7 +39,8 @@ const Profile = () => {
   }, []);
 
   const handleNickNameInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickName(e.target.value);
+    const value = e.target.value.slice(0, 4); // 입력값의 최대 길이를 4로 제한
+    setNickName(value);
   }, []);
 
   useEffect(() => {
@@ -61,29 +62,18 @@ const Profile = () => {
   ];
 
   const { mutate: registerPost } = useMutation(postRegister, {
-    onSuccess: (response) => {
+    onSuccess: () => {
       setIsSuccess(true);
       handleModalOpen();
     },
     onError: (error) => {
+      console.debug(error);
       handleModalOpen();
     },
   });
 
   //할때 할 함수
   const handleRegisterlicked = () => {
-    // 모든 정보를 담은 폼 생성
-    // console.log("email : ", email);
-    // console.log("password : ", password);
-    // console.log("passwordConfirm : ", passwordConfirm);
-    // console.log("character : ", selectedCharacter);
-    // console.log("nickname : ", nickName);
-    /**
-     * 회원가입정보를 전송한다.
-     * 결과로 status = 200이 오면 홈페이지로 가기
-     * 회원가입이 안되면 에러 모달 띄어주고 다시 로그인페이지로 가기
-     * */
-
     email &&
       registerPost({
         character: selectedCharacter,
@@ -119,9 +109,16 @@ const Profile = () => {
         </CharacterTextContainer>
         <NickNameWrapper>
           <p>NickName</p>
-          <TextField placeholder="닉네임을 입력해주세요" onChange={handleNickNameInput} />
+          <TextField
+            type="text"
+            placeholder="닉네임을 입력해주세요(최대 4글자)"
+            inputProps={{
+              maxLength: 4, // 최대 길이를 4로 설정
+            }}
+            onChange={handleNickNameInput}
+          />
         </NickNameWrapper>
-        <Button disabled={!nickName} onClick={handleRegisterlicked}>
+        <Button disabled={!nickName || !selectedCharacter} onClick={handleRegisterlicked}>
           확인
         </Button>
         <Modal open={modalOpen} onClose={handleModalClose}>
