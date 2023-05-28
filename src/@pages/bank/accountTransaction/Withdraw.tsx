@@ -27,7 +27,7 @@ const Withdraw = () => {
     },
   });
 
-  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(id));
+  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs.accountId));
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value?.replace(/(^0+)/, "");

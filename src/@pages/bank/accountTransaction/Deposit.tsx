@@ -16,7 +16,7 @@ const Deposit = () => {
   const [reason, setReason] = useState("");
   const [amount, setAmount] = useState("");
   const bankLogs = useRecoilValue(bankLog);
-  const [maxMoney, setMaxMoney] = useState(50000);
+  const [maxMoney, setMaxMoney] = useState(100000000000000);
   const [errorOpen, setErrorOpen] = useState(false);
 
   const { mutate: createAccountLog } = useMutation(postAccountLog, {
@@ -40,7 +40,7 @@ const Deposit = () => {
   };
 
   const handleOpen = () => {
-    console.log(Number(amount));
+    console.debug(Number(amount));
     if (Number(amount) <= maxMoney) {
       createAccountLog({
         accountId: bankLogs.accountId,
@@ -63,12 +63,17 @@ const Deposit = () => {
     setErrorOpen(false);
   };
 
+  function checkIsDeposit3() {
+    return id === 3;
+  }
+
   function checkIsDeposit4() {
     return id === 4;
   }
 
   useEffect(() => {
     checkIsDeposit4() && setMaxMoney(10000);
+    checkIsDeposit3() && setMaxMoney(50000);
   }, []);
 
   return (

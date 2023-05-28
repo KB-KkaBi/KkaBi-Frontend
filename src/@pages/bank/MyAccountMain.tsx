@@ -16,7 +16,8 @@ const MyAccountMain = () => {
   const navigate = useNavigate();
   const bankLogs = useRecoilValue(bankLog);
 
-  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs.accountId));
+  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs?.accountId));
+  console.log(money);
 
   function checkIsDeposit() {
     return id === 3 || id === 4;
