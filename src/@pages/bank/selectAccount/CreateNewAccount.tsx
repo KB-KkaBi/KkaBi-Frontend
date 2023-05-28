@@ -27,7 +27,7 @@ const CreateNewAccount = () => {
   const { data: accountData } = useQuery(["accountInfo"], getAccountInfo);
   const { data: myAccount } = useQuery(["myAccount"], getMyAccount);
 
-  console.log(myAccount);
+  // console.log(myAccount);
 
   function clickAccountCare(
     accountInfoId: number,
@@ -50,14 +50,20 @@ const CreateNewAccount = () => {
   }
 
   function moveToCreateAccountName() {
-    navigate("../create-new-account-name", { state: createNewAccount.accountInfoId });
+    if (!isShow(createNewAccount.accountInfoId)) {
+      navigate("../create-new-account-name", { state: createNewAccount.accountInfoId });
+    }
   }
 
   useEffect(() => {
+    startGettingMyAccounts();
+  }, [myAccounts]);
+
+  function startGettingMyAccounts() {
     const newAccounts = [] as number[];
-    myAccount.map((acc: any) => newAccounts.push(acc.accountInfo.accountInfoId));
+    myAccount?.map((acc: any) => newAccounts.push(acc.accountInfo.accountInfoId));
     setMyAccounts(newAccounts);
-  }, []);
+  }
 
   function isShow(id: number) {
     return myAccounts.includes(id);
