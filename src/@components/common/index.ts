@@ -3,4 +3,5 @@ export * as Icons from "./icon/Icons";
 export { default as IconButton } from "./iconButton/IconButton";
 export * from "./layout";
 export { default as Modal } from "./modal/CommonModal";
+export { default as GuideModal } from "./modal/GuideModal";
 export { default as TextField } from "./textField/CommonTextField";
