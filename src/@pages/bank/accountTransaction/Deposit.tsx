@@ -1,7 +1,7 @@
 import { Button } from "@/@components";
 import { Modal, PaperLayout, TextField } from "@/@components/common/";
 import { getMyOneAccount, postAccountLog } from "@/api/account";
-import { bankLog, clickedId } from "@/recoil/bank";
+import { clickedId } from "@/recoil/bank";
 import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router";
@@ -15,7 +15,7 @@ const Deposit = () => {
 
   const [reason, setReason] = useState("");
   const [amount, setAmount] = useState("");
-  const bankLogs = useRecoilValue(bankLog);
+  // const bankLogs = useRecoilValue(bankLog);
 
   const { mutate: createAccountLog } = useMutation(postAccountLog, {
     onSuccess: () => {
