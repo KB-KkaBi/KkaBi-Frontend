@@ -38,6 +38,8 @@ export const CommonGuideModal = styled(Modal)`
     border: none;
     background-color: rgba(0, 0, 0, 0.6);
     outline: none;
+    user-select: none;
+    pointer-events: none;
   }
 `;
 
