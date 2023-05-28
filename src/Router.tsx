@@ -1,6 +1,6 @@
 import * as P from "@/@pages";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { userSequence } from "./recoil/User";
 
 // 로그인 여부를 체크하는 함수
@@ -18,10 +18,10 @@ import { userSequence } from "./recoil/User";
 // };
 
 const Router = () => {
-  const [userSeq, setUserSeq] = useRecoilState(userSequence);
+  const userSeq = useRecoilValue(userSequence);
 
   function isLoggedIn() {
-    console.log("Router : ", userSeq);
+    console.debug("Router : ", userSeq);
 
     return userSeq > 0;
   }

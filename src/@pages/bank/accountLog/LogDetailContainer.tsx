@@ -1,15 +1,14 @@
-import { AccountLogData } from "./AccountLog";
 import * as S from "./style";
 
-interface LogDetailProps {
-  log: AccountLogData;
-  // accountLogId: number;
-  // accountLogDate: string;
-  // accountLogMoney: number;
-  // transactionType: string;
-  // transactionReason: string;
-  // transactionAmount: string;
-}
+// interface LogDetailProps {
+//   log: AccountLogData;
+//   // accountLogId: number;
+//   // accountLogDate: string;
+//   // accountLogMoney: number;
+//   // transactionType: string;
+//   // transactionReason: string;
+//   // transactionAmount: string;
+// }
 
 function LogDetailContainer(props: any) {
   const { log } = props;
