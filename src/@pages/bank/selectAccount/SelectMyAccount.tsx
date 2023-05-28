@@ -14,9 +14,9 @@ const SelectMyAccount = () => {
   const [existAccountId, setExistAccountId] = useState<number[]>([]);
   const newAccountId: number[] = [];
   const [hoverId, setHoverId] = useState<number>(-1);
-  const [clickId, setClickId] = useRecoilState<number>(clickedId);
+  const [clickId, setClickId] = useState<number>(-1);
   const [accountMoney, setAccountMoney] = useState<number>(0);
-  const [myAccountId, setMyAccountId] = useState<number>(-1);
+  const [myAccountId, setMyAccountId] = useRecoilState<number>(clickedId);
   const navigate = useNavigate();
   console.debug(accountMoney);
   // const [bankLogs, setBankLogs] = useRecoilState(bankLog);
@@ -46,6 +46,7 @@ const SelectMyAccount = () => {
   function moveToBank() {
     console.debug("myAccountId" + myAccountId);
     console.debug("accountMoney" + accountMoney);
+
     // setBankLogs((prev: any) => ({ ...prev, accountId: myAccountId, accountLogMoney: accountMoney }));
 
     navigate("../my-account", { state: clickId });
