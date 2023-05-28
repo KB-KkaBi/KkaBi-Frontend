@@ -1,7 +1,7 @@
 import { Button } from "@/@components";
 import { BankLayout } from "@/@components/common/";
 import { getMyOneAccount } from "@/api/account";
-import { clickedId } from "@/recoil/bank";
+import { bankLog, clickedId } from "@/recoil/bank";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router";
 import { useRecoilValue } from "recoil";
@@ -11,10 +11,12 @@ const MyAccountMain = () => {
   // const { state } = useLocation();
   // console.log(state);
   const id = useRecoilValue(clickedId);
+  // const accountInfoId=
 
   const navigate = useNavigate();
-  // const bankLogs = useRecoilValue(bankLog);
-  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(id));
+  const bankLogs = useRecoilValue(bankLog);
+
+  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs.accountId));
 
   function checkIsDeposit() {
     return id === 3 || id === 4;

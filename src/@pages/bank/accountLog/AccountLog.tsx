@@ -1,7 +1,7 @@
 import { TransactionLogLayout } from "@/@components";
 import { getAccountLogPagenation, getAccountName, getTotalAccountLog } from "@/api/accountLog";
 import { LeftArrow, RightArrow } from "@/assets";
-import { clickedId } from "@/recoil/bank";
+import { bankLog } from "@/recoil/bank";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -21,19 +21,23 @@ export type AccountLogData = {
 const AccountLog = () => {
   const [page, setPage] = useState<number>(0);
   const navigate = useNavigate();
-  // const accountId = useRecoilValue(bankLog).accountId;
-  const id = useRecoilValue(clickedId);
+  const accountId = useRecoilValue(bankLog).accountId;
+  // const id = useRecoilValue(clickedId);
 
-  const { data: accountName } = useQuery(["accountName"], () => getAccountName(id));
+  const { data: accountName } = useQuery(["accountName"], () => getAccountName(accountId));
   // 전체 불러오기
-  const { data: accountLogList } = useQuery(["getTotalAccountLog"], () => getTotalAccountLog(id));
+  const { data: accountLogList } = useQuery(["getTotalAccountLog"], () => getTotalAccountLog(accountId));
   // 페이지네이션
-  const { data: accoutLogPagenation } = useQuery(["pagention", page], () => getAccountLogPagenation(id, page));
+  const { data: accoutLogPagenation } = useQuery(["pagention", page], () => getAccountLogPagenation(accountId, page));
 
   // console.log(accoutLogPagenation);
   function checkTotalPage() {
     const totalPage = Math.floor(accountLogList?.length / 10);
-    return accountLogList?.length % 10 === 0 ? totalPage : totalPage + 1;
+    if (accountLogList?.length !== 0) {
+      return accountLogList?.length % 10 === 0 ? totalPage : totalPage + 1;
+    } else {
+      return 1;
+    }
   }
 
   function changePage(num: number) {
