@@ -1,3 +1,4 @@
+import { CorrectIc, WrongIc } from "@/assets";
 import { Button } from "@mui/material";
 import { styled } from "styled-components";
 
@@ -73,4 +74,14 @@ export const TreasureCount = styled.p<{ $color: string }>`
   ${({ theme }) => theme.fonts.button}
   color: ${({ $color }) => $color};
   display: inline;
+`;
+
+export const CorrectIcon = styled(CorrectIc)`
+  width: 6rem;
+  height: 6rem;
+`;
+
+export const WrongIcon = styled(WrongIc)`
+  width: 6rem;
+  height: 6rem;
 `;
