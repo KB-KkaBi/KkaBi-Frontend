@@ -55,7 +55,7 @@ const SelectTreasure = () => {
     <>
       <PaperLayout>
         <BackButtonWrapper>
-          <BackArrowIcon fillColor="#5F564C" />
+          <BackArrowIcon fillColor="#5F564C" onClick={() => navigate("../")} />
         </BackButtonWrapper>
         <TotalContainer>
           <Title>보물을 선택해주세요</Title>

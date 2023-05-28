@@ -52,7 +52,7 @@ const CreateNewAccount = () => {
   return (
     <PaperLayout>
       <BackButtonWrapper>
-        <BackArrowIcon fillColor="#5F564C" />
+        <BackArrowIcon fillColor="#5F564C" onClick={() => navigate("../")} />
       </BackButtonWrapper>
       <CreateNewAccountWrapper>
         <Title>계좌를 선택해주세요</Title>
