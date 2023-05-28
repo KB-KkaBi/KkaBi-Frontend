@@ -15,6 +15,7 @@ type Props = {
  */
 export default function CommonBankLayout({ handleClick = () => {}, children }: Props) {
   const themeContext = useContext(ThemeContext);
+
   return (
     <S.CommonBackground color={themeContext?.colors.whiteYellow}>
       <S.BankBackground>

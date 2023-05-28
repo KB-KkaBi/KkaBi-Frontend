@@ -17,14 +17,14 @@ const MyAccountMain = () => {
   const bankLogs = useRecoilValue(bankLog);
 
   const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs?.accountId));
-  console.log(money);
+  console.debug(money);
 
   function checkIsDeposit() {
     return id === 3 || id === 4;
   }
 
   return (
-    <BankLayout>
+    <BankLayout handleClick={() => navigate(-1)}>
       <S.TextContainer>
         <S.Won>\ {money?.toLocaleString()}</S.Won>
         <S.Guide>어떤 업무를 진행하시겠어요?</S.Guide>
