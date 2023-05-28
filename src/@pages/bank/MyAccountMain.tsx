@@ -12,8 +12,6 @@ const MyAccountMain = () => {
   // console.log(state);
   const id = useRecoilValue(clickedId);
 
-  console.log(id);
-
   const navigate = useNavigate();
   // const bankLogs = useRecoilValue(bankLog);
   const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(id));
