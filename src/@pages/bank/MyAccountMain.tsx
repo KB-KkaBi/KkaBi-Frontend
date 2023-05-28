@@ -4,7 +4,6 @@ import { getMyOneAccount } from "@/api/account";
 import { bankLog, clickedId } from "@/recoil/bank";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router";
-import { useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import * as S from "./style";
 

@@ -26,7 +26,7 @@ import landingMusic from "@/assets/music/landingmypage2.mp3";
 const Landing = () => {
   let navigate = useNavigate();
   const audioRef = useRef<any>(null);
-  const [play, setPlay] = useState<boolean>(false);
+  // const [play, setPlay] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [guideModalContent, setGuideModalContent] = useState<string>("");
 
