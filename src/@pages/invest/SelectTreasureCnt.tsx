@@ -158,7 +158,7 @@ const SelectTreasureCnt = () => {
       {modal()}
       <PaperLayout>
         <BackButtonWrapper>
-          <BackArrowIcon fillColor="#5F564C" />
+          <BackArrowIcon fillColor="#5F564C" onClick={() => navigate("../select-treasure")} />
         </BackButtonWrapper>
         <S.SelectTreasureCntWrapper>
           <S.SelectedTitle>{treasureName}</S.SelectedTitle>
