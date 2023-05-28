@@ -48,8 +48,9 @@ const SelectMyAccount = () => {
     console.debug("accountMoney" + accountMoney);
 
     // setBankLogs((prev: any) => ({ ...prev, accountId: myAccountId, accountLogMoney: accountMoney }));
-
-    navigate("../my-account", { state: clickId });
+    if (existAccountId.includes(clickId)) {
+      navigate("../my-account", { state: clickId });
+    }
   }
 
   useEffect(() => {
