@@ -78,7 +78,6 @@ const Landing = () => {
 
   const handleGuideModal = () => {
     if (guideModalContent.startsWith("guide")) {
-      console.debug(Number(guideModalContent.substring(5, guideModalContent.length)));
       if (Number(guideModalContent.substring(5, guideModalContent.length)) === 11) closeModal();
       setGuideModalContent(
         guideModalContent.substring(0, 5) + (Number(guideModalContent.substring(5, guideModalContent.length)) + 1),
