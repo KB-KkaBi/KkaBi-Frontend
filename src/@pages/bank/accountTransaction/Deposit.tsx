@@ -96,8 +96,8 @@ const Deposit = () => {
       </Modal>
       <Modal open={errorOpen}>
         <>
-          <S.Guide>입금한도는 {maxMoney.toLocaleString()}입니다</S.Guide>
-          <Button onClick={handleClose}>확인</Button>
+          <S.Guide>입금한도는 {maxMoney.toLocaleString()}원입니다</S.Guide>
+          <Button onClick={handleErrorClose}>확인</Button>
         </>
       </Modal>
     </PaperLayout>
