@@ -110,7 +110,19 @@ const Quiz = () => {
       </S.QuizWrapper>
       <Modal open={open}>
         <S.ModalContent>
-          <div>{success ? "정답" : "오답"}입니다</div>
+          {success ? (
+            <div>
+              <S.CorrectIcon />
+              정답입니다
+              <S.CorrectIcon />
+            </div>
+          ) : (
+            <div>
+              <S.WrongIcon />
+              오답입니다
+              <S.WrongIcon />
+            </div>
+          )}
           <div>
             투자한 <S.TreasureCount $color={themeContext?.colors.darkYellow}>{investData.count}</S.TreasureCount>
             개의 반지가

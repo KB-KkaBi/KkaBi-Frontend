@@ -21,7 +21,7 @@ const Deposit = () => {
       setOpen(true);
     },
     onError: (error) => {
-      console.log(error);
+      console.debug(error);
     },
   });
 
