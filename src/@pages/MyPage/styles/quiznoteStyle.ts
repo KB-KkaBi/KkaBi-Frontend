@@ -62,20 +62,47 @@ export const QuizLogDetail = styled.div`
   ${(props) => props.theme.fonts.log}
   border-bottom: 1px solid black;
 `;
+
 export const QuizDetailNum = styled.div`
   width: 10.5%;
   text-align: center;
 `;
+
 export const QuizDetailQuestion = styled.div`
   width: 60.5%;
   display: flex;
   flex-wrap: wrap;
 `;
+
 export const QuizDetailAnswer = styled.div`
   width: 15%;
   text-align: center;
 `;
+
 export const QuizDetailLevel = styled.div`
   width: 14%;
   text-align: center;
+`;
+
+export const ArrowBox = styled.article`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 21rem;
+
+  color: ${({ theme }) => theme.colors.deepBlue};
+  ${({ theme }) => theme.fonts.button};
+
+  cursor: pointer;
+`;
+
+export const ArrowWrapper = styled.section`
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 1.5rem;
+
+  width: 100%;
 `;

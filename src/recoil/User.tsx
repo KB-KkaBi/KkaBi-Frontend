@@ -1,6 +1,16 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export const userNickname = atom({
   key: "userNickname",
-  default: "승구",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const userSequence = atom({
+  key: "userSequence",
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
 });

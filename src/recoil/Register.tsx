@@ -17,10 +17,10 @@ export const registerPasswordConfirm = atom({
 
 export const registerSelectedCharacter = atom({
   key: "selectedCharacter",
-  default: "루나키키",
+  default: "",
 });
 
-// export const registerNickname = atom({
-//   key: "registerNickname",
-//   default: "",
-// });
+export const registerNickname = atom({
+  key: "registerNickname",
+  default: "",
+});

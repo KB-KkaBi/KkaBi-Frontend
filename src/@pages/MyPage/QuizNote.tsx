@@ -1,65 +1,65 @@
 import CommonQuizNoteLayout from "@/@components/common/layout/CommonQuizNoteLayout";
+import { getQuizLogPagnation, getTotalQuizLog } from "@/api/mypage";
+import { LeftArrow, RightArrow } from "@/assets";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import QuizLogDetailContainer from "./QuizLogDetailContainer";
 import * as S from "./styles/quiznoteStyle";
 
+export type QuizInfo = {
+  quizId?: number;
+  problem?: string;
+  answer?: string;
+  hint?: string;
+  treasureInfo?: any;
+};
+
 export type QuizLogData = {
-  quizLogId: number;
-  question: string;
-  answer: string;
-  level: string;
+  quizLogId?: number;
+  quizInfo?: QuizInfo;
 };
 
 const QuizWrongNote = () => {
   const navigate = useNavigate();
+  const [page, setPage] = useState<number>(0);
+  const { data: quizLogList } = useQuery(["getTotalQuizLog"], () => getTotalQuizLog());
+  const { data: quizLogPagenation } = useQuery(["quizLogPagenation", page], () => getQuizLogPagnation(page, 5));
 
-  const quizLogList: QuizLogData[] = [
-    {
-      quizLogId: 1,
-      question:
-        "주식회사의 자본을 구성하는 단위이며, 사원인 주주가 주식회사에 출자한 일정한 지분 또는 이를 나타내는 증권이란 무엇일까요?",
-      answer: "주식",
-      level: "3",
-    },
-    {
-      quizLogId: 2,
-      question:
-        "주식회사의 자본을 구성하는 단위이며, 사원인 주주가 주식회사에 출자한 일정한 지분 또는 이를 나타내는 증권이란 무엇일까요?",
-      answer: "주식",
-      level: "3",
-    },
-    {
-      quizLogId: 3,
-      question:
-        "주식회사의 자본을 구성하는 단위이며, 사원인 주주가 주식회사에 출자한 일정한 지분 또는 이를 나타내는 증권이란 무엇일까요?",
-      answer: "주식",
-      level: "3",
-    },
-    {
-      quizLogId: 4,
-      question:
-        "주식회사의 자본을 구성하는 단위이며, 사원인 주주가 주식회사에 출자한 일정한 지분 또는 이를 나타내는 증권이란 무엇일까요?",
-      answer: "주식",
-      level: "3",
-    },
-  ];
+  function checkTotalPage() {
+    const totalPage = Math.floor(quizLogList?.length / 5);
+    return quizLogList?.length % 5 === 0 ? totalPage : totalPage + 1;
+  }
+  const handlePage = (num: number) => {
+    if (page + num + 1 !== 0 && page + num !== checkTotalPage()) setPage(page + num);
+  };
+
   return (
     <CommonQuizNoteLayout
       handleClick={() => {
-        navigate(-1);
+        navigate("/mypage");
       }}>
-      <S.QuizNoteTitle>퀴즈 오답노트</S.QuizNoteTitle>
-      <S.QuizNoteSubtitle>
-        <S.QuizNumber>번호</S.QuizNumber>
-        <S.QuizQuestion>문제</S.QuizQuestion>
-        <S.QuizAnswer>정답</S.QuizAnswer>
-        <S.QuizLevel>난이도</S.QuizLevel>
-      </S.QuizNoteSubtitle>
-      <S.QuizNoteLogContainer>
-        {quizLogList.map((log) => {
-          return <QuizLogDetailContainer log={log} key={log.quizLogId} />;
-        })}
-      </S.QuizNoteLogContainer>
+      <>
+        <S.QuizNoteTitle>퀴즈 복습노트</S.QuizNoteTitle>
+        <S.QuizNoteSubtitle>
+          <S.QuizNumber>번호</S.QuizNumber>
+          <S.QuizQuestion>문제</S.QuizQuestion>
+          <S.QuizAnswer>정답</S.QuizAnswer>
+          <S.QuizLevel>난이도</S.QuizLevel>
+        </S.QuizNoteSubtitle>
+        <S.QuizNoteLogContainer>
+          {quizLogPagenation?.content?.map((log: QuizLogData) => {
+            return <QuizLogDetailContainer quizInfo={log.quizInfo} quizLogId={log.quizLogId} key={log.quizLogId} />;
+          })}
+        </S.QuizNoteLogContainer>
+        <S.ArrowWrapper>
+          <S.ArrowBox>
+            <LeftArrow onClick={() => handlePage(-1)} />
+            {page + 1} / {checkTotalPage()}
+            <RightArrow onClick={() => handlePage(1)} />
+          </S.ArrowBox>
+        </S.ArrowWrapper>
+      </>
     </CommonQuizNoteLayout>
   );
 };
