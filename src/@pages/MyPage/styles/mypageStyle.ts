@@ -98,7 +98,7 @@ export const PieChartContainer = styled.div`
 
 export const ButtonContainer = styled.div`
   display: flex;
-  margin-top: 12rem;
+  margin-top: 4rem;
 
   .btn {
     width: 35rem;

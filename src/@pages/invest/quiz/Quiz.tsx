@@ -91,6 +91,19 @@ const Quiz = () => {
     investPost(investData);
   };
 
+  function checkTreasure() {
+    switch (investData.treasureId) {
+      case 1:
+        return "사파이어";
+      case 2:
+        return "반지";
+      case 3:
+        return "왕관";
+      case 4:
+        return "다이아몬드";
+    }
+  }
+
   return (
     <PaperLayout>
       <S.QuizWrapper>
@@ -125,7 +138,7 @@ const Quiz = () => {
           )}
           <div>
             투자한 <S.TreasureCount $color={themeContext?.colors.darkYellow}>{investData.count}</S.TreasureCount>
-            개의 반지가
+            개의 {checkTreasure()}가
             <br />
             <S.TreasureCount $color={success ? "#FC1616" : "#162DFC"}>{total}</S.TreasureCount>개가 되었습니다
           </div>

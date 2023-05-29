@@ -9,7 +9,7 @@ export async function getTotalQuizLog() {
 }
 
 export async function getQuizLogPagnation(pageNumber: number, pageSize: number) {
-  const data = await axios.get(`/api/quiz-log?page=${pageNumber}&size=${pageSize}`, {
+  const data = await axios.get(`/api/quiz-log?size=${pageSize}&page=${pageNumber}`, {
     withCredentials: true,
   });
 
