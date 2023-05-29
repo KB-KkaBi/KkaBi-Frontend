@@ -15,6 +15,7 @@ const Withdraw = () => {
   const [reason, setReason] = useState("");
   const [amount, setAmount] = useState("");
   const bankLogs = useRecoilValue(bankLog);
+  // const id = useRecoilValue(clickedId);
 
   const { mutate: createAccountLog } = useMutation(postAccountLog, {
     onSuccess: () => {

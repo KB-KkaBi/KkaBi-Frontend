@@ -124,7 +124,7 @@ export default Landing;
 
 const ButtonController = styled.div`
   position: absolute;
-  left: 140rem;
+  right: 2rem;
   top: 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
