@@ -18,4 +18,5 @@ export const bankLog = atom({
 export const clickedId = atom({
   key: "clickedId",
   default: 0,
+  effects_UNSTABLE: [persistAtom],
 });

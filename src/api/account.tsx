@@ -8,7 +8,7 @@ export async function getAccountInfo() {
 export async function getMyAccount() {
   const data = await axios.get(`/api/get-account-all`, { withCredentials: true });
 
-  console.log(data.data);
+  // console.log(data.data);
   return data.data;
 }
 
