@@ -1,4 +1,5 @@
 import { STAR_FRIENDS } from "@/core/starFriends";
+import { Tooltip } from "@mui/material";
 import { useState } from "react";
 import { styled } from "styled-components";
 import * as St from "./style";
@@ -41,23 +42,43 @@ const MyInfo = (props: MyInfoProps) => {
   }
 
   return (
-    <St.MyInfoWrapper
-      onClick={onClick}
-      onMouseEnter={() => setMy(true)}
-      onMouseLeave={() => setMy(false)}
-      $isHover={my}>
-      {miniProfile()}
-      <St.TextWrapper>
-        <St.UserInfoWrapper>
-          <Text>{nickName}</Text>
-          {rank()}
-        </St.UserInfoWrapper>
-        <St.MoneyWrapper>
-          <St.Won>₩</St.Won>
-          <St.Money>{totalMoney.toLocaleString()}</St.Money>
-        </St.MoneyWrapper>
-      </St.TextWrapper>
-    </St.MyInfoWrapper>
+    <>
+      <Tooltip
+        title="마이페이지"
+        placement="bottom"
+        componentsProps={{
+          tooltip: {
+            sx: {
+              m: 1,
+              bgcolor: "transparent",
+              fontFamily: "KOTRAHOPE",
+              fontStyle: "normal",
+              fontWeight: "400",
+              fontSize: "4.6rem",
+              lineHeight: "5.4rem",
+              color: "black",
+            },
+          },
+        }}>
+        <St.MyInfoWrapper
+          onClick={onClick}
+          onMouseEnter={() => setMy(true)}
+          onMouseLeave={() => setMy(false)}
+          $isHover={my}>
+          {miniProfile()}
+          <St.TextWrapper>
+            <St.UserInfoWrapper>
+              <Text>{nickName}</Text>
+              {rank()}
+            </St.UserInfoWrapper>
+            <St.MoneyWrapper>
+              <St.Won>₩</St.Won>
+              <St.Money>{totalMoney.toLocaleString()}</St.Money>
+            </St.MoneyWrapper>
+          </St.TextWrapper>
+        </St.MyInfoWrapper>
+      </Tooltip>
+    </>
   );
 };
 
