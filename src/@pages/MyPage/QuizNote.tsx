@@ -26,7 +26,7 @@ const QuizWrongNote = () => {
   const { data: quizLogList } = useQuery(["getTotalQuizLog"], () => getTotalQuizLog());
   const { data: quizLogPagenation } = useQuery(["quizLogPagenation", page], () => getQuizLogPagnation(page, 4));
 
-  console.log(quizLogList);
+  console.debug(quizLogList);
 
   function checkTotalPage() {
     const len = quizLogList?.content?.length;
