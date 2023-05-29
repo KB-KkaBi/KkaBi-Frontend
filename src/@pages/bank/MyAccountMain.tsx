@@ -11,17 +11,20 @@ const MyAccountMain = () => {
   // const { state } = useLocation();
   // console.log(state);
   const id = useRecoilValue(clickedId);
+  // const accountInfoId=
 
   const navigate = useNavigate();
   const bankLogs = useRecoilValue(bankLog);
-  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs.accountId));
+
+  const { data: money } = useQuery(["accountLogMoney"], () => getMyOneAccount(bankLogs?.accountId));
+  console.debug(money);
 
   function checkIsDeposit() {
     return id === 3 || id === 4;
   }
 
   return (
-    <BankLayout handleClick={() => navigate("../")}>
+    <BankLayout handleClick={() => navigate(-1)}>
       <S.TextContainer>
         <S.Won>\ {money?.toLocaleString()}</S.Won>
         <S.Guide>어떤 업무를 진행하시겠어요?</S.Guide>

@@ -1,8 +1,8 @@
 import { Button, PaperLayout } from "@/@components";
 import { BackArrowIcon } from "@/@components/common/icon/Icons";
-import { getAccountInfo } from "@/api/account";
+import { getAccountInfo, getMyAccount } from "@/api/account";
 import { AccountTypes } from "@/core/accountsData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
@@ -20,10 +20,14 @@ const CreateNewAccount = () => {
   });
 
   const [hoverId, setHoverId] = useState(-1);
+  const [myAccounts, setMyAccounts] = useState<number[]>([]);
 
   const navigate = useNavigate();
 
   const { data: accountData } = useQuery(["accountInfo"], getAccountInfo);
+  const { data: myAccount } = useQuery(["myAccount"], getMyAccount);
+
+  // console.log(myAccount);
 
   function clickAccountCare(
     accountInfoId: number,
@@ -46,7 +50,23 @@ const CreateNewAccount = () => {
   }
 
   function moveToCreateAccountName() {
-    navigate("../create-new-account-name", { state: createNewAccount.accountInfoId });
+    if (!isShow(createNewAccount.accountInfoId)) {
+      navigate("../create-new-account-name", { state: createNewAccount.accountInfoId });
+    }
+  }
+
+  useEffect(() => {
+    startGettingMyAccounts();
+  }, [myAccounts]);
+
+  function startGettingMyAccounts() {
+    const newAccounts = [] as number[];
+    myAccount?.map((acc: any) => newAccounts.push(acc.accountInfo.accountInfoId));
+    setMyAccounts(newAccounts);
+  }
+
+  function isShow(id: number) {
+    return myAccounts.includes(id);
   }
 
   return (
@@ -67,26 +87,29 @@ const CreateNewAccount = () => {
                     ) : (
                       <S.BlankCard></S.BlankCard>
                     )}
-
-                    <AccountCard
-                      key={accountInfoId}
-                      account={accountInfoId}
-                      onClick={() => clickAccountCare(accountInfoId, accountType, interestRate, information, dueDate)}
-                      isClicked={checkIsHoverOfClick(accountInfoId)}
-                      onMouseEnter={() => setHoverId(accountInfoId)}
-                      onMouseOut={() => setHoverId(-1)}
-                    />
+                    <AccountCardWrapper $isExist={isShow(accountInfoId)}>
+                      <AccountCard
+                        key={accountInfoId}
+                        account={accountInfoId}
+                        onClick={() => clickAccountCare(accountInfoId, accountType, interestRate, information, dueDate)}
+                        isClicked={checkIsHoverOfClick(accountInfoId)}
+                        onMouseEnter={() => setHoverId(accountInfoId)}
+                        onMouseOut={() => setHoverId(-1)}
+                      />
+                    </AccountCardWrapper>
                   </S.FlexBox>
                 ) : (
                   <S.FlexBox>
-                    <AccountCard
-                      key={accountInfoId}
-                      account={accountInfoId}
-                      onClick={() => clickAccountCare(accountInfoId, accountType, interestRate, information, dueDate)}
-                      isClicked={checkIsHoverOfClick(accountInfoId)}
-                      onMouseEnter={() => setHoverId(accountInfoId)}
-                      onMouseOut={() => setHoverId(-1)}
-                    />
+                    <AccountCardWrapper $isExist={isShow(accountInfoId)}>
+                      <AccountCard
+                        key={accountInfoId}
+                        account={accountInfoId}
+                        onClick={() => clickAccountCare(accountInfoId, accountType, interestRate, information, dueDate)}
+                        isClicked={checkIsHoverOfClick(accountInfoId)}
+                        onMouseEnter={() => setHoverId(accountInfoId)}
+                        onMouseOut={() => setHoverId(-1)}
+                      />
+                    </AccountCardWrapper>
                     {checkIsHoverOfClick(accountInfoId) ? (
                       <AccountCardContent
                         key={accountInfoId}
@@ -154,4 +177,13 @@ const ButtonWrapper = styled.div`
 export const BackButtonWrapper = styled.section`
   position: absolute;
   margin: 1% 0 0 3%;
+`;
+
+const AccountCardWrapper = styled.article<{ $isExist: boolean }>`
+  display: flex;
+  justify-content: center;
+
+  filter: grayscale(${({ $isExist }) => $isExist && 90}%);
+  -webkit-filter: grayscale(${({ $isExist }) => $isExist && 90}%);
+  opacity: ${({ $isExist }) => $isExist && 0.4};
 `;

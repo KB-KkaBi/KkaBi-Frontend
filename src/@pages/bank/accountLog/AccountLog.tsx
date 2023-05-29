@@ -22,6 +22,7 @@ const AccountLog = () => {
   const [page, setPage] = useState<number>(0);
   const navigate = useNavigate();
   const accountId = useRecoilValue(bankLog).accountId;
+  // const id = useRecoilValue(clickedId);
 
   const { data: accountName } = useQuery(["accountName"], () => getAccountName(accountId));
   // 전체 불러오기
@@ -32,7 +33,11 @@ const AccountLog = () => {
   // console.log(accoutLogPagenation);
   function checkTotalPage() {
     const totalPage = Math.floor(accountLogList?.length / 10);
-    return accountLogList?.length % 10 === 0 ? totalPage : totalPage + 1;
+    if (accountLogList?.length !== 0) {
+      return accountLogList?.length % 10 === 0 ? totalPage : totalPage + 1;
+    } else {
+      return 1;
+    }
   }
 
   function changePage(num: number) {
