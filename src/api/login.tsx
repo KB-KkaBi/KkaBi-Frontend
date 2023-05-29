@@ -3,12 +3,13 @@ const config = {
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
+    "Access-Control-Allow-Origin": "*",
   },
-  data: {},
+  data: null,
   withCredentials: true,
 };
 export async function postLogin(userData: any) {
-  const data = await axios.post(process.env.REACT_APP_DB_HOST + `/api/login`, userData, config);
+  const data = await axios.post(`/api/login`, userData, config);
 
   console.log("debug data: ", data);
   return data;
