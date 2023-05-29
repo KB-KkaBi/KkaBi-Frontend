@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function getTotalQuizLog() {
-  const data = await axios.get(process.env.REACT_APP_DB_HOST + `/api/quiz-log`, {
+  const data = await axios.get(`/api/quiz-log`, {
     withCredentials: true,
   });
 
@@ -9,7 +9,7 @@ export async function getTotalQuizLog() {
 }
 
 export async function getQuizLogPagnation(pageNumber: number, pageSize: number) {
-  const data = await axios.get(process.env.REACT_APP_DB_HOST + `/api/quiz-log?page=${pageNumber}&size=${pageSize}`, {
+  const data = await axios.get(`/api/quiz-log?page=${pageNumber}&size=${pageSize}`, {
     withCredentials: true,
   });
 
@@ -20,13 +20,13 @@ interface nicknameType {
   nickname: string;
 }
 export async function getMyInfo() {
-  const data = await axios.get(process.env.REACT_APP_DB_HOST + `/api/userInfo`, { withCredentials: true });
+  const data = await axios.get(`/api/userInfo`, { withCredentials: true });
 
   return data.data;
 }
 
 export async function updateNickname(nickname: nicknameType) {
-  const data = await axios.post(process.env.REACT_APP_DB_HOST + `/api/update-nickname`, nickname, {
+  const data = await axios.post(`/api/update-nickname`, nickname, {
     withCredentials: true,
   });
 
@@ -35,7 +35,7 @@ export async function updateNickname(nickname: nicknameType) {
 }
 
 export async function updatePassword(passwordData: any) {
-  const data = await axios.post(process.env.REACT_APP_DB_HOST + `/api/update-password`, passwordData, {
+  const data = await axios.post(`/api/update-password`, passwordData, {
     withCredentials: true,
   });
 
