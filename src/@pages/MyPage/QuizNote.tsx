@@ -24,14 +24,26 @@ const QuizWrongNote = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState<number>(0);
   const { data: quizLogList } = useQuery(["getTotalQuizLog"], () => getTotalQuizLog());
-  const { data: quizLogPagenation } = useQuery(["quizLogPagenation", page], () => getQuizLogPagnation(page, 5));
+  const { data: quizLogPagenation } = useQuery(["quizLogPagenation", page], () => getQuizLogPagnation(page, 4));
+
+  console.log(quizLogList);
 
   function checkTotalPage() {
-    const totalPage = Math.floor(quizLogList?.length / 5);
-    return quizLogList?.length % 5 === 0 ? totalPage : totalPage + 1;
+    const len = quizLogList?.content?.length;
+    const totalPage = Math.floor(len / 4);
+    if (len !== 0) {
+      return len % 4 === 0 ? totalPage : totalPage + 1;
+    } else {
+      return 1;
+    }
   }
+
+  console.log(checkTotalPage());
+
   const handlePage = (num: number) => {
-    if (page + num + 1 !== 0 && page + num !== checkTotalPage()) setPage(page + num);
+    if (page + num + 1 !== 0 && page + num !== checkTotalPage()) {
+      setPage(page + num);
+    }
   };
 
   return (
