@@ -6,7 +6,7 @@ import { bankLog, clickedId } from "@/recoil/bank";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { styled } from "styled-components";
 import AccountCard from "./AccountCard";
 
@@ -19,7 +19,7 @@ const SelectMyAccount = () => {
   const [myAccountId, setMyAccountId] = useState<number>(-1);
   const navigate = useNavigate();
   console.debug(accountMoney);
-  const [bankLogs, setBankLogs] = useRecoilState(bankLog);
+  const setBankLogs = useSetRecoilState(bankLog);
 
   const { data: myAccountData } = useQuery(["myAccount"], getMyAccount);
   // const { data: accountListData } = useQuery(["accountLis"], getAccountInfo);
