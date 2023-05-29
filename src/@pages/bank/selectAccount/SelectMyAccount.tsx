@@ -53,7 +53,7 @@ const SelectMyAccount = () => {
 
   useEffect(() => {
     checkExistAccount();
-  }, [existAccountId]);
+  }, [myAccountData]);
 
   function chooseHover(id: number) {
     setHoverId(id);
