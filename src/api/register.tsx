@@ -15,7 +15,7 @@ interface UserType {
  * 이메일 중복검사 확인
  */
 export async function postCheckEmail(email: EmailType) {
-  const data = await axios.post(`/api/check-email`, email, { withCredentials: true });
+  const data = await axios.post(process.env.REACT_APP_DB_HOST + `/api/check-email`, email, { withCredentials: true });
 
   // console.log(data);
   return data;
@@ -24,10 +24,10 @@ export async function postCheckEmail(email: EmailType) {
  * 회원가입하기
  */
 export async function postRegister(user: UserType) {
-  const data = await axios.post(`/api/register`, user, { withCredentials: true });
+  const data = await axios.post(process.env.REACT_APP_DB_HOST + `/api/register`, user, { withCredentials: true });
 
   // export async function postCheckEmail(email: EmailType) {
-  //   const data = await axios.post(`/api/check-email`, email);
+  //   const data = await axios.post(process.env.REACT_APP_DB_HOST + `/api/check-email`, email);
 
   // console.log(data);
   return data;

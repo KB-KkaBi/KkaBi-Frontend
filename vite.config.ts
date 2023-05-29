@@ -24,5 +24,5 @@ export default defineConfig({
       },
     },
   },
-  build: { chunkSizeWarningLimit: 7000 },
+  build: { chunkSizeWarningLimit: 7000, minify: false },
 });
