@@ -15,7 +15,7 @@ const BankMain = () => {
 
   return (
     <>
-      <BankLayout>
+      <BankLayout handleClick={() => navigate("../../home")}>
         <QuestionWrapper>
           <p>KB 국민 은행에 오신 것을 환영합니다.</p>
           <p>무엇을 도와드릴까요?</p>

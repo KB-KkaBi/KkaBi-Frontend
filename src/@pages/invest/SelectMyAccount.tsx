@@ -44,7 +44,12 @@ const SelectMyAccount = () => {
   return (
     <PaperLayout>
       <BackButtonWrapper>
-        <BackArrowIcon fillColor="#5F564C" onClick={() => navigate("../home")} />
+        <BackArrowIcon
+          fillColor="#5F564C"
+          onClick={() => {
+            navigate("../../home");
+          }}
+        />
       </BackButtonWrapper>
       <SelectMyAccountWrapper>
         <Title>계좌를 선택해주세요</Title>
