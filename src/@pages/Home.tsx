@@ -2,6 +2,7 @@ import Character from "@/@components/Home/Character/Character";
 import { getUserInfo } from "@/api/user";
 import { HomeBankActiveIc, HomeBankIc, HomeTreasureActiveIc, MainPageTreasureIc } from "@/assets";
 import { UserInfoDataTypes } from "@/core/userInfoData";
+import { Tooltip } from "@mui/material";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -47,16 +48,52 @@ const Home = () => {
       />
       <ImgContainer>
         <ImgWrapper>
-          <Icon
-            onClick={moveToTreasure}
-            onMouseEnter={() => setTreasureHover(true)}
-            onMouseOut={() => setTreasureHover(false)}>
-            {treasureHover ? <HomeTreasureActiveIc /> : <MainPageTreasureIc onClick={moveToTreasure} />}
-          </Icon>
+          <Tooltip
+            title="보물섬"
+            placement="bottom"
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  m: 1,
+                  bgcolor: "transparent",
+                  fontFamily: "KOTRAHOPE",
+                  fontStyle: "normal",
+                  fontWeight: "400",
+                  fontSize: "4.6rem",
+                  lineHeight: "5.4rem",
+                  color: "black",
+                },
+              },
+            }}>
+            <Icon
+              onClick={moveToTreasure}
+              onMouseEnter={() => setTreasureHover(true)}
+              onMouseOut={() => setTreasureHover(false)}>
+              {treasureHover ? <HomeTreasureActiveIc /> : <MainPageTreasureIc onClick={moveToTreasure} />}
+            </Icon>
+          </Tooltip>
           <Character characterName={userInfoData?.character || ""} />
-          <Icon onClick={moveToBank} onMouseEnter={() => setBankHover(true)} onMouseLeave={() => setBankHover(false)}>
-            {bankHover ? <HomeBankActiveIc /> : <HomeBankIc />}
-          </Icon>
+          <Tooltip
+            title="은행"
+            placement="bottom"
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  m: 1,
+                  bgcolor: "transparent",
+                  fontFamily: "KOTRAHOPE",
+                  fontStyle: "normal",
+                  fontWeight: "400",
+                  fontSize: "4.6rem",
+                  lineHeight: "5.4rem",
+                  color: "black",
+                },
+              },
+            }}>
+            <Icon onClick={moveToBank} onMouseEnter={() => setBankHover(true)} onMouseLeave={() => setBankHover(false)}>
+              {bankHover ? <HomeBankActiveIc /> : <HomeBankIc />}
+            </Icon>
+          </Tooltip>
         </ImgWrapper>
       </ImgContainer>
       <BackgroundImg src={Background} alt="배경화면" />
