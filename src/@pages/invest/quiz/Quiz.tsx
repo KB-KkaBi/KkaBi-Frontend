@@ -1,5 +1,6 @@
 import { Button, Modal, PaperLayout } from "@/@components";
 import { getQuizList, postQuizAnswer } from "@/api/invest";
+import { getTotalQuizLog } from "@/api/mypage";
 import { InvestDTO, investInfo } from "@/recoil/Invest";
 import { selectedButtonArray, selectedButtonIndex } from "@/recoil/Quiz";
 import hangul from "hangul-js";
@@ -22,11 +23,22 @@ const Quiz = () => {
   const [success, setSuccess] = useState(); // 답 제출 시 정답 여부
   const [total, setTotal] = useState(); // 답 제출 시 결과로 만들어진 보물 개수
   const { data: quizArray } = useQuery(["quizInfo", investData.treasureId], () => getQuizList(investData.treasureId));
+  const { data: quizLogList } = useQuery(["getTotalQuizLog"], () => getTotalQuizLog()); // 퀴즈 전체 리스트
   const [myAnswer, setMyAnswer] = useState<string>();
 
   useEffect(() => {
     if (Array.isArray(quizArray)) {
-      const randomQuiz = Array.isArray(quizArray) ? quizArray[Math.floor(Math.random() * quizArray.length)] : undefined;
+      const filteredQuizList = quizArray.filter((quiz) => {
+        let flag = false; // 로그에 존재하면 true 반환
+        quizLogList.array.forEach((log: any) => {
+          if (log.quizInfo?.quizId === quiz.quizId) {
+            flag = true;
+          }
+        });
+        return !flag;
+      });
+      const randomQuiz =
+        filteredQuizList.length > 0 ? filteredQuizList[Math.floor(Math.random() * quizArray.length)] : undefined;
       if (randomQuiz) {
         setQuizData(randomQuiz);
         setInvestData(({ quizId, ...data }) => {
