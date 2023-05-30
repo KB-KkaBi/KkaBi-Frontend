@@ -65,7 +65,7 @@ const Quiz = () => {
     }
   }, [quizArray, quizLogList]);
 
-  console.log(quizData.problem);
+  console.debug(quizData.problem);
 
   const selectedArray = useRecoilValue(selectedButtonArray);
   const navigate = useNavigate();
