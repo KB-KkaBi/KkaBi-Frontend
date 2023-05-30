@@ -24,7 +24,7 @@ const MyAccountMain = () => {
   }
 
   return (
-    <BankLayout handleClick={() => navigate(-1)}>
+    <BankLayout handleClick={() => navigate("../select-my-account")}>
       <S.TextContainer>
         <S.Won>\ {money?.toLocaleString()}</S.Won>
         <S.Guide>어떤 업무를 진행하시겠어요?</S.Guide>
