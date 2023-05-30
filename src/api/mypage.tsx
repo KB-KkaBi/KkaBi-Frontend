@@ -10,7 +10,7 @@ export async function getTotalQuizLog() {
     data: null,
     withCredentials: true,
   });
-  console.log("gettotal quizlog:", data?.data);
+  console.debug("gettotal quizlog:", data?.data);
   return data?.data;
 }
 
@@ -56,7 +56,7 @@ export async function updateNickname(nickname: nicknameType) {
     withCredentials: true,
   });
 
-  console.log(data);
+  console.debug(data);
   return data;
 }
 
@@ -71,6 +71,6 @@ export async function updatePassword(passwordData: any) {
     withCredentials: true,
   });
 
-  console.log(data);
+  console.debug(data);
   return data;
 }

@@ -28,19 +28,20 @@ const Quiz = () => {
 
   useEffect(() => {
     if (Array.isArray(quizArray)) {
-      console.log("quizArray", quizArray);
-      console.log("quizLog", quizLogList);
+      console.debug("quizArray", quizArray);
+      console.debug("quizLog", quizLogList);
       const filteredQuizList = quizArray?.filter((quiz) => {
         let flag = false; // 로그에 존재하면 true 반환
-        if (!!quizLogList) {
+        if (quizLogList) {
           quizLogList?.forEach((log: any) => {
-            console.log("quiz log:", log);
-            if (log?.quizInfo?.quizId === quiz.quizId) {
-              console.log(log.quizInfo.quizId, quiz.quizId, "set flag true");
+            console.debug(log.quizInfo?.quizId, " compare ", quiz.quizId);
+            if (log.quizInfo?.quizId === quiz.quizId) {
+              console.debug("filtered");
               flag = true;
             }
           });
         }
+        console.debug("quiz filtered", quiz, ", result:", flag);
         return !flag;
       });
       const randomQuiz =
@@ -61,7 +62,7 @@ const Quiz = () => {
         }
       }
     }
-  }, [quizArray]);
+  }, [quizArray, quizLogList]);
 
   const selectedArray = useRecoilValue(selectedButtonArray);
   const navigate = useNavigate();

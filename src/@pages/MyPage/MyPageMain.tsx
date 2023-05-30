@@ -35,8 +35,8 @@ const MyPageMain = () => {
   //logout 할때 할 함수
   const handleLogoutClicked = useCallback(() => {
     logout();
-    console.log("로그아웃 버튼눌림");
-    console.log("userSeq = ", userSeq);
+    console.debug("로그아웃 버튼눌림");
+    console.debug("userSeq = ", userSeq);
   }, []);
 
   const { mutate: logout } = useMutation(postLogout, {
@@ -72,7 +72,7 @@ const MyPageMain = () => {
       setDetailTreasure(response.detailTreasure);
     },
     onError: (err) => {
-      console.log(err);
+      console.debug(err);
     },
   });
 
@@ -113,8 +113,8 @@ const MyPageMain = () => {
     }
   }, [detailMoney, detailTreasure, percentDeposit, percentSavings, percentTreasure]);
 
-  console.log("detailMoney", detailMoney);
-  console.log("pieData : ", pieData);
+  console.debug("detailMoney", detailMoney);
+  console.debug("pieData : ", pieData);
 
   function selectRank() {
     if (totalMoney < 0) return <></>;

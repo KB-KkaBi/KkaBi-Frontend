@@ -38,7 +38,7 @@ const QuizWrongNote = () => {
     }
   }
 
-  console.log(checkTotalPage());
+  console.debug(checkTotalPage());
 
   const handlePage = (num: number) => {
     if (page + num + 1 !== 0 && page + num !== checkTotalPage()) {

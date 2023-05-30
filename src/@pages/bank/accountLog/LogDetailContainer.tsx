@@ -13,7 +13,7 @@ import * as S from "./style";
 function LogDetailContainer(props: any) {
   const { log } = props;
 
-  console.log(log);
+  console.debug(log);
   function isDeposit(transactionType: string) {
     return transactionType === "입금";
   }

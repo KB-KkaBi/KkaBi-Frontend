@@ -11,6 +11,6 @@ export async function postLogin(userData: any) {
     withCredentials: true,
   });
 
-  console.log("debug data: ", data);
+  console.debug("debug data: ", data);
   return data;
 }

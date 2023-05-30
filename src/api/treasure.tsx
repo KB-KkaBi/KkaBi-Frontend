@@ -16,7 +16,7 @@ export async function getTreasure() {
 }
 
 export async function postInvestLog(treasureData: any) {
-  console.log(treasureData);
+  console.debug(treasureData);
   const data = await axios.post(`https://kkabi.shop:9000/account-log`, treasureData, {
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export async function postInvestLog(treasureData: any) {
     withCredentials: true,
   });
 
-  console.log(data.data);
+  console.debug(data.data);
   return data.data;
 }
 
@@ -42,7 +42,7 @@ export async function getMyAccount() {
     withCredentials: true,
   });
 
-  console.log(data.data);
+  console.debug(data.data);
   return data.data;
 }
 
@@ -57,6 +57,6 @@ export async function getAccountInfo() {
     withCredentials: true,
   });
 
-  // console.log(data.data);
+  // console.debug(data.data);
   return data.data;
 }

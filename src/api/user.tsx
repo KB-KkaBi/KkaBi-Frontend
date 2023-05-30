@@ -11,6 +11,6 @@ export async function getUserInfo() {
     withCredentials: true,
   });
 
-  console.log(data.data);
+  console.debug(data.data);
   return data.data;
 }

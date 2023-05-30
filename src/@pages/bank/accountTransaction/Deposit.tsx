@@ -19,7 +19,7 @@ const Deposit = () => {
   const [maxMoney, setMaxMoney] = useState(1000000);
   const [errorOpen, setErrorOpen] = useState(false);
 
-  console.log(maxMoney);
+  console.debug(maxMoney);
   const { mutate: createAccountLog } = useMutation(postAccountLog, {
     onSuccess: () => {
       setOpen(true);

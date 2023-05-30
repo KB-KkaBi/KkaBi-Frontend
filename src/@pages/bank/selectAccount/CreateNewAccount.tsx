@@ -27,7 +27,7 @@ const CreateNewAccount = () => {
   const { data: accountData } = useQuery(["accountInfo"], getAccountInfo);
   const { data: myAccount } = useQuery(["myAccount"], getMyAccount);
 
-  // console.log(myAccount);
+  // console.debug(myAccount);
 
   function clickAccountCare(
     accountInfoId: number,

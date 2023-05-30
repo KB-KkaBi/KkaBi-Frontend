@@ -18,7 +18,7 @@ const Login = () => {
   const { mutate: loginPost } = useMutation(postLogin, {
     onSuccess: (response) => {
       setUserSeq(response.data.user.userSeq);
-      //console.log(userSeq);
+      //console.debug(userSeq);
 
       navigate("/home");
     },
@@ -58,7 +58,7 @@ const Login = () => {
 
   useEffect(() => {
     //setUserSeq(loginPost.data.user.userSeq);
-    console.log("현재 로그인 한 유저 시퀀스 : ", userSeq);
+    console.debug("현재 로그인 한 유저 시퀀스 : ", userSeq);
   }, [userSeq]);
 
   return (

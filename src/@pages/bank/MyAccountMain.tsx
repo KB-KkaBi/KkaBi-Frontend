@@ -9,7 +9,7 @@ import * as S from "./style";
 
 const MyAccountMain = () => {
   // const { state } = useLocation();
-  // console.log(state);
+  // console.debug(state);
   const id = useRecoilValue(clickedId);
   // const accountInfoId=
 

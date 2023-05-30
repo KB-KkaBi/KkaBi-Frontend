@@ -11,6 +11,6 @@ export async function postLogout() {
     withCredentials: true,
   });
 
-  console.log(data);
+  console.debug(data);
   return data;
 }

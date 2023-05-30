@@ -25,7 +25,7 @@ export async function postCheckEmail(email: EmailType) {
     withCredentials: true,
   });
 
-  // console.log(data);
+  // console.debug(data);
   return data;
 }
 /**
@@ -45,6 +45,6 @@ export async function postRegister(user: UserType) {
   // export async function postCheckEmail(email: EmailType) {
   //   const data = await axios.post(`https://kkabi.shop:9000/check-email`, email);
 
-  // console.log(data);
+  // console.debug(data);
   return data;
 }

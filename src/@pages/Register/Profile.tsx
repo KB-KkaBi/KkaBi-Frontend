@@ -49,8 +49,8 @@ const Profile = () => {
 
   //테스트하기
   // useEffect(() => {
-  //   console.log("selectedCharacter", selectedCharacter);
-  //   console.log("nickName~", nickName);
+  //   console.debug("selectedCharacter", selectedCharacter);
+  //   console.debug("nickName~", nickName);
   // }, [selectedCharacter, nickName]);
 
   const character = [
@@ -82,7 +82,7 @@ const Profile = () => {
         pw: password,
       });
 
-    console.log("회원가입 버튼 눌렀음");
+    console.debug("회원가입 버튼 눌렀음");
   };
 
   return (
