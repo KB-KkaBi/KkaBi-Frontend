@@ -23,6 +23,7 @@ const Quiz = () => {
   const [total, setTotal] = useState(); // 답 제출 시 결과로 만들어진 보물 개수
   const { data: quizArray } = useQuery(["quizInfo", investData.treasureId], () => getQuizList(investData.treasureId));
   const [myAnswer, setMyAnswer] = useState<string>();
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     if (Array.isArray(quizArray)) {
@@ -41,6 +42,8 @@ const Quiz = () => {
           const arr = shuffle(randomQuiz.array.split(", "));
           setButtonArray(arr);
         }
+      } else {
+        setError(true);
       }
     }
   }, [quizArray]);
@@ -102,6 +105,10 @@ const Quiz = () => {
       case 4:
         return "다이아몬드";
     }
+  }
+
+  function closeError() {
+    setError(false);
   }
 
   return (
