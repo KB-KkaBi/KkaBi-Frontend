@@ -46,5 +46,5 @@
     "vite-tsconfig-paths": "^4.2.0"
   },
   "proxy": "https://kkabi.shop:9000",
-  "hompage": "https://kb-kkabi.netlify.app"
+  "homepage": "https://kb-kkabi.netlify.app"
 }
