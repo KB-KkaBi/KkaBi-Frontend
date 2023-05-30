@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function postLogin(userData: any) {
-  const data = await axios.post(`${import.meta.env.VITE_APP_BASE_URL}/api/login`, userData, {
+  const data = await axios.post(`https://kkabi.shop:9000/api/login`, userData, {
     withCredentials: true,
   });
 
