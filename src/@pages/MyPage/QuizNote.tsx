@@ -29,7 +29,7 @@ const QuizWrongNote = () => {
   console.debug(quizLogList);
 
   function checkTotalPage() {
-    const len = quizLogList?.content?.length;
+    const len = quizLogList?.length;
     const totalPage = Math.floor(len / 4);
     if (len !== 0) {
       return len % 4 === 0 ? totalPage : totalPage + 1;
