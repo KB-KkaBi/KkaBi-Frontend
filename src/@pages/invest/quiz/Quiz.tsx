@@ -7,7 +7,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
-import { ThemeContext } from "styled-components";
+import styled, { ThemeContext } from "styled-components";
 import MemoizedAnswerSelector from "./AnswerSelector";
 import * as S from "./style";
 
@@ -47,6 +47,8 @@ const Quiz = () => {
       }
     }
   }, [quizArray]);
+
+  console.log(quizData);
 
   const selectedArray = useRecoilValue(selectedButtonArray);
   const navigate = useNavigate();
@@ -109,6 +111,7 @@ const Quiz = () => {
 
   function closeError() {
     setError(false);
+    navigate("../../home");
   }
 
   return (
@@ -152,8 +155,26 @@ const Quiz = () => {
           <Button onClick={handleClose}>확인</Button>
         </S.ModalContent>
       </Modal>
+
+      <Modal open={error} onClose={closeError}>
+        <ModalWrapper>
+          <p className="text">더 이상 풀 문제가 없습니다</p>
+          <Button onClick={closeError}>확인</Button>
+        </ModalWrapper>
+      </Modal>
     </PaperLayout>
   );
 };
 
 export default Quiz;
+
+const ModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.fonts.text}
+  text-align: center;
+
+  .text {
+    margin-bottom: 3rem;
+  }
+`;
