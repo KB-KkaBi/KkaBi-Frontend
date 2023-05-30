@@ -17,17 +17,22 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
-    define: {
-      __APP_ENV__: env.APP_ENV,
-    },
-    server: {
-      proxy: {
-        "/api": {
-          // target: env.VITE_APP_BASE_URL,
-          changeOrigin: true,
-          secure: false,
-          rewrite: (path) => path.replace(/^\/api/, ""),
-        },
+    // define: {
+    //   __APP_ENV__: env.APP_ENV,
+    // },
+    // server: {
+    //   proxy: {
+    //     "/api": {
+    //       // target: env.VITE_APP_BASE_URL,
+    //       changeOrigin: true,
+    //       secure: false,
+    //       rewrite: (path) => path.replace(/^\/api/, ""),
+    //     },
+    //   },
+    // },
+    vite: {
+      define: {
+        "process.env.TESS_ENV": process.env.VITE_APP_BASE_URL,
       },
     },
     build: { chunkSizeWarningLimit: 7000 },
