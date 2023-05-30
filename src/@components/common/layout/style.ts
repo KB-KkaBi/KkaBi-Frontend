@@ -1,7 +1,7 @@
 import accountLogImage from "@/assets/image/account_log.png";
 import bankImage from "@/assets/image/bank_main.png";
+import quizNoteImage from "@/assets/image/quiznote_background.png";
 import paperImage from "@/assets/image/vector-9.png";
-import quizNoteImage from "@/assets/image/quizNote_background.png";
 
 import styled from "styled-components";
 
