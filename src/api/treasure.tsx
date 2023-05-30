@@ -8,7 +8,7 @@ export async function getTreasure() {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -23,7 +23,7 @@ export async function postInvestLog(treasureData: any) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -38,7 +38,7 @@ export async function getMyAccount() {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -53,7 +53,7 @@ export async function getAccountInfo() {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 

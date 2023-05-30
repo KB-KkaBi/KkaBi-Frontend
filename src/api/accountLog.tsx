@@ -7,7 +7,7 @@ export async function getTotalAccountLog(accountId: number) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -21,7 +21,7 @@ export async function getAccountLogPagenation(accountId: number, page: number) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -35,7 +35,7 @@ export async function getAccountName(accountId: number) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 

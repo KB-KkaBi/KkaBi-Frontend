@@ -7,7 +7,7 @@ export async function postLogin(userData: any) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 

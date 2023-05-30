@@ -7,7 +7,7 @@ export async function getUserInfo() {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 

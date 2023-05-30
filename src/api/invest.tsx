@@ -8,7 +8,7 @@ export const getQuizList = async (treasureId: number) => {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -23,7 +23,7 @@ export async function postQuizAnswer(investData: InvestDataTypes) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
   console.debug(data);

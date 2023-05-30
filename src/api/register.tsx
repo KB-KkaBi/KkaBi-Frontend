@@ -21,7 +21,7 @@ export async function postCheckEmail(email: EmailType) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -38,7 +38,7 @@ export async function postRegister(user: UserType) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 

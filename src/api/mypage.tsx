@@ -7,7 +7,7 @@ export async function getTotalQuizLog() {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -21,7 +21,7 @@ export async function getQuizLogPagnation(pageNumber: number, pageSize: number) 
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -38,7 +38,7 @@ export async function getMyInfo() {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -52,7 +52,7 @@ export async function updateNickname(nickname: nicknameType) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
@@ -67,7 +67,7 @@ export async function updatePassword(passwordData: any) {
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    data: {},
+    data: null,
     withCredentials: true,
   });
 
