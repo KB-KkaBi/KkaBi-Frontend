@@ -39,7 +39,9 @@ const Home = () => {
     onSuccess: (response) => {
       // setDetailMoney(response.detailMoney);
       setTotalMoney(
-        response.detailMoney.totalDeposit + response.detailMoney.totalSavings + response.detailMoney.totalTreasure,
+        response?.detailMoney?.totalDeposit +
+          response?.detailMoney?.totalSavings +
+          response?.detailMoney?.totalTreasure,
       );
     },
   });
