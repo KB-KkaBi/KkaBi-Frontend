@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function getTotalQuizLog() {
-  const data = await axios.get(`https://kkabi.shop:9000/quiz-log`, {
+  const data = await axios.get(`https://kkabi.shop:9000/quiz-total-log`, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -10,7 +10,7 @@ export async function getTotalQuizLog() {
     data: null,
     withCredentials: true,
   });
-
+  console.log("gettotal quizlog:", data?.data);
   return data?.data;
 }
 

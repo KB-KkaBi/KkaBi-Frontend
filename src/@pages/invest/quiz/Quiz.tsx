@@ -28,17 +28,23 @@ const Quiz = () => {
 
   useEffect(() => {
     if (Array.isArray(quizArray)) {
-      const filteredQuizList = quizArray.filter((quiz) => {
+      console.log("quizArray", quizArray);
+      console.log("quizLog", quizLogList);
+      const filteredQuizList = quizArray?.filter((quiz) => {
         let flag = false; // 로그에 존재하면 true 반환
-        quizLogList.array.forEach((log: any) => {
-          if (log.quizInfo?.quizId === quiz.quizId) {
-            flag = true;
-          }
-        });
+        if (!!quizLogList) {
+          quizLogList?.forEach((log: any) => {
+            console.log("quiz log:", log);
+            if (log?.quizInfo?.quizId === quiz.quizId) {
+              console.log(log.quizInfo.quizId, quiz.quizId, "set flag true");
+              flag = true;
+            }
+          });
+        }
         return !flag;
       });
       const randomQuiz =
-        filteredQuizList.length > 0 ? filteredQuizList[Math.floor(Math.random() * quizArray.length)] : undefined;
+        filteredQuizList.length > 0 ? filteredQuizList[Math.floor(Math.random() * filteredQuizList.length)] : undefined;
       if (randomQuiz) {
         setQuizData(randomQuiz);
         setInvestData(({ quizId, ...data }) => {
