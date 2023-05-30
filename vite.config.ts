@@ -35,6 +35,6 @@ export default defineConfig(({ mode }) => {
         "process.env.TESS_ENV": process.env.VITE_APP_BASE_URL,
       },
     },
-  },
-  build: { chunkSizeWarningLimit: 7000, minify: false },
+    build: { chunkSizeWarningLimit: 7000, minify: false },
+  };
 });
