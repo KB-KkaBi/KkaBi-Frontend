@@ -13,7 +13,8 @@ const EditNickname = () => {
   const [open, setOpen] = useState(false); //Modal Open
 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedNickname(e.target.value);
+    const value = e.target.value.slice(0, 4); // 입력값의 최대 길이를 4로 제한
+    setEditedNickname(value);
   };
 
   const handleModalOpen = useCallback(() => {
@@ -59,7 +60,7 @@ const EditNickname = () => {
           <S.NickNameInputWrapper>
             <p>NICKNAME</p>
             <TextField
-              placeholder="변경하고싶은 닉네임을 적어주세요"
+              placeholder="변경 닉네임을 적어주세요(최대 4글자)"
               value={editedNickname}
               onChange={handleNicknameChange}
             />
