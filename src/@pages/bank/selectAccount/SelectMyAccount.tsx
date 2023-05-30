@@ -21,6 +21,7 @@ const SelectMyAccount = () => {
   console.debug(accountMoney);
   const [bankLogs, setBankLogs] = useRecoilState(bankLog);
 
+  console.debug(bankLogs);
   const { data: myAccountData } = useQuery(["myAccount"], getMyAccount);
   // const { data: accountListData } = useQuery(["accountLis"], getAccountInfo);
 
