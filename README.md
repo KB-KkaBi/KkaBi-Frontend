@@ -1,6 +1,8 @@
 # KkaBi-Frontend
 어린이의 경제관련 지식 습득을 돕는 웹 앱입니다.  
-React, Vite, Recoil, TypeScript, 그리고 CSS를 이용해 구현되었습니다.
+React, Vite, Recoil, TypeScript, 그리고 CSS를 이용해 구현되었습니다.   
+[Notion Link](https://www.notion.so/seojisoosoo/af02cd56df7d4cc1ad7f42fcdc86c1c9)   
+[시연 영상](https://youtu.be/4afc1a1zD58)
   
 ## Installation and Setup Instructions
 To Clone Repository:  
@@ -27,18 +29,16 @@ To Start Server:
 | chore | build와 관련된 부분, 패키지 매니저 설정 등 여러가지 production code와 무관한 부분을 커밋 할 경우 |
 | etc | 이 외 |
 
+## Authors
+- [JaeHyun Lim](https://github.com/JaeHyun-Lim-dev) - Front-end CTO, 초기 설정, 공통 컴포넌트/레이아웃 추가, 퀴즈 풀이 관련 화면, 기타 은행 화면 관련 퍼블리싱
+
 ## Project Status  
-현재 개발 진행 중에 있습니다.
+5/30 기준 개발이 완료된 상태입니다.
 #### 개발이 완료된 기능:  
-#### 개발이 진행중/예정인 기능:  
-- 회원가입
-- 로그인
-- 로그아웃
-- 게시글 작성
+- 회원가입/로그인/로그아웃
 - 계좌 개설
 - 내 계좌 확인하기
 - 예금
 - 출금
-- 투자 정보 입력하기
-- 퀴즈 풀이
+- 투자 및 퀴즈 풀이
 - 내 정보 확인하기
