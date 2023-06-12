@@ -2,7 +2,11 @@
 어린이의 경제관련 지식 습득을 돕는 웹 앱입니다.  
 React, Vite, Recoil, TypeScript, 그리고 CSS를 이용해 구현되었습니다.   
 [Notion Link](https://www.notion.so/seojisoosoo/af02cd56df7d4cc1ad7f42fcdc86c1c9)   
-[시연 영상](https://youtu.be/4afc1a1zD58)
+[시연 영상](https://youtu.be/4afc1a1zD58)   
+<img src="./src/assets/image/랜딩페이지.png" width="400px" title="landing" />
+<img src="./src/assets/image/메인페이지.png" width="400px" title="landing" />
+<img src="./src/assets/image/은행.png" width="400px" title="landing" />
+<img src="./src/assets/image/보물섬-퀴즈.png" width="400px" title="landing" />
   
 ## Installation and Setup Instructions
 To Clone Repository:  
