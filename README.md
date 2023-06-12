@@ -4,9 +4,11 @@ React, Vite, Recoil, TypeScript, 그리고 CSS를 이용해 구현되었습니�
 [Notion Link](https://www.notion.so/seojisoosoo/af02cd56df7d4cc1ad7f42fcdc86c1c9)   
 [시연 영상](https://youtu.be/4afc1a1zD58)   
 <img src="./src/assets/image/랜딩페이지.png" width="400px" title="landing" />
-<img src="./src/assets/image/메인페이지.png" width="400px" title="landing" />
-<img src="./src/assets/image/은행.png" width="400px" title="landing" />
-<img src="./src/assets/image/보물섬-퀴즈.png" width="400px" title="landing" />
+<img src="./src/assets/image/메인페이지.png" width="400px" title="main" />
+<img src="./src/assets/image/은행.png" width="400px" title="bank" />
+<img src="./src/assets/image/잔고확인.png" width="400px" title="account" />
+<img src="./src/assets/image/마이페이지.png" width="400px" title="mypage" />
+<img src="./src/assets/image/보물섬-퀴즈.png" width="400px" title="quiz" />
   
 ## Installation and Setup Instructions
 To Clone Repository:  
