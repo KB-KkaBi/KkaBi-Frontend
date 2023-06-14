@@ -37,7 +37,7 @@ To Start Server:
 
 ## Authors
 - [JaeHyun Lim](https://github.com/JaeHyun-Lim-dev) - Front-end CTO, 초기 설정, 공통 컴포넌트/레이아웃 추가, 퀴즈 풀이 관련 화면 작업, 기타 은행 화면 관련 퍼블리싱   
-- [곽승규]   
+- [SeungGyu Kwak](https://github.com/SeungGyu-Kwak) - 랜딩페이지, 기타 회원 정보 관련 페이지(마이페이지, 비밀번호수정) 퍼블리싱, PieChart 구현, 회원 관련 API붙이기
 - [서지수]   
 - [윤상우]   
 - [김태선]   
