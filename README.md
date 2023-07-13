@@ -40,7 +40,7 @@ To Start Server:
 - [SeungGyu Kwak](https://github.com/SeungGyu-Kwak) - 랜딩페이지, 기타 회원 정보 관련 페이지(마이페이지, 비밀번호수정) 퍼블리싱, PieChart 구현, 회원 관련 API붙이기
 - [서지수]   
 - [Sangwoo Yun](https://github.com/Awarduuu) - 입금, 출금 관련 로직 개발 및 데이터 패칭, 계좌 개설 데이터 패칭   
-- [김태선]   
+- [TaeSeon Kim](https://github.com/KiM-Taeseon) - 마이페이지 로직 개발, api 연동 및 데이터 패칭  
 
 ## Project Status  
 5/30 기준 개발이 완료된 상태입니다.
